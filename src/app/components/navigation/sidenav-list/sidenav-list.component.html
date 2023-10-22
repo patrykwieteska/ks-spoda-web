@@ -1,19 +1,34 @@
 <mat-nav-list>
   <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
-    <mat-icon>home</mat-icon><span class="nav-caption">Home</span>
-  </a>
-  <a mat-list-item routerLink="/owner" (click)="onSidenavClose()">
-    <mat-icon>home</mat-icon><span class="nav-caption">Zaloguj</span>
-  </a>
-  <a mat-list-item routerLink="/#" (click)="onSidenavClose()">
-    <mat-icon>home</mat-icon><span class="nav-caption">O nas</span>
+    <mat-icon>home</mat-icon>
+    <div class="nav-caption">Strona główna</div>
   </a>
   <mat-list-item [matMenuTriggerFor]="menu">
-    <mat-icon>unfold_more</mat-icon>
-    <a matline>Example</a>
+    <mat-icon>sports_soccer</mat-icon>
+    <a matline>Centrum ligowe</a>
   </mat-list-item>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="onSidenavClose()">View profile</button>
-    <button mat-menu-item (click)="onSidenavClose()">Add contact</button>
+    <button mat-menu-item (click)="onSidenavClose()">
+      <mat-icon>add_box</mat-icon>Utwórz ligę
+    </button>
+    <button mat-menu-item (click)="onSidenavClose()">
+      <mat-icon>table_chart</mat-icon>Moje ligi
+    </button>
   </mat-menu>
+  <a mat-list-item routerLink="/owner" (click)="onSidenavClose()">
+    <mat-icon>account_circle</mat-icon>
+    <div class="nav-caption">Profil</div>
+  </a>
+  <a mat-list-item routerLink="/#" (click)="onSidenavClose()">
+    <mat-icon>help_outline</mat-icon>
+    <div class="nav-caption">Projekt Śpoda</div>
+  </a>
+  <a mat-list-item routerLink="/#" (click)="onSidenavClose()">
+    <mat-icon>login</mat-icon>
+    <div class="nav-caption">Zaloguj</div>
+  </a>
+  <a mat-list-item routerLink="/#" (click)="onSidenavClose()">
+    <mat-icon>logout</mat-icon>
+    <div class="nav-caption">Wyloguj</div>
+  </a>
 </mat-nav-list>

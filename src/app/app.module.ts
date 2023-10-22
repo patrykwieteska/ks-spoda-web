@@ -8,6 +8,9 @@ import { MaterialModule } from './material/material.module';
 import { RoutingModule } from './routing/routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { SidenavListComponent } from './components/navigation/sidenav-list/sidenav-list.component';
+import { AboutComponent } from './components/about/about.component';
+import { SearchLeagueComponent } from './components/search-league/search-league.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,8 @@ import { SidenavListComponent } from './components/navigation/sidenav-list/siden
     HeaderComponent,
     HomeComponent,
     SidenavListComponent,
+    AboutComponent,
+    SearchLeagueComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +27,7 @@ import { SidenavListComponent } from './components/navigation/sidenav-list/siden
     MaterialModule,
     FlexLayoutModule,
     RoutingModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

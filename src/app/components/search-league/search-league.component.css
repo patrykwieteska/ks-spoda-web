@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type="text"] {
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: var(--shadow-color);
+  border-radius: 8px;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  background: var(--primary-color);
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+form.example button:hover {
+  background: var(--secondary-color);
+}

@@ -25,5 +25,18 @@ mat-toolbar {
 }
 
 .header {
-  background-color: teal;
+  background-color: var(--primary-color);
+}
+
+img {
+  width: 150px;
+}
+
+.menu-link:hover {
+  color: lightgray;
+  cursor: pointer;
+}
+
+.menu-icon {
+  padding-bottom: 40px;
 }

@@ -9,3 +9,14 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+:root {
+  --primary-color: #2d4659;
+  --secondary-color: #819f7f;
+  --accent-color: #d3d0a8;
+  --shadow-color: #fdfbda;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
