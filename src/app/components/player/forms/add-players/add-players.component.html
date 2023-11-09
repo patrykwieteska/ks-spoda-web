@@ -1,0 +1,62 @@
+<form [formGroup]="playersDataForm">
+  <div
+    fxLayout="row wrap"
+    fxLayoutAlign="start center"
+    fxLayoutAlign.xs="center center"
+    fxLayoutAlign.lt-md="center center"
+  >
+    <div
+      fxLayout="row"
+      class="player-row"
+      *ngFor="let player of existingPlayers; let i = index"
+      fxFlex="48"
+      fxFlex.lt-md="60"
+      fxFlex.xs="100"
+    >
+      <div class="player-icon"><mat-icon>person</mat-icon></div>
+      <div class="player-alias" fxFlex="70">
+        {{ player.alias }}
+      </div>
+      <div>
+        <button
+          class="delete-player"
+          mat-button
+          color="warn"
+          (click)="removeExistingPlayer(i)"
+        >
+          Usuń
+        </button>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div fxLayout="row" fxLayout.lt-md="column">
+    <div fxFlex="48">
+      <button
+        (click)="openExistingPlayersModal()"
+        fxFlex="100"
+        mat-button
+        class="player-button"
+      >
+        Wyszukaj<mat-icon>person_search</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex="6" fxLayoutAlign="center" class="centered-element">lub</div>
+    <div fxFlex="48" fxLayoutAlign="center center">
+      <button
+        (click)="openNewPlayerModal()"
+        fxFlex="100"
+        mat-button
+        class="player-button"
+      >
+        Dodaj nowego<mat-icon>person_add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <br />
+  <div>
+    <button mat-button matStepperPrevious>Wróć</button>
+    <button class="next-button" mat-button matStepperNext>Dalej</button>
+  </div>
+</form>

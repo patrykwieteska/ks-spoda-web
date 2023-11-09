@@ -1,0 +1,122 @@
+<div fxFlexAlign="center" class="container custom-theme">
+  <mat-vertical-stepper #stepper [linear]="false">
+    <mat-step
+      [stepControl]="generalDataForm"
+      errorMessage="Uzupełnij dane ligi"
+    >
+      <form [formGroup]="generalDataForm" fxFlex>
+        <ng-template matStepLabel>Dane ligi</ng-template>
+        <div fxLayout="row" fxLayout.lt-md="column">
+          <div fxFlex="50" fxLayout="row">
+            <div fxFlex="90">
+              <mat-form-field fxFlex="100">
+                <mat-label>Nazwa ligi</mat-label>
+                <input
+                  matInput
+                  placeholder="Wpisz nazwę"
+                  formControlName="leagueName"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div fxFlex="10"></div>
+          </div>
+          <div fxFlex="50" fxLayout="row">
+            <div fxFlex="90">
+              <mat-form-field fxFlex="100">
+                <mat-label>Logo</mat-label>
+                <input
+                  matInput
+                  placeholder="Wprowadź adres url"
+                  formControlName="leagueLogo"
+                />
+              </mat-form-field>
+            </div>
+            <div fxFlex="10"></div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column">
+          <div fxFlex="50" fxLayout="row">
+            <div fxFlex="90">
+              <mat-form-field fxFlex="100">
+                <mat-label>Typ ligi</mat-label>
+                <mat-select formControlName="leagueType">
+                  <mat-option
+                    *ngFor="let type of leagueTypeList"
+                    [value]="type.key"
+                    >{{ type.valuePL }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="help" fxFlex="10">
+              <a (click)="openHelpDialog(leagueTypeHelpTemplate)">
+                <mat-icon>help</mat-icon></a
+              >
+            </div>
+          </div>
+          <div fxFlex="50" fxLayout="row">
+            <div fxFlex="90">
+              <mat-form-field fxFlex="100">
+                <mat-label>Sruktura drużyn</mat-label>
+                <mat-select formControlName="teamStructure">
+                  <mat-option
+                    *ngFor="let structure of teamStructureList"
+                    [value]="structure.key"
+                    (click)="prepareMinPlayersValue(structure.key)"
+                    >{{ structure.valuePL }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="help" fxFlex="10">
+              <a (click)="openHelpDialog(teamStructureHelpTemplate)">
+                <mat-icon>help</mat-icon></a
+              >
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column">
+          <div fxFlex="50" fxLayout="row">
+            <div fxFlex="90">
+              <mat-form-field fxFlex="100">
+                <mat-label>Opis</mat-label>
+                <textarea matInput formControlName="leagueDesc"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="help" fxFlex="10"></div>
+          </div>
+        </div>
+
+        <div>
+          <button mat-button matStepperNext class="next-button">Dalej</button>
+        </div>
+      </form>
+    </mat-step>
+    -----------------------------------------------------------------------------------------
+    <mat-step
+      [stepControl]="playersDataForm"
+      [errorMessage]="playerListErrorMessage()"
+    >
+      <ng-template matStepLabel>Lista graczy</ng-template>
+      <app-add-players
+        [apiPlayerList]="apiPlayerList"
+        (exportPlayersForm)="takePlayersForm($event)"
+      ></app-add-players>
+    </mat-step>
+    -----------------------------------------------------------------------------------------
+    <mat-step style="width: 100%">
+      <ng-template matStepLabel>Podsumowanie</ng-template>
+      <div fxLayout="row">
+        <div fxLayoutAlign="start">
+          <button mat-button matStepperPrevious>Wróć</button>
+        </div>
+        <div fxLayoutAlign="end">
+          <button mat-button class="next-button" (click)="submit()">
+            Utwórz
+          </button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

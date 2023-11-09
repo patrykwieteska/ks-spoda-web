@@ -1,1 +1,15 @@
-<app-search-league></app-search-league>
+<div fxLayout="column wrap">
+  <div>
+    <app-search-league
+      (searchValueEmitter)="takeSearchValue($event)"
+    ></app-search-league>
+  </div>
+  <br />
+  <div
+    fxFlexAlign="center"
+    *ngFor="let league of filteredLeagueList"
+    class="league-item-container"
+  >
+    <app-league-item [league]="league"></app-league-item>
+  </div>
+</div>

@@ -1,58 +1,64 @@
-<mat-toolbar class="header" color="primary">
-  <div fxHide.gt-xs>
-    <button mat-icon-button (click)="onToggleSidenav()">
-      <mat-icon class="menu-icon">menu</mat-icon>
-    </button>
-  </div>
-  <div>
-    <a routerLink="/home"><img src="./../../../../assets/logo_white.png" /></a>
-  </div>
+<header>
+  <mat-toolbar class="header" color="primary">
+    <div fxHide fxShow.lt-md>
+      <button mat-icon-button (click)="onToggleSidenav()">
+        <mat-icon class="menu-icon">menu</mat-icon>
+      </button>
+    </div>
+    <div>
+      <a routerLink="/home"
+        ><img src="./../../../../assets/logo_white.png"
+      /></a>
+    </div>
 
-  <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
-    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li>
-        <mat-list-item [matMenuTriggerFor]="menu" class="menu-link">
-          <a matline>
+    <div fxFlex fxLayout fxLayoutAlign="start" fxHide.lt-md>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <li>
+          <mat-list-item [matMenuTriggerFor]="menu" class="menu-link">
+            <a matline>
+              <div class="nav-caption">
+                <mat-icon>sports_soccer</mat-icon> Centrum ligowe
+              </div>
+            </a>
+          </mat-list-item>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="leagues/create">
+              <mat-icon>add_box</mat-icon>Utwórz ligę
+            </button>
+            <button mat-menu-item>
+              <mat-icon>table_chart</mat-icon> Moje ligi
+            </button>
+          </mat-menu>
+        </li>
+        <li>
+          <a routerLink="login">
             <div class="nav-caption">
-              <mat-icon>sports_soccer</mat-icon> Centrum ligowe
+              <mat-icon>account_circle</mat-icon> Profil
             </div>
           </a>
-        </mat-list-item>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item><mat-icon>add_box</mat-icon>Utwórz ligę</button>
-          <button mat-menu-item>
-            <mat-icon>table_chart</mat-icon> Moje ligi
-          </button>
-        </mat-menu>
-      </li>
-      <li>
-        <a routerLink="login">
-          <div class="nav-caption">
-            <mat-icon>account_circle</mat-icon> Profil
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li>
-        <a routerLink="about">
-          <div class="nav-caption">
-            <mat-icon>help_outline</mat-icon> Projekt Śpoda
-          </div>
-        </a>
-      </li>
-      <li>
-        <a routerLink="login">
-          <div class="nav-caption"><mat-icon> login</mat-icon> Zaloguj</div>
-        </a>
-      </li>
-      <li>
-        <a routerLink="login">
-          <div class="nav-caption"><mat-icon>logout</mat-icon> Wyloguj</div>
-        </a>
-      </li>
-    </ul>
-  </div>
-</mat-toolbar>
+        </li>
+      </ul>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.lt-md>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <li>
+          <a routerLink="about">
+            <div class="nav-caption">
+              <mat-icon>help_outline</mat-icon> Projekt Śpoda
+            </div>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/#">
+            <div class="nav-caption"><mat-icon> login</mat-icon> Zaloguj</div>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/#">
+            <div class="nav-caption"><mat-icon>logout</mat-icon> Wyloguj</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar>
+</header>

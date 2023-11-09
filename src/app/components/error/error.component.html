@@ -1,0 +1,22 @@
+<mat-dialog-title fxLayoutAlign="center center">
+  <div fxLayout="row" class="error-title">
+    <mat-icon *ngIf="icon">{{ icon | lowercase }} </mat-icon>
+    <h5>{{ title }}</h5>
+  </div>
+</mat-dialog-title>
+<mat-dialog-content fxLayoutAlign="center center">
+  <div fxLayout="column">
+    <div>
+      <p>{{ message }}</p>
+    </div>
+    <div *ngIf="error">
+      <p><b>Szczegóły:</b></p>
+      <textarea cdkTextareaAutosize disabled>{{ error }}</textarea>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button mat-dialog-close class="close-button" tabindex="-1">
+    {{ buttonText }}
+  </button>
+</mat-dialog-actions>

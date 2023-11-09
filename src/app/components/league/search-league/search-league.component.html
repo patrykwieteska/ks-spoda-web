@@ -1,0 +1,20 @@
+<div fxFlexAlign="center">
+  <section>
+    <form class="example">
+      <input
+        id="search-text"
+        #filter
+        type="text"
+        placeholder="{{ searchText }}"
+        (keydown.enter)="searchLeague(filter.value)"
+      />
+      <button
+        class="primary"
+        type="button"
+        (click)="searchLeague(filter.value)"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+  </section>
+</div>
