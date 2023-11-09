@@ -3,8 +3,10 @@ import { League, NewLeague } from '../model/league';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { BASE_URL } from 'src/config';
 
-const BASE_URL: string = 'http://localhost:8080/api/v1/leaguess';
+const serviceURL = '/leagues';
+const baseURL = BASE_URL + serviceURL;
 
 @Injectable({
   providedIn: 'root',
@@ -16,14 +18,14 @@ export class LeagueService {
 
   getAllLeagues(): Observable<GetAllLeaguesResponse> {
     return this.http
-      .get<GetAllLeaguesResponse>(BASE_URL)
+      .get<GetAllLeaguesResponse>(baseURL)
       .pipe(catchError(this.handleError));
   }
 
   createLeague(leagueData: NewLeague): Observable<NewLeague> {
     console.log(leagueData);
 
-    return this.http.post<NewLeague>(BASE_URL, leagueData).pipe();
+    return this.http.post<NewLeague>(baseURL, leagueData).pipe();
   }
 
   private handleError(error: HttpErrorResponse) {
