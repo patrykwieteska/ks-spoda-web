@@ -1,6 +1,7 @@
 a {
   text-decoration: none;
   color: white;
+  font-size: 15px;
 }
 
 a:hover,
@@ -18,7 +19,7 @@ mat-toolbar {
   border-radius: 3px;
 }
 
-@media (max-width: 959px) {
+@media (max-width: 1200px) {
   mat-toolbar {
     border-radius: 0px;
   }

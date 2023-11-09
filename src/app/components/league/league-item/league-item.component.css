@@ -1,0 +1,29 @@
+img {
+  border-radius: 20px;
+  /* border: 1px solid var(--shadow-color); */
+  width: 90px;
+  height: 90px;
+  background-color: white;
+}
+
+.break {
+  margin-left: 20px;
+}
+
+.league-item {
+  cursor: pointer;
+}
+.league-item:hover {
+  background-color: var(--accent-color);
+  cursor: pointer;
+}
+
+mat-card-header {
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

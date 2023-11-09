@@ -1,0 +1,8 @@
+app-league-item {
+  width: 100%;
+}
+
+.league-item-container {
+  width: 50%;
+  min-width: 300px;
+}

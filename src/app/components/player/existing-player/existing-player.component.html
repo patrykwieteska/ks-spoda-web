@@ -1,0 +1,91 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="player-modal">
+  <div fxLayout="row">
+    <div mat-dialog-title>
+      <div class="demo-section">
+        Dodawanie graczy
+        <mat-icon>groups</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-content>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-form-field style="width: 100%">
+        <input
+          style="width: 100%"
+          id="player-filter"
+          matInput
+          placeholder="Wyszukaj gracza"
+          #filter
+          (input)="filterResults()"
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+    <div *ngIf="readyToAdd.length === 0" fxLayoutAlign="center center">
+      Brak graczy do dodania
+    </div>
+    <div>
+      <div
+        fxLayout="columm"
+        *ngFor="let filteredPlayer of filteredPlayerList; let i = index"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutGap="10px"
+          *ngIf="i < 4"
+          class="add-player-element"
+          (click)="addPlayer(filteredPlayer)"
+          tabindex="0"
+          (keydown.enter)="addPlayer(filteredPlayer)"
+        >
+          <div class="player-img">
+            <mat-icon>person</mat-icon>
+          </div>
+          <div>{{ filteredPlayer.name }}</div>
+          <div>
+            <b>{{ filteredPlayer.alias }}</b>
+          </div>
+        </div>
+
+        <hr />
+      </div>
+    </div>
+
+    <br />
+    <div fxLayout="row wrap" fxLayoutAlign="center center">
+      <div
+        fxLayout="row"
+        class="added-player"
+        fxLayoutAlign="center center"
+        *ngFor="let addedPlayer of addedPlayerList"
+        [matTooltip]="addedPlayer.alias"
+        matTooltipPosition="above"
+        (click)="removePlayer(addedPlayer)"
+      >
+        <div *ngIf="addedPlayer.alias.length > 9">
+          {{ addedPlayer.alias | slice : 0 : 7 }}...
+        </div>
+        <div *ngIf="addedPlayer.alias.length <= 9">
+          {{ addedPlayer.alias }}
+        </div>
+        <div><mat-icon>cancel</mat-icon></div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+    <button mat-button [mat-dialog-close] class="cancel-button">Wróć</button>
+    <button
+      [disabled]="disabled()"
+      class="add-button"
+      [mat-dialog-close]
+      mat-button
+      (click)="confirmPlayerList()"
+      [matBadge]="addedPlayerList.length"
+      matBadgePosition="after"
+      matBadgeColor="warn"
+      [matBadgeHidden]="addedPlayerList.length === 0"
+    >
+      Dodaj
+    </button>
+  </div>
+</div>

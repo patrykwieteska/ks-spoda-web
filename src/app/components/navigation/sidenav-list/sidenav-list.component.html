@@ -8,14 +8,18 @@
     <a matline>Centrum ligowe</a>
   </mat-list-item>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="onSidenavClose()">
+    <button
+      mat-menu-item
+      (click)="onSidenavClose()"
+      routerLink="leagues/create"
+    >
       <mat-icon>add_box</mat-icon>Utwórz ligę
     </button>
     <button mat-menu-item (click)="onSidenavClose()">
       <mat-icon>table_chart</mat-icon>Moje ligi
     </button>
   </mat-menu>
-  <a mat-list-item routerLink="/owner" (click)="onSidenavClose()">
+  <a mat-list-item routerLink="/#" (click)="onSidenavClose()">
     <mat-icon>account_circle</mat-icon>
     <div class="nav-caption">Profil</div>
   </a>

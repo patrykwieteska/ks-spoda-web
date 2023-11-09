@@ -1,0 +1,70 @@
+.container {
+  width: 70%;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+mat-form-field {
+  margin-left: 5px;
+}
+
+mat-vertical-stepper {
+  background-color: var(--shadow-color);
+}
+
+mat-icon {
+  color: var(--primary-color);
+}
+
+a {
+  cursor: pointer;
+}
+
+mat-icon:hover {
+  color: var(--secondary-color);
+}
+
+.next-button {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+.next-button:hover {
+  background-color: gray !important;
+}
+
+.player-button {
+  background-color: white;
+  border: solid 1px var(--primary-color);
+  color: var(--primary-color) !important;
+}
+
+.centered-element {
+  margin: 8px;
+}
+
+.player-row {
+  border: 1px lightgray dotted;
+  max-width: 200px;
+}
+
+button {
+  color: white;
+  border: 1px solid white;
+}
+
+button.delete-player:hover {
+  background-color: var(--accent-color);
+}
+
+.player-alias {
+  padding-top: 8px;
+}
+
+.player-icon {
+  padding: 4px;
+}
+
+.players-header {
+  font-weight: 500;
+  color: var(--primary-color);
+}

@@ -1,0 +1,31 @@
+<a [routerLink]="['/leagues/init', league.leagueId]">
+  <mat-card class="league-item">
+    <mat-card-header>
+      <mat-card-title>
+        <div fxLayout="row">
+          <img
+            [src]="league.logoUrl"
+            onerror="this.src = '../../../../assets/default_league_logo.png'"
+          />
+          <div class="break"></div>
+          <div>
+            <div fxLayout="column">
+              <mat-icon
+                [matTooltip]="getTooltipMessage(league.type)"
+                matTooltipPosition="right"
+                >{{ getTypeIcon(league.type) }}</mat-icon
+              >
+
+              {{ league.name | uppercase }}
+
+              <mat-card-subtitle>
+                {{ league.creationDate | date : "dd.MM.yyyy hh:mm" }}
+              </mat-card-subtitle>
+            </div>
+          </div>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+  </mat-card>
+</a>
