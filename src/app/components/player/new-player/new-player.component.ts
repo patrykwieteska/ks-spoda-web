@@ -26,13 +26,13 @@ export class NewPlayerComponent {
     this.newPlayerForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^(?:[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)?$/), // aplhanumeric with underscore
+        Validators.pattern(/^(?:[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)?$/), //alphabetic
         Validators.minLength(4),
         Validators.maxLength(20),
       ]),
       alias: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^(?:[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ+0-9_]+)?$/), //alphabetic
+        Validators.pattern(/^(?:[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ+0-9_]+)?$/), // aplhanumeric with underscore
         Validators.minLength(4),
         Validators.maxLength(20),
         busyNameValidator(this.busyAliases),

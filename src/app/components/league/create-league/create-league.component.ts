@@ -66,7 +66,7 @@ export class CreateLeagueComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(4),
-          Validators.pattern(/^(?:[a-zA-Z0-9\s ]+)?$/),
+          Validators.pattern(/^(?:[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ+0-9_ ]+)?$/),
         ],
       ],
       leagueLogo: [''],
