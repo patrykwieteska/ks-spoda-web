@@ -16,6 +16,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Player } from 'src/app/model/player';
 import { ExistingPlayerComponent } from '../../existing-player/existing-player.component';
+import { NewPlayerComponent } from '../../new-player/new-player.component';
 
 @Component({
   selector: 'app-add-players',
@@ -25,6 +26,7 @@ import { ExistingPlayerComponent } from '../../existing-player/existing-player.c
 export class AddPlayersComponent implements OnChanges {
   playersDataForm: FormGroup;
   existingPlayers: Player[] = [];
+  newPlayers: Player[] = [];
 
   preparePlayer(player: Player): FormGroup {
     return new FormGroup({
@@ -53,6 +55,8 @@ export class AddPlayersComponent implements OnChanges {
         playerList: this.existingPlayers,
         apiPlayerList: this.apiPlayerList,
       },
+      position: { top: '30px' },
+      disableClose: true,
     });
 
     dialogRef.componentInstance.outputPlayerList.subscribe(() => {
@@ -64,14 +68,58 @@ export class AddPlayersComponent implements OnChanges {
     });
   }
 
-  openNewPlayerModal(): void {}
+  openNewPlayerModal(): void {
+    let playerAliases = this.apiPlayerList
+      .concat(this.newPlayers)
+      .map((player) => {
+        return player.alias.toUpperCase();
+      });
 
-  removeExistingPlayer(playerIndex: number) {
+    const dialogRef = this.dialog.open(NewPlayerComponent, {
+      data: {
+        playerAliases: playerAliases,
+      },
+      position: { top: '30px' },
+      disableClose: true,
+    });
+
+    dialogRef.componentInstance.outputPlayerForm.subscribe((value) => {
+      this.playerList.push(value);
+      let player: Player = {
+        id: null,
+        name: value.get('name')?.value,
+        alias: value.get('alias')?.value,
+        playerImg: value.get('playerImg')?.value,
+      };
+      this.newPlayers.push(player);
+      dialogRef.close(() => {
+        console.log('Dialog closed');
+      });
+    });
+  }
+
+  removeExistingPlayer(playerIndex: number, player: Player) {
     this.playerList.removeAt(playerIndex);
-    this.existingPlayers.splice(playerIndex, 1);
+    this.removePlayer(player);
+  }
+
+  removePlayer(playerToRemove: Player) {
+    this.removePlayerFromList(playerToRemove, this.existingPlayers);
+    this.removePlayerFromList(playerToRemove, this.newPlayers);
+  }
+
+  removePlayerFromList(playerToRemove: Player, playerList: Player[]) {
+    const index = playerList.indexOf(playerToRemove);
+    if (index >= 0) {
+      playerList.splice(index, 1);
+    }
   }
 
   get playerList() {
     return this.playersDataForm.controls['playerList'] as FormArray;
+  }
+
+  get finalPlayerList(): Player[] {
+    return this.existingPlayers.concat(this.newPlayers);
   }
 }

@@ -13,12 +13,14 @@ export class ErrorComponent {
   buttonText = 'Zamknij';
   status: number | null = null;
   error: Error | null = null;
+  iconStyle = 'color: ';
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
     private data: {
       message: string;
       icon: string;
+      iconColor: string;
       buttonText: string;
       status: number;
       title: string;
@@ -36,8 +38,7 @@ export class ErrorComponent {
       this.title = this.title + '(status: ' + this.status + ')';
     }
     if (data?.error) this.error = data.error;
-
-    // console.log(error() this.error.toString());
+    if (data?.iconColor) this.iconStyle = this.iconStyle + data.iconColor;
   }
 
   closeDialog() {

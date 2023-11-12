@@ -17,6 +17,7 @@
                   formControlName="leagueName"
                   required
                 />
+                <mat-error> {{ leagueNameError }} </mat-error>
               </mat-form-field>
             </div>
             <div fxFlex="10"></div>
@@ -27,7 +28,7 @@
                 <mat-label>Logo</mat-label>
                 <input
                   matInput
-                  placeholder="Wprowadź adres url"
+                  placeholder="Adres URL"
                   formControlName="leagueLogo"
                 />
               </mat-form-field>
@@ -47,6 +48,9 @@
                     >{{ type.valuePL }}</mat-option
                   >
                 </mat-select>
+                <mat-error *ngIf="!generalDataForm.value.leagueType.valid"
+                  >Wybierz typ ligi
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="help" fxFlex="10">
@@ -67,6 +71,9 @@
                     >{{ structure.valuePL }}</mat-option
                   >
                 </mat-select>
+                <mat-error *ngIf="!generalDataForm.value.leagueType.valid"
+                  >Wybierz strukturę drużyn
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="help" fxFlex="10">

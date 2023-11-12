@@ -1,6 +1,12 @@
 import { catchError } from 'rxjs/operators';
 import { NewLeague } from './../../../model/league';
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  inject,
+} from '@angular/core';
 import {
   FormBuilder,
   Validators,
@@ -52,12 +58,17 @@ export class CreateLeagueComponent implements OnInit {
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private playerService: PlayerService,
-    private router: Router,
-    private errorHandler: ErrorHandlerService,
-    private snackbar: MatSnackBar
+    private router: Router
   ) {
     this.generalDataForm = this.formBuilder.group({
-      leagueName: ['', Validators.required],
+      leagueName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.pattern(/^(?:[a-zA-Z0-9\s ]+)?$/),
+        ],
+      ],
       leagueLogo: [''],
       leagueType: ['', Validators.required],
       teamStructure: ['', Validators.required],
@@ -105,7 +116,6 @@ export class CreateLeagueComponent implements OnInit {
 
   submit(): void {
     this.updatePlayerFormValidators();
-    let isOk: boolean = false;
 
     let generalDataValid = this.generalDataForm.valid;
     let playerListValid = this.playersDataForm.valid;
@@ -118,14 +128,18 @@ export class CreateLeagueComponent implements OnInit {
       console.log('Player list is invalid');
     }
 
-    if (!playerListValid || !playerListValid) {
+    if (!playerListValid || !generalDataValid) {
+      this.playersDataForm.markAllAsTouched();
+      this.generalDataForm.markAllAsTouched();
       this.dialog.open(ErrorComponent, {
         data: {
           message: 'Popraw dane na formularzu',
           title: 'Błąd',
+          icon: 'warning',
+          iconColor: 'orange',
         },
+        position: { top: '10px' },
       });
-
       return;
     }
 
@@ -199,5 +213,18 @@ export class CreateLeagueComponent implements OnInit {
 
   redirectToHome() {
     this.router.navigate(['/home']);
+  }
+
+  get leagueNameError(): string {
+    const form: FormControl = this.generalDataForm.get(
+      'leagueName'
+    ) as FormControl;
+    return form.hasError('required')
+      ? 'Nazwa jest wymagana'
+      : form.hasError('minlength')
+      ? 'Zbyt krótka nazwa'
+      : form.hasError('pattern')
+      ? 'Nieprawidłowe znaki'
+      : '';
   }
 }

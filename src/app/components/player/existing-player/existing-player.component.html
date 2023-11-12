@@ -1,8 +1,8 @@
 <div fxLayout="column" fxLayoutAlign="center center" class="player-modal">
   <div fxLayout="row">
     <div mat-dialog-title>
-      <div class="demo-section">
-        Dodawanie graczy
+      <div>
+        Wyszukaj graczy
         <mat-icon>groups</mat-icon>
       </div>
     </div>
@@ -32,7 +32,6 @@
         <div
           fxLayout="row"
           fxLayoutGap="10px"
-          *ngIf="i < 4"
           class="add-player-element"
           (click)="addPlayer(filteredPlayer)"
           tabindex="0"

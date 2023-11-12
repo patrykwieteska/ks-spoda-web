@@ -1,0 +1,12 @@
+.player-modal {
+  background-color: var(--accent-color);
+}
+.add-button {
+  background-color: var(--primary-color) !important;
+  color: white;
+  border: 1px solid white;
+}
+
+.cancel-button {
+  border: 1px solid white;
+}

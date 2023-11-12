@@ -1,6 +1,8 @@
 <mat-dialog-title fxLayoutAlign="center center">
   <div fxLayout="row" class="error-title">
-    <mat-icon *ngIf="icon">{{ icon | lowercase }} </mat-icon>
+    <mat-icon [style]="iconStyle" *ngIf="icon"
+      >{{ icon | lowercase }}
+    </mat-icon>
     <h5>{{ title }}</h5>
   </div>
 </mat-dialog-title>

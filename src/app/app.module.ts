@@ -23,6 +23,7 @@ import { ExistingPlayerComponent } from './components/player/existing-player/exi
 import { HttpClientModule } from '@angular/common/http';
 import { AddPlayersComponent } from './components/player/forms/add-players/add-players.component';
 import { ErrorComponent } from './components/error/error.component';
+import { NewPlayerComponent } from './components/player/new-player/new-player.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ErrorComponent } from './components/error/error.component';
     ExistingPlayerComponent,
     AddPlayersComponent,
     ErrorComponent,
+    NewPlayerComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,6 @@ export class ExistingPlayerComponent {
     public dialogRef: MatDialogRef<ExistingPlayerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PlayerList
   ) {
-    dialogRef.disableClose = true;
     this.addedEarlier = data.playerList;
     this.apiPlayers = data.apiPlayerList;
     this.readyToAdd = getFilteredApiPlayers(this.apiPlayers, this.addedEarlier);

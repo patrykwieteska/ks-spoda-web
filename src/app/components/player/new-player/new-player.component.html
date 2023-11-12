@@ -1,0 +1,47 @@
+<div class="player-modal" fxLayoutAlign="center center" fxLayout="column">
+  <div mat-dialog-title>
+    Dodaj gracza
+    <mat-icon>person_add</mat-icon>
+  </div>
+  <div mat-dialog-content>
+    <form [formGroup]="newPlayerForm" fxFlex fxLayout="column">
+      <mat-form-field fxFlex="100">
+        <mat-label>Imię</mat-label>
+        <input
+          matInput
+          placeholder="Wpisz imię"
+          formControlName="name"
+          required
+        />
+        <mat-error>{{ nameError }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100">
+        <mat-label>Wyświetlana nazwa</mat-label>
+        <input
+          matInput
+          placeholder="Wpisz nazwę gracza"
+          formControlName="alias"
+          required
+        />
+        <mat-error>{{ aliasError }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100">
+        <mat-label>Logo</mat-label>
+        <input matInput placeholder="Adres URL" formControlName="playerImg" />
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions fxLayoutAlign="center center">
+    <button mat-button [mat-dialog-close] class="cancel-button">Wróć</button>
+    <button
+      mat-button
+      cdkFocusInitial
+      (click)="addNewPlayer()"
+      class="add-button"
+    >
+      Dodaj
+    </button>
+  </div>
+</div>
