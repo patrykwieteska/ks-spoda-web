@@ -76,7 +76,7 @@ export class NewPlayerComponent {
       : form.hasError('maxlength')
       ? 'Zbyt długa nazwa'
       : form.hasError('busyName')
-      ? 'Nazwa gracza zajęta'
+      ? 'Nazwa zawodnika zajęta'
       : '';
   }
 

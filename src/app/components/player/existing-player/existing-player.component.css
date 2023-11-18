@@ -58,3 +58,7 @@
 .add-player-element::after {
   text-decoration: none;
 }
+
+.player-property-value {
+  font-size: 13px;
+}

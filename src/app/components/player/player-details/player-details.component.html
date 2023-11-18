@@ -1,0 +1,66 @@
+<div *ngIf="chosenPlayer" fxLayout="column" class="details-content">
+  <div fxLayout="row" class="header-content">
+    <div
+      fxFlex="90"
+      fxLayoutAlign="center center"
+      class="details-title"
+      [matTooltip]="chosenPlayer.alias"
+      matTooltipPosition="above"
+    >
+      <h4 *ngIf="chosenPlayer.name.length <= 11">
+        {{ chosenPlayer.alias }}
+      </h4>
+      <h4 *ngIf="chosenPlayer.name.length > 11">
+        {{ chosenPlayer.alias | slice : 0 : 8 }}...
+      </h4>
+    </div>
+    <div
+      class="close-btn"
+      (click)="closePlayerDetails()"
+      matTooltip="Zamknij"
+      matTooltipPosition="above"
+      fxFlex="10"
+    >
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <div fxFlex="100" fxLayoutGap="5px">
+    <div fxFlex="2"></div>
+    <div fxFlex="48" fxLayoutAlign="start center" class="player-img">
+      <img src="./../../../../assets/default_player_logo.png" />
+    </div>
+    <div fxFlex="48" fxLayout="column" fxLayoutGap="10px">
+      <div [matTooltip]="chosenPlayer.name" matTooltipPosition="above">
+        <div class="player-property">Imię:</div>
+        <div
+          class="player-property-value"
+          *ngIf="chosenPlayer.name.length <= 11"
+        >
+          {{ chosenPlayer.name }}
+        </div>
+        <div
+          class="player-property-value"
+          *ngIf="chosenPlayer.name.length > 11"
+        >
+          {{ chosenPlayer.name | slice : 0 : 8 }}...
+        </div>
+      </div>
+      <div>
+        <div class="player-property">Dołączył:</div>
+        <div class="player-property-value">
+          {{ chosenPlayer.joinDate | date : "dd.MM.yyyy" }}
+        </div>
+      </div>
+    </div>
+    <div fxFlex="2"></div>
+  </div>
+  <div fxFlex="100" fxLayout="column">
+    <div class="desc-property player-property">Opis:</div>
+    <div class="desc">
+      <p *ngIf="chosenPlayer.desc" class="desc-content">
+        {{ chosenPlayer.desc }}
+      </p>
+      <p *ngIf="!chosenPlayer.desc" class="desc-content">-</p>
+    </div>
+  </div>
+</div>

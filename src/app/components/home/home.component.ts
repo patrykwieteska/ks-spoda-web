@@ -10,13 +10,22 @@ import { LeagueService } from 'src/app/services/league.service';
 export class HomeComponent {
   leagueList: League[] = [];
   filteredLeagueList: League[] = [];
+  isResponseComplete: boolean = false;
+  noLeagueFoundFlag = false;
+  noLeagueFoundText = 'Nie znaleziono ligi dla frazy: ';
+  noLeagueFoundSearchValue = '';
 
   constructor(private leagueService: LeagueService) {
-    this.leagueService.getAllLeagues().subscribe((response) => {
-      if (response.leagues != null) {
-        this.leagueList = response.leagues;
-        this.filteredLeagueList = response.leagues;
-      }
+    this.leagueService.getAllLeagues().subscribe({
+      next: (response) => {
+        if (response.leagues != null) {
+          this.leagueList = response.leagues;
+          this.filteredLeagueList = response.leagues;
+        }
+      },
+      complete: () => {
+        this.isResponseComplete = true;
+      },
     });
   }
 
@@ -27,6 +36,12 @@ export class HomeComponent {
       );
     } else {
       this.filteredLeagueList = this.leagueList;
+    }
+    if (this.filteredLeagueList.length == 0) {
+      this.noLeagueFoundSearchValue = searchText;
+      this.noLeagueFoundFlag = true;
+    } else {
+      this.noLeagueFoundFlag = false;
     }
   }
 }

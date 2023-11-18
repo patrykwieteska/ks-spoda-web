@@ -17,13 +17,26 @@ import { LOCALE_ID } from '@angular/core';
 import { LeagueItemComponent } from './components/league/league-item/league-item.component';
 import { CreateLeagueComponent } from './components/league/create-league/create-league.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LeagueDetailsComponent } from './components/league/league-details/league-details.component';
 import { HelpDialogComponent } from './components/commons/help-dialog/help-dialog.component';
 import { ExistingPlayerComponent } from './components/player/existing-player/existing-player.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddPlayersComponent } from './components/player/forms/add-players/add-players.component';
 import { ErrorComponent } from './components/error/error.component';
 import { NewPlayerComponent } from './components/player/new-player/new-player.component';
+import { InitLeagueComponent } from './components/league/init-league/init-league.component';
+import { PageNotFoundComponent } from './components/commons/page-not-found/page-not-found.component';
+import { CustomProgressBarComponent } from './components/commons/custom-progress-bar/custom-progress-bar.component';
+import { ContentFrameComponent } from './components/league/content-frame/content-frame.component';
+import { HeaderPanelComponent } from './components/commons/header-panel/header-panel.component';
+import { LeagueNewsComponent } from './components/league/league-news/league-news.component';
+import { TableComponent } from './components/league/table/table.component';
+import { MatchItemComponent } from './components/match/match-item/match-item.component';
+import { SeasonListComponent } from './components/season/season-list/season-list.component';
+import { StatisticsComponent } from './components/league/statistics/statistics.component';
+import { PlayerDetailsComponent } from './components/player/player-details/player-details.component';
+import { PlayerListComponent } from './components/player/player-list/player-list.component';
+import { PlayerItemComponent } from './components/player/player-item/player-item.component';
+import { MatchListComponent } from './components/match-list/match-list.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +48,25 @@ import { NewPlayerComponent } from './components/player/new-player/new-player.co
     SearchLeagueComponent,
     LeagueItemComponent,
     CreateLeagueComponent,
-    LeagueDetailsComponent,
     HelpDialogComponent,
     ExistingPlayerComponent,
     AddPlayersComponent,
     ErrorComponent,
     NewPlayerComponent,
+    InitLeagueComponent,
+    PageNotFoundComponent,
+    CustomProgressBarComponent,
+    ContentFrameComponent,
+    HeaderPanelComponent,
+    LeagueNewsComponent,
+    MatchItemComponent,
+    SeasonListComponent,
+    StatisticsComponent,
+    TableComponent,
+    PlayerDetailsComponent,
+    PlayerListComponent,
+    PlayerItemComponent,
+    MatchListComponent,
   ],
   imports: [
     BrowserModule,

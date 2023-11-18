@@ -1,0 +1,43 @@
+.details-content {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 20px;
+  max-width: 300px;
+}
+
+.player-img {
+  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+}
+img {
+  max-width: 100%;
+}
+
+.desc-content {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  height: 80px;
+  overflow: auto;
+  resize: none;
+  font-size: 14px;
+}
+
+.desc-property {
+  padding-left: 5px;
+  margin-left: 5px;
+}
+
+.player-property {
+  font-weight: bolder;
+}
+
+.close-btn {
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.header-content {
+  width: 100%;
+}

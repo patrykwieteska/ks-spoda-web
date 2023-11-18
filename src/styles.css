@@ -7,7 +7,8 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: SignikaNegative, "Helvetica Neue", sans-serif;
+  background-color: whitesmoke;
 }
 
 :root {
@@ -19,4 +20,12 @@ body {
 
 .mat-icon {
   vertical-align: middle;
+}
+
+@font-face {
+  font-family: "SignikaNegative";
+  src: url("assets/fonts/Signika_Negative/SignikaNegative-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }

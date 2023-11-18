@@ -1,0 +1,15 @@
+img {
+  width: 120px;
+}
+
+.header {
+  padding: 20px;
+  text-align: center;
+  background: var(--secondary-color);
+  color: black;
+  font-size: 40px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  letter-spacing: 2px;
+}

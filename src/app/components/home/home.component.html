@@ -1,15 +1,25 @@
-<div fxLayout="column wrap">
+<app-custom-progress-bar *ngIf="!isResponseComplete"></app-custom-progress-bar>
+<div fxLayout="column wrap" *ngIf="isResponseComplete">
   <div>
     <app-search-league
       (searchValueEmitter)="takeSearchValue($event)"
     ></app-search-league>
   </div>
   <br />
-  <div
-    fxFlexAlign="center"
-    *ngFor="let league of filteredLeagueList"
-    class="league-item-container"
-  >
-    <app-league-item [league]="league"></app-league-item>
+  <div fxLayoutAlign="center center" fxLayout="column">
+    <div *ngIf="noLeagueFoundFlag">
+      <mat-error
+        >{{ noLeagueFoundText }}
+        <b>{{ noLeagueFoundSearchValue }}</b></mat-error
+      >
+    </div>
+
+    <div
+      fxFlexAlign="center"
+      *ngFor="let league of filteredLeagueList"
+      class="league-item-container"
+    >
+      <app-league-item [league]="league"></app-league-item>
+    </div>
   </div>
 </div>

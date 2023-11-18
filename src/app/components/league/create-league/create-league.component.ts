@@ -1,20 +1,10 @@
-import { catchError } from 'rxjs/operators';
 import { NewLeague } from './../../../model/league';
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   Validators,
   FormGroup,
-  AbstractControl,
-  FormArray,
   FormControl,
-  ValidatorFn,
 } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { EnumType } from 'src/app/model/enumType';
@@ -22,13 +12,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { HelpDialogComponent } from '../../commons/help-dialog/help-dialog.component';
 import { HelpInfoTemplates } from 'src/app/static/help-info-templates';
 import { DialogHelpInfo } from 'src/app/model/dialog-help-data';
-import { ExistingPlayerComponent } from '../../player/existing-player/existing-player.component';
 import { Player } from 'src/app/model/player';
 import { LeagueService } from 'src/app/services/league.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { Router } from '@angular/router';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorComponent } from '../../error/error.component';
 
 @Component({
@@ -47,6 +34,9 @@ export class CreateLeagueComponent implements OnInit {
     HelpInfoTemplates.TEAM_STRUCTURE_HELP_TEMPLATE;
   leagueTypeHelpTemplate: DialogHelpInfo =
     HelpInfoTemplates.LEAGUE_TYPE_HELP_TEMPLATE;
+  leagueHelpTemplate: DialogHelpInfo =
+    HelpInfoTemplates.PRIVATE_LEAGUE_HELP_TEMPLATE;
+
   leagueService: LeagueService = inject(LeagueService);
   apiPlayerList: Player[] = [];
 
@@ -66,13 +56,15 @@ export class CreateLeagueComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(4),
-          Validators.pattern(/^(?:[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ+0-9_ ]+)?$/),
+          Validators.pattern(/^(?:[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ+0-9_ -]+)?$/),
+          Validators.maxLength(25),
         ],
       ],
-      leagueLogo: [''],
+      leagueLogo: [null],
       leagueType: ['', Validators.required],
       teamStructure: ['', Validators.required],
-      leagueDesc: [''],
+      leagueDesc: [null],
+      isPrivate: [false],
     });
 
     this.playersDataForm = this.formBuilder.group({
@@ -151,6 +143,7 @@ export class CreateLeagueComponent implements OnInit {
       teamStructure: leagueData.teamStructure ?? '',
       type: leagueData.leagueType ?? '',
       playerList: this.playersDataForm.value.playerList,
+      isPrivate: this.generalDataForm.value.isPrivate,
     };
 
     this.leagueService.createLeague(league).subscribe({
@@ -163,6 +156,7 @@ export class CreateLeagueComponent implements OnInit {
   openHelpDialog(dialogData: DialogHelpInfo): void {
     const dialogRef = this.dialog.open(HelpDialogComponent, {
       data: { title: dialogData.title, template: dialogData.template },
+      position: { top: '30px;' },
     });
   }
 
@@ -185,8 +179,8 @@ export class CreateLeagueComponent implements OnInit {
   playerListErrorMessage(): string {
     return this.playersDataForm.value.playerList.length === 0 ||
       this.minimalPlayerNumber === 0
-      ? 'Uzupenij listę graczy'
-      : 'Minimalna liczba graczy: ' + this.minimalPlayerNumber;
+      ? 'Uzupenij listę zawodników'
+      : 'Minimalna liczba zawodników: ' + this.minimalPlayerNumber;
   }
 
   prepareMinPlayersValue(key: string) {
@@ -222,9 +216,11 @@ export class CreateLeagueComponent implements OnInit {
     return form.hasError('required')
       ? 'Nazwa jest wymagana'
       : form.hasError('minlength')
-      ? 'Zbyt krótka nazwa'
+      ? 'Min. 4 znaki'
       : form.hasError('pattern')
       ? 'Nieprawidłowe znaki'
+      : form.hasError('maxLength')
+      ? 'Maks. 25 znaków'
       : '';
   }
 }

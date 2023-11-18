@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: var(--accent-color);
+  text-align: center;
+  border-radius: 25px 0px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.header .title {
+  margin-top: 6px;
+  padding-left: 20px;
+  letter-spacing: 2px;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.content {
+  min-height: 200px;
+  background-color: whitesmoke;
+  border-radius: 0px 25px 0px 0px;
+  margin-top: 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}

@@ -1,0 +1,23 @@
+<div fxLayout="column">
+  <div>
+    <div fxLayout="row" class="header">
+      <div fxLayoutAlign="center start" fxFlex="90" class="title">
+        {{ headerTitle | uppercase }}
+      </div>
+      <div fxLayoutAlign="end" fxFlex="10">
+        <button
+          mat-button
+          [matTooltip]="tooltipMessage"
+          matTooltipPosition="above"
+          matTooltipHideDelay="100"
+          (click)="clickButton.emit()"
+        >
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -93,6 +93,20 @@
             </div>
             <div class="help" fxFlex="10"></div>
           </div>
+          <div fxFlex="50" fxLayout="row">
+            <mat-checkbox
+              color="primary"
+              checked="false"
+              formControlName="isPrivate"
+            >
+              Liga prywatna
+            </mat-checkbox>
+            <div class="help" fxFlex="10">
+              <a (click)="openHelpDialog(leagueHelpTemplate)">
+                <mat-icon>help</mat-icon></a
+              >
+            </div>
+          </div>
         </div>
 
         <div>
@@ -105,7 +119,7 @@
       [stepControl]="playersDataForm"
       [errorMessage]="playerListErrorMessage()"
     >
-      <ng-template matStepLabel>Lista graczy</ng-template>
+      <ng-template matStepLabel>Lista zawodników</ng-template>
       <app-add-players
         [apiPlayerList]="apiPlayerList"
         (exportPlayersForm)="takePlayersForm($event)"
