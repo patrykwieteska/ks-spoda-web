@@ -1,0 +1,47 @@
+<app-custom-progress-bar *ngIf="!isResponseComplete"></app-custom-progress-bar>
+<div fxLayout="column" style="width: 100%" *ngIf="isResponseComplete">
+  <div fxFlex="100">
+    <app-header-panel
+      *ngIf="headerPanel"
+      [headerPanelData]="headerPanel"
+    ></app-header-panel>
+  </div>
+  <div>
+    <div fxLayout="row" fxLayout.lt-md="column">
+      <div fxFlex="5" xHide.lt-md></div>
+      <div fxFlex="45" style="margin-right: 2px">
+        <app-content-frame headerTitle="aktualności"
+          ><app-league-news
+            [leagueId]="leagueId"
+            (chosenPlayer)="takeChosenPlayer($event)"
+            [leagueTable]="leagueTable"
+          ></app-league-news>
+        </app-content-frame>
+      </div>
+      <div fxFlex="45" style="margin-left: 2px">
+        <app-content-frame headerTitle="zawodnicy"
+          ><app-player-list
+            [chosenPlayer]="chosenPlayer"
+            [playerList]="playerList"
+          ></app-player-list>
+        </app-content-frame>
+      </div>
+      <div fxFlex="5" fxHide.lt-md></div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column">
+      <div fxFlex="5" xHide.lt-md></div>
+      <div fxFlex="45" style="margin-right: 2px">
+        <app-content-frame headerTitle="sezony"
+          ><app-season-list></app-season-list>
+        </app-content-frame>
+      </div>
+      <div fxFlex="45" style="margin-left: 2px">
+        <app-content-frame headerTitle="statystyki"
+          ><app-statistics></app-statistics>
+        </app-content-frame>
+      </div>
+      <div fxFlex="5" xHide.lt-md></div>
+      <!-- <div>FORMA ZAWODNIKÓW??</div> -->
+    </div>
+  </div>
+</div>

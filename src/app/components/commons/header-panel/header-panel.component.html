@@ -1,0 +1,16 @@
+<div fxLayoutAlign="row">
+  <div fxFlex="5" fxHide.lt-md></div>
+  <div
+    fxFlex="90"
+    fxFlex.lt-md="100"
+    fxLayoutAlign="row"
+    class="header"
+    fxLayoutAlign="center center"
+  >
+    <div fxLayoutAlign="start center"><img [src]="imgSrc" /></div>
+    <div fxLayoutAlign="start center">
+      <p>{{ title }}</p>
+    </div>
+  </div>
+  <div fxFlex="5" fxHide.lt-md></div>
+</div>

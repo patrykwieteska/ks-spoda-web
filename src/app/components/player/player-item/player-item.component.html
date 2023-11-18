@@ -1,0 +1,12 @@
+<div class="item" (click)="emitPlayer()" fxLayoutAlign="start center">
+  <mat-card>
+    <mat-card-content [matTooltip]="player.alias" matTooltipPosition="right">
+      <div *ngIf="player.name.length <= 11">
+        {{ player.alias }}
+      </div>
+      <div *ngIf="player.name.length > 11">
+        {{ player.alias | slice : 0 : 8 }}...
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

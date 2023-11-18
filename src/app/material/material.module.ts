@@ -21,6 +21,11 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -46,6 +51,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     TextFieldModule,
+    MatCheckboxModule,
+    MatProgressBarModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatTabsModule,
@@ -69,6 +78,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     TextFieldModule,
+    MatCheckboxModule,
+    MatProgressBarModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}

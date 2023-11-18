@@ -2,7 +2,7 @@
   <div fxLayout="row">
     <div mat-dialog-title>
       <div>
-        Wyszukaj graczy
+        Wyszukaj zawidników
         <mat-icon>groups</mat-icon>
       </div>
     </div>
@@ -14,7 +14,7 @@
           style="width: 100%"
           id="player-filter"
           matInput
-          placeholder="Wyszukaj gracza"
+          placeholder="Wyszukaj zawodnika"
           #filter
           (input)="filterResults()"
           autocomplete="off"
@@ -22,7 +22,7 @@
       </mat-form-field>
     </div>
     <div *ngIf="readyToAdd.length === 0" fxLayoutAlign="center center">
-      Brak graczy do dodania
+      Brak zawodników
     </div>
     <div>
       <div

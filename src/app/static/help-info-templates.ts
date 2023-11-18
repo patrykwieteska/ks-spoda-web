@@ -3,7 +3,7 @@ import { DialogHelpInfo } from '../model/dialog-help-data';
 export class HelpInfoTemplates {
   public static TEAM_STRUCTURE_HELP_TEMPLATE: DialogHelpInfo = {
     title: 'Struktura drużyn',
-    template: `<p>Odnosi się do liczby graczy w składzie meczowym</p>
+    template: `<p>Odnosi się do liczby zawodników w składzie meczowym</p>
     <b>1 NA 1</b>
       <p>
       Mecze rozgrywane są w składach jednoosobowych
@@ -31,6 +31,19 @@ export class HelpInfoTemplates {
     <p>
       Mecze rozgrywane są w systemie pucharowym. <br />
       Do wyboru system play-off lub faza grupowa
+    </p>`,
+  };
+
+  public static PRIVATE_LEAGUE_HELP_TEMPLATE: DialogHelpInfo = {
+    title: 'Widoczność ligi',
+    template: `
+    <b>Liga prywatna</b>
+    <p>
+      Tylko Ty i osoby, którym udostępnisz tę ligę będą mogli ją zobaczyć
+    </p>
+    <b>Liga publiczna</b>
+    <p>
+      Liga będzie widoczna dla wszystkich
     </p>`,
   };
 }

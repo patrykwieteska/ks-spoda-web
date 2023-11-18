@@ -3,6 +3,8 @@ export interface Player {
   name: string;
   alias: string;
   playerImg: string | null;
+  desc: string | null;
+  joinDate: Date | null;
 }
 
 export interface PlayerList {

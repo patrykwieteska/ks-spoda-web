@@ -90,6 +90,8 @@ export class AddPlayersComponent implements OnChanges {
         name: value.get('name')?.value,
         alias: value.get('alias')?.value,
         playerImg: value.get('playerImg')?.value,
+        desc: value.get('desc')?.value,
+        joinDate: null,
       };
       this.newPlayers.push(player);
       dialogRef.close(() => {
