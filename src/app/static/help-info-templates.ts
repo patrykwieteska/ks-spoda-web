@@ -46,4 +46,36 @@ export class HelpInfoTemplates {
       Liga będzie widoczna dla wszystkich
     </p>`,
   };
+
+  public static POINT_COUNTING_METHODS_HELP_TEMPLATE: DialogHelpInfo = {
+    title: 'Sposób liczenia punktów',
+    template: `<p>Decyduje o kolejności drużyn w tabeli sezonu</p>
+    <b>RANKING</b>
+      <p>
+      O pozycji w tabeli decyduje ranking podobny do tego, który występuje w szachach. 
+      </br> 
+      Każdy zawodnik rozpoczyna z rankingiem startowym = 1000
+      </p>
+      <b>PUNKTY</b>
+      <p>
+      O pozycji w tabeli decyduje liczba punktów liczona tradycyjnie </br> (Z - 3 pkt, R - 1pk, P - 0 pkt)
+      </p>
+      <b>PUNKTY / MECZ</b>
+      <p>
+      O pozycji w tabeli decyduje średnia punktów ze wszystkich rozegranych meczów w sezonie
+      </p>`,
+  };
+
+  public static RATING_TYPE_HELP_TEMPLATE: DialogHelpInfo = {
+    title: 'Typ rankingu',
+    template: `<p>Oznacza sposób liczenia rankingu</p>
+    <b>INDYWIDUALNY</b>
+      <p>
+       
+      </p>
+      <b>DRUŻYNOWY</b>
+      <p>
+      
+      </p>`,
+  };
 }

@@ -1,0 +1,22 @@
+.season-modal {
+  background-color: var(--accent-color);
+}
+.add-button {
+  background-color: var(--primary-color) !important;
+  color: white;
+  border: 1px solid white;
+}
+
+.cancel-button {
+  border: 1px solid white;
+}
+
+mat-icon {
+  color: var(--primary-color);
+  transform: scale(0.8);
+}
+
+mat-icon:hover {
+  color: var(--secondary-color);
+  cursor: pointer;
+}

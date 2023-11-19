@@ -1,0 +1,31 @@
+<app-custom-progress-bar *ngIf="showProgressBar"></app-custom-progress-bar>
+<mat-card class="season-card">
+  <mat-card-header fxLayoutAlign="center center">
+    <mat-card-title class="title" fxLayoutGap="2"
+      ><span>SEZON {{ season.seasonCount }}</span>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content fxLayoutAlign="center center">
+    <p>
+      <span> {{ season.startDate | date : "dd MMM y" }} - </span>
+
+      <span *ngIf="season.isFinished">
+        {{ season.endDate | date : "dd MMM y" }}
+      </span>
+      <span *ngIf="!season.isFinished" class="current-season">
+        ... (aktualny)
+      </span>
+    </p>
+  </mat-card-content>
+  <mat-card-actions fxLayoutAlign="end end">
+    <button
+      style="color: darkred"
+      *ngIf="!season.isFinished"
+      mat-button
+      (click)="completeSeason()"
+    >
+      ZAKOŃCZ <mat-icon>check_small</mat-icon>
+    </button>
+    <button mat-button>PRZEJDŹ <mat-icon>arrow_forward</mat-icon></button>
+  </mat-card-actions>
+</mat-card>

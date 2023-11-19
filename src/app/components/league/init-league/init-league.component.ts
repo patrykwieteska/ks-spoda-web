@@ -4,6 +4,8 @@ import {
   SimpleChanges,
   inject,
   OnInit,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InitLeagueResponse } from 'src/app/model/init-league-response';
@@ -16,7 +18,7 @@ import { LeagueService } from 'src/app/services/league.service';
   templateUrl: './init-league.component.html',
   styleUrls: ['./init-league.component.css'],
 })
-export class InitLeagueComponent {
+export class InitLeagueComponent implements OnChanges {
   chosenPlayer: Player | null = null;
   route: ActivatedRoute = inject(ActivatedRoute);
   leagueId = -1;
@@ -45,15 +47,24 @@ export class InitLeagueComponent {
       complete: () => {
         this.isResponseComplete = true;
         if (this.initLeague) {
-          console.log('halo', this.initLeague.playerList);
           this.playerList = this.initLeague?.playerList;
           this.leagueTable = this.initLeague?.leagueTable;
         }
       },
     });
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes from init-league', changes);
+  }
 
   takeChosenPlayer(player: Player | null) {
     this.chosenPlayer = player;
+  }
+
+  newSeasonDialogCounter = 0;
+  getSeasonFrameClickEvent() {
+    console.log('FLAG CHANGE', this.newSeasonDialogCounter);
+
+    this.newSeasonDialogCounter = this.newSeasonDialogCounter + 1;
   }
 }

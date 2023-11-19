@@ -1,0 +1,72 @@
+<div class="season-modal">
+  <h1 mat-dialog-title>Nowy sezon</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="seasonForm" fxLayout="column">
+      <mat-form-field>
+        <mat-label>Data rozpoczęcia</mat-label>
+        <input
+          matInput
+          [matDatepicker]="startPicker"
+          formControlName="startDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="startPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <div fxFlex="100" fxLayout="row">
+        <div fxFlex="90">
+          <mat-form-field fxFlex="100">
+            <mat-label>Sposób liczenia punktów</mat-label>
+            <mat-select formControlName="pointCountingMethod">
+              <mat-option
+                *ngFor="let pointCountingMethod of pointCountingMethodList"
+                [value]="pointCountingMethod.key"
+                >{{ pointCountingMethod.valuePL }}</mat-option
+              >
+            </mat-select>
+            <mat-error *ngIf="!seasonForm.value.pointCountingMethod.valid"
+              >Wybierz sposób liczenia punktów
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="help" fxFlex="10">
+          <a (click)="openHelpDialog(pointCountingMethodHelpTemplate)">
+            <mat-icon>help</mat-icon></a
+          >
+        </div>
+      </div>
+
+      <div
+        fxFlex="100"
+        fxLayout="row"
+        *ngIf="seasonForm.value.pointCountingMethod == 'RATING'"
+      >
+        <div fxFlex="90">
+          <mat-radio-group formControlName="ratingType">
+            <mat-radio-button
+              color="primary"
+              *ngFor="let ratingType of ratingTypeList"
+              [value]="ratingType.key"
+            >
+              {{ ratingType.valuePL }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="help" fxFlex="10">
+          <a (click)="openHelpDialog(ratingTypeHelpTemplate)">
+            <mat-icon>help</mat-icon></a
+          >
+        </div>
+      </div>
+    </form>
+  </div>
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="center end">
+    <button mat-button [mat-dialog-close] class="cancel-button">Wróć</button>
+    <button mat-button cdkFocusInitial class="add-button" (click)="addSeason()">
+      Utwórz
+    </button>
+  </div>
+</div>

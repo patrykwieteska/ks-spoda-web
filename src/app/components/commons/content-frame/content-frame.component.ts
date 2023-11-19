@@ -6,8 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./content-frame.component.css'],
 })
 export class ContentFrameComponent {
-  tooltipMessage = 'Otwórz w nowym oknie';
-
   @Output() clickButton = new EventEmitter<void>();
   @Input() headerTitle!: string;
+  @Input() icon!: string;
+  @Input() tooltipMessage: string = '';
 }

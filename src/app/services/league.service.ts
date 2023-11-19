@@ -6,6 +6,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { BASE_URL } from 'src/config';
 import { InitLeagueResponse } from '../model/init-league-response';
+import { ErrorHandlerService } from './error-handler.service';
 
 const serviceURL = '/leagues';
 const baseURL = BASE_URL + serviceURL;

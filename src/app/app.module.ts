@@ -26,7 +26,7 @@ import { NewPlayerComponent } from './components/player/new-player/new-player.co
 import { InitLeagueComponent } from './components/league/init-league/init-league.component';
 import { PageNotFoundComponent } from './components/commons/page-not-found/page-not-found.component';
 import { CustomProgressBarComponent } from './components/commons/custom-progress-bar/custom-progress-bar.component';
-import { ContentFrameComponent } from './components/league/content-frame/content-frame.component';
+import { ContentFrameComponent } from './components/commons/content-frame/content-frame.component';
 import { HeaderPanelComponent } from './components/commons/header-panel/header-panel.component';
 import { LeagueNewsComponent } from './components/league/league-news/league-news.component';
 import { TableComponent } from './components/league/table/table.component';
@@ -37,6 +37,8 @@ import { PlayerDetailsComponent } from './components/player/player-details/playe
 import { PlayerListComponent } from './components/player/player-list/player-list.component';
 import { PlayerItemComponent } from './components/player/player-item/player-item.component';
 import { MatchListComponent } from './components/match-list/match-list.component';
+import { SeasonItemComponent } from './components/season/season-item/season-item.component';
+import { NewSeasonComponent } from './components/season/new-season/new-season.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { MatchListComponent } from './components/match-list/match-list.component
     PlayerListComponent,
     PlayerItemComponent,
     MatchListComponent,
+    SeasonItemComponent,
+    NewSeasonComponent,
   ],
   imports: [
     BrowserModule,

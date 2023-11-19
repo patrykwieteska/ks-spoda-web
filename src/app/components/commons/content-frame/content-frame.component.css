@@ -23,3 +23,8 @@
   min-height: 200px;
   margin-top: 2px;
 }
+
+mat-icon {
+  transform: scale(2);
+  color: var(--primary-color);
+}

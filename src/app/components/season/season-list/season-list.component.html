@@ -1,1 +1,76 @@
-<p>season-list works!</p>
+<div>
+  <div>
+    <div
+      class="data-pickers"
+      fxLayout="row"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="center stretch"
+      fxLayoutAlign.lt-md="center center"
+      fxLayoutGap="5"
+      fxLayoutGap.lt-md="1"
+    >
+      <mat-form-field appearance="fill" fxFlexOrder.lt-md="2">
+        <mat-label>Data rozpoczęcia</mat-label>
+        <input
+          matInput
+          [matDatepicker]="startPicker"
+          [formControl]="startDate"
+          id="startDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="startPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" fxFlexOrder.lt-md="3">
+        <mat-label>Data zakończenia</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endPicker"
+          [formControl]="endDate"
+          id="endDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="endPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+      <div fxFlexOrder.lt-md="1" fxLayoutAlign="row">
+        <button
+          class="search-button"
+          mat-button
+          (click)="filterSeasons()"
+          (keydown.enter)="filterSeasons()"
+          matTooltip="Szukaj"
+          matTooltipPosition="above"
+        >
+          <mat-icon style="transform: scale(1.5)">search</mat-icon>
+        </button>
+        <button mat-button class="clear-button" (click)="clearDates()">
+          Wyczyść
+        </button>
+      </div>
+    </div>
+    <br />
+
+    <div class="errors" fxLayout="column" fxLayoutAlign="start center">
+      <mat-error *ngIf="endDateIsBeforeStartDate || startDateIsAfterEndDate"
+        >Błędny zakres dat</mat-error
+      >
+      <mat-error *ngIf="endDateIsBeforeStartDate"
+        >Data zakończenia nie może być przed datą rozpoczęcia</mat-error
+      >
+      <mat-error *ngIf="startDateIsAfterEndDate"
+        >Data rozpoczęcia nie może być po dacie zakończenia</mat-error
+      >
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutGap="20px">
+    <app-season-item
+      *ngFor="let season of filteredSeasons"
+      [season]="season"
+    ></app-season-item>
+  </div>
+</div>

@@ -4,7 +4,7 @@
       <div fxLayoutAlign="center start" fxFlex="90" class="title">
         {{ headerTitle | uppercase }}
       </div>
-      <div fxLayoutAlign="end" fxFlex="10">
+      <div fxLayoutAlign="end" fxFlex="10" *ngIf="icon">
         <button
           mat-button
           [matTooltip]="tooltipMessage"
@@ -12,7 +12,7 @@
           matTooltipHideDelay="100"
           (click)="clickButton.emit()"
         >
-          <mat-icon>open_in_new</mat-icon>
+          <mat-icon>{{ icon }}</mat-icon>
         </button>
       </div>
     </div>

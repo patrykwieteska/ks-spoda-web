@@ -31,8 +31,15 @@
     <div fxLayout="row" fxLayout.lt-md="column">
       <div fxFlex="5" xHide.lt-md></div>
       <div fxFlex="45" style="margin-right: 2px">
-        <app-content-frame headerTitle="sezony"
-          ><app-season-list></app-season-list>
+        <app-content-frame
+          headerTitle="sezony"
+          icon="add_box"
+          tooltipMessage="Nowy sezon"
+          (clickButton)="getSeasonFrameClickEvent()"
+          ><app-season-list
+            [leagueId]="leagueId"
+            [newSeasonOpenDialogCounter]="newSeasonDialogCounter"
+          ></app-season-list>
         </app-content-frame>
       </div>
       <div fxFlex="45" style="margin-left: 2px">

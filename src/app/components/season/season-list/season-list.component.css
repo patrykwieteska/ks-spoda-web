@@ -1,0 +1,12 @@
+.search-button {
+  margin-top: 10px;
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border: 1px solid var(--primary-color);
+}
+
+.clear-button {
+  margin-top: 10px;
+  margin-left: 2px;
+  border: 1px solid var(--primary-color);
+}
