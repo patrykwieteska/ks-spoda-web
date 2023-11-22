@@ -25,23 +25,3 @@ export interface HeaderPanelData {
   title: string;
   imgSrc: string;
 }
-
-export interface LeagueTable {
-  header: string;
-  tableRows: LeagueTableRow[] | [];
-}
-
-export interface LeagueTableRow {
-  player: Player;
-  rating: number;
-  pointsTotal: number;
-  pointsPerMatch: number;
-  matches: number;
-  wins: number;
-  draws: number;
-  loses: number;
-  goalsScored: number;
-  goalsConceded: number;
-  goalsDiff: number;
-  form: string[];
-}

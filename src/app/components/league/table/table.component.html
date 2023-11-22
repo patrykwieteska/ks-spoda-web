@@ -1,64 +1,93 @@
-<div fxLayout="column"></div>
-<div fxLayoutAlign="center center">
-  <h5>{{ leagueTable.header }}</h5>
-</div>
+<app-custom-progress-bar *ngIf="showProgressBar"></app-custom-progress-bar>
+<div>
+  <div fxLayout="column"></div>
+  <div fxLayoutAlign="center center">
+    <h5>{{ leagueTable.header }}</h5>
+  </div>
 
-<div fxLayoutAlign="center center">
-  <table fxFlex="90" fxFlex.lt-md="80" fxFlex.xs="90">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th colspan="2">ZAWODNIK</th>
-        <th fxHide.gt-sm fxHide.xs>M</th>
-        <th>P</th>
-        <th>W</th>
-        <th>R</th>
-        <th>P</th>
-        <th fxHide.gt-sm fxHide.xs>B+</th>
-        <th fxHide.gt-sm fxHide.xs>B-</th>
-        <th>+/-</th>
-        <th fxHide.gt-sm fxHide.xs>Ostatnie 5</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let leagueRow of leagueTable.tableRows; index as i"
-        class="table-row"
-        (click)="emitPlayer(leagueRow.player)"
-      >
-        <td style="margin: 100px">
-          <div [class]="getPositionClass(i + 1)">
-            {{ i + 1 }}
-          </div>
-        </td>
-        <td>
-          <img
-            class="player-img"
-            [src]="getPlayerImg(leagueRow.player.playerImg)"
-          />
-        </td>
-        <td style="text-align: left">{{ leagueRow.player.alias }}</td>
-        <td fxHide.gt-sm fxHide.xs>{{ leagueRow.matches }}</td>
-        <td>
-          <b>{{ leagueRow.rating }}</b>
-        </td>
-        <td>{{ leagueRow.wins }}</td>
-        <td>{{ leagueRow.draws }}</td>
-        <td>{{ leagueRow.loses }}</td>
-        <td fxHide.gt-sm fxHide.xs>{{ leagueRow.goalsScored }}</td>
-        <td fxHide.gt-sm fxHide.xs>{{ leagueRow.goalsConceded }}</td>
-        <td>{{ leagueRow.goalsDiff }}</td>
-        <td fxHide.gt-sm fxHide.xs>
-          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
-            <div
-              *ngFor="let matchResult of leagueRow.form"
-              [class]="getFormClass(matchResult)"
-            >
-              {{ matchResult }}
+  <div fxLayoutAlign="center center">
+    <table fxFlex="90" fxFlex.lt-md="80" fxFlex.xs="90">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th colspan="3">ZAWODNIK</th>
+          <th fxHide.gt-sm fxHide.xs>M</th>
+          <th matTooltip="Ranking" matTooltipPosition="above">R</th>
+          <th matTooltip="Wygrane" matTooltipPosition="above">W</th>
+          <th matTooltip="Remisy" matTooltipPosition="above">R</th>
+          <th matTooltip="Przegrane" matTooltipPosition="above">P</th>
+          <th
+            matTooltip="Br. zdobyte"
+            matTooltipPosition="above"
+            fxHide.gt-sm
+            fxHide.xs
+          >
+            B+
+          </th>
+          <th
+            matTooltip="Br. stracone"
+            matTooltipPosition="above"
+            fxHide.gt-sm
+            fxHide.xs
+          >
+            B-
+          </th>
+          <th matTooltip="Bilans br." matTooltipPosition="above">+/-</th>
+          <th
+            matTooltip="Forma zawodnika"
+            matTooltipPosition="above"
+            fxHide.gt-sm
+            fxHide.xs
+          >
+            Ostatnie 5
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let leagueRow of leagueTable.tableRows; index as i"
+          class="table-row"
+          (click)="emitPlayer(leagueRow.player)"
+        >
+          <td style="margin: 100px">
+            <div [class]="getPositionClass(i + 1)">
+              {{ i + 1 }}
             </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </td>
+          <td>
+            <img
+              class="player-img"
+              [src]="getPlayerImg(leagueRow.player.playerImg)"
+            />
+          </td>
+          <td style="text-align: left">{{ leagueRow.player.alias }}</td>
+          <td>
+            <mat-icon [class]="getClass(leagueRow)">{{
+              getIcon(leagueRow)
+            }}</mat-icon>
+          </td>
+          <td fxHide.gt-sm fxHide.xs>{{ leagueRow.matches }}</td>
+          <td>
+            <b>{{ leagueRow.rating }}</b>
+          </td>
+          <td>{{ leagueRow.wins }}</td>
+          <td>{{ leagueRow.draws }}</td>
+          <td>{{ leagueRow.loses }}</td>
+          <td fxHide.gt-sm fxHide.xs>{{ leagueRow.goalsScored }}</td>
+          <td fxHide.gt-sm fxHide.xs>{{ leagueRow.goalsConceded }}</td>
+          <td>{{ leagueRow.goalsDiff }}</td>
+          <td fxHide.gt-sm fxHide.xs>
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+              <div
+                *ngFor="let matchResult of leagueRow.form"
+                [class]="getFormClass(matchResult)"
+              >
+                {{ matchResult }}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

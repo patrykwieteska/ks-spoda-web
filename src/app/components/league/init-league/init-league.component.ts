@@ -9,8 +9,9 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InitLeagueResponse } from 'src/app/model/init-league-response';
-import { HeaderPanelData, League, LeagueTable } from 'src/app/model/league';
+import { HeaderPanelData, League } from 'src/app/model/league';
 import { Player } from 'src/app/model/player';
+import { Table } from 'src/app/model/table';
 import { LeagueService } from 'src/app/services/league.service';
 
 @Component({
@@ -29,8 +30,9 @@ export class InitLeagueComponent implements OnChanges {
   };
   initLeague: InitLeagueResponse | null = null;
   playerList: Player[] = [];
-  leagueTable: LeagueTable = {
+  leagueTable: Table = {
     header: '',
+    pointCountingMethod: '',
     tableRows: [],
   };
 

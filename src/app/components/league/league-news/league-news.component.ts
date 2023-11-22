@@ -1,13 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import { LeagueTable } from 'src/app/model/league';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Player } from 'src/app/model/player';
+import { Table } from 'src/app/model/table';
 
 @Component({
   selector: 'app-league-news',
@@ -19,7 +12,6 @@ export class LeagueNewsComponent {
 
   @Input() leagueId!: number;
   @Output() chosenPlayer = new EventEmitter<Player | null>();
-  @Input() leagueTable!: LeagueTable;
 
   takeChosenPlayer(player: Player | null) {
     this.chosenPlayer.emit(player);

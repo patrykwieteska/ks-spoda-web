@@ -93,3 +93,19 @@ thead:hover {
 .form-draw {
   background-color: #9aa0a6;
 }
+
+th {
+  cursor: pointer;
+}
+
+.up {
+  color: green !important;
+}
+
+.down {
+  color: darkred !important;
+}
+
+.none {
+  color: gray !important;
+}
