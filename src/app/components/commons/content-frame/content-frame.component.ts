@@ -10,4 +10,5 @@ export class ContentFrameComponent {
   @Input() headerTitle!: string;
   @Input() icon!: string;
   @Input() tooltipMessage: string = '';
+  @Input() buttonDisabled: boolean = false;
 }

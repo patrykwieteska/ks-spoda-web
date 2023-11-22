@@ -1,0 +1,40 @@
+<div *ngIf="matchDayTable.tableRows.length === 0" fxLayoutAlign="center center">
+  <span class="info"> Dodaj pierwszy mecz aby zobaczyć tabelę</span>
+</div>
+<div *ngIf="matchDayTable.tableRows.length > 0" fxflex="50">
+  <div fxLayout="column"></div>
+  <div fxLayoutAlign="center center">
+    <h5>{{ matchDayTable.header }}</h5>
+  </div>
+
+  <div fxLayoutAlign="start center">
+    <table fxFlex="40" class="table-shadow">
+      <thead class="table-header">
+        <tr>
+          <th>#</th>
+          <th>ZAWODNIK</th>
+          <th>M</th>
+          <th>PKT</th>
+          <th matTooltip="Bilans br." matTooltipPosition="above">+/-</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let seasonRow of matchDayTable.tableRows; index as i"
+          class="table-row"
+          ngClass="seasonRow.matchInProgress ? match-in-progress : table-row"
+        >
+          <td>
+            <div class="position">
+              {{ seasonRow.currentPosition }}
+            </div>
+          </td>
+          <td style="text-align: left">{{ seasonRow.player.alias }}</td>
+          <td>{{ seasonRow.matches }}</td>
+          <td>{{ seasonRow.pointsTotal }}</td>
+          <td>{{ seasonRow.goalsDiff }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

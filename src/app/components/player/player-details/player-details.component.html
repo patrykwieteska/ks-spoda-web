@@ -27,7 +27,7 @@
   <div fxFlex="100" fxLayoutGap="5px">
     <div fxFlex="2"></div>
     <div fxFlex="48" fxLayoutAlign="start center" class="player-img">
-      <img src="./../../../../assets/default_player_logo.png" />
+      <img [src]="getPlayerImg(chosenPlayer.playerImg)" />
     </div>
     <div fxFlex="48" fxLayout="column" fxLayoutGap="10px">
       <div [matTooltip]="chosenPlayer.name" matTooltipPosition="above">

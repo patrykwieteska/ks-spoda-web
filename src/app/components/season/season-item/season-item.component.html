@@ -5,17 +5,41 @@
       ><span>SEZON {{ season.seasonCount }}</span>
     </mat-card-title>
   </mat-card-header>
-  <mat-card-content fxLayoutAlign="center center">
-    <p>
-      <span> {{ season.startDate | date : "dd MMM y" }} - </span>
+  <mat-card-content>
+    <div fxLayout="column">
+      <div fxLayoutAlign="center center">
+        <p>
+          <span> {{ season.startDate | date : "dd MMM y" }} - </span>
 
-      <span *ngIf="season.isFinished">
-        {{ season.endDate | date : "dd MMM y" }}
-      </span>
-      <span *ngIf="!season.isFinished" class="current-season">
-        ... (aktualny)
-      </span>
-    </p>
+          <span *ngIf="season.isFinished">
+            {{ season.endDate | date : "dd MMM y" }}
+          </span>
+          <span *ngIf="!season.isFinished" class="current-season">
+            ... (aktualny)
+          </span>
+        </p>
+      </div>
+      <div fxLayoyt="column">
+        <div>
+          <span>Sposób liczenia punktów:</span>
+          <span
+            ><b>{{ getPointsCountingmethod() | uppercase }}</b>
+            <b *ngIf="season.pointCountingMethod == 'RATING'">{{
+              getRatingType()
+            }}</b></span
+          >
+          <span class="help" fxFlex="10">
+            <a (click)="openRatingTypeHelp()"> <mat-icon>help</mat-icon></a>
+          </span>
+        </div>
+        <div *ngIf="season.initialRating">
+          <span>Ranking inicjalny: </span>
+          <span
+            ><b>{{ season.initialRating }}</b>
+          </span>
+        </div>
+      </div>
+    </div>
   </mat-card-content>
   <mat-card-actions fxLayoutAlign="end end">
     <button
@@ -26,6 +50,8 @@
     >
       ZAKOŃCZ <mat-icon>check_small</mat-icon>
     </button>
-    <button mat-button>PRZEJDŹ <mat-icon>arrow_forward</mat-icon></button>
+    <a [routerLink]="['/season/init', season.id]">
+      <button mat-button>PRZEJDŹ <mat-icon>arrow_forward</mat-icon></button>
+    </a>
   </mat-card-actions>
 </mat-card>

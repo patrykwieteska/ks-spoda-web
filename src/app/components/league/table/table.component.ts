@@ -1,17 +1,24 @@
-import { LeagueService } from 'src/app/services/league.service';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { LeagueTable, LeagueTableRow } from 'src/app/model/league';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Player } from 'src/app/model/player';
+import { Table, TableRow } from 'src/app/model/table';
+import { TableService } from 'src/app/services/table.service';
 
 @Component({
   selector: 'league-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   @Input() leagueId!: number;
-  @Input() leagueTable!: LeagueTable;
   @Output() chosenPlayer = new EventEmitter<Player | null>();
+
+  showProgressBar = false;
+
+  leagueTable: Table = {
+    header: '',
+    tableRows: [],
+    pointCountingMethod: '',
+  };
 
   tableColumns: string[] = [
     'position',
@@ -25,6 +32,24 @@ export class TableComponent {
     'goalsConceded',
     'form',
   ];
+
+  constructor(private tableService: TableService) {
+    this.showProgressBar = true;
+  }
+
+  ngOnInit(): void {
+    this.getLeagueTable();
+  }
+  getLeagueTable() {
+    this.tableService.initLeagueTable(this.leagueId).subscribe({
+      next: (response) => {
+        this.leagueTable = response;
+      },
+      complete: () => {
+        this.showProgressBar = false;
+      },
+    });
+  }
 
   getPlayerImg(src: string | null): string {
     return src ? src : '../../../../assets/default_player_logo.png';
@@ -67,5 +92,22 @@ export class TableComponent {
     }
 
     return baseClass + ' ' + result;
+  }
+  getClass(leagueRow: TableRow): string {
+    var positionDiff: number =
+      leagueRow.currentPosition - leagueRow.previousPosition;
+
+    return positionDiff > 0 ? 'up' : positionDiff < 0 ? 'down' : 'none';
+  }
+
+  getIcon(leagueRow: TableRow): string {
+    var positionDiff: number =
+      leagueRow.currentPosition - leagueRow.previousPosition;
+
+    return positionDiff > 0
+      ? 'arrow_drop_up'
+      : positionDiff < 0
+      ? 'arrow_drop_down'
+      : 'remove';
   }
 }

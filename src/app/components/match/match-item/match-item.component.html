@@ -1,1 +1,167 @@
-<p>match-item works!</p>
+<div fxLayout="row">
+  <div fxFlex="2" fxLayoutAlign="center start">
+    <div
+      class="remove-match"
+      matTooltip="Usuń mecz"
+      matTooltipPosition="above"
+      (click)="removeMatch(match.id)"
+    >
+      <mat-icon class="remove-match-icon">delete</mat-icon>
+    </div>
+  </div>
+  <div
+    fxFlex="96"
+    fxLayout="column"
+    [ngClass]="!match.isFinished ? 'in-progress' : 'finished'"
+  >
+    <div *ngIf="!match.isFinished" fxLayoutAlign="center end" fxLayoutGap="2">
+      <div *ngIf="isResultChanged">
+        <button class="update-btn" (click)="updateMatchResult()" mat-button>
+          <mat-icon>scoreboard</mat-icon>
+          Aktualizuj
+        </button>
+      </div>
+      <div *ngIf="!isResultChanged">
+        <mat-checkbox
+          color="primary"
+          class="example-margin"
+          [(ngModel)]="checked"
+          matTooltip="Ostatni gwizdek"
+          matTooltipPosition="above"
+        ></mat-checkbox>
+        <button
+          class="complete-btn"
+          (click)="endMatch()"
+          mat-button
+          [disabled]="!checked"
+        >
+          <mat-icon>sports_and_outdoors</mat-icon>
+          Zakończ mecz
+        </button>
+      </div>
+    </div>
+    <div
+      class="match-frame"
+      *ngIf="match"
+      fxFlex="100"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      style="width: 100%"
+    >
+      <div
+        class="homeTeam"
+        fxLayout="row"
+        fxLayout.lt-md="column"
+        fxFlex="35"
+        fxLayoutGap="20"
+      >
+        <div
+          fxLayout="column"
+          fxFlex="50"
+          fxLayoutAlign="center end"
+          fxFlexOrder="0"
+          fxFlexOrder.lt-md="1"
+        >
+          <div *ngFor="let homePlayer of match.homeTeam.matchPlayers">
+            <div fxLayout="row" fxLayoutGap="10">
+              <span>{{ homePlayer.alias }}</span>
+              <img
+                [src]="getPlayerImg(homePlayer.playerImg)"
+                alt=""
+                width="20"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          fxFlex="50"
+          fxFlexOrder.lt-md="0"
+          fxFlexOrder="1"
+          class="team-name"
+        >
+          <div class="badge">
+            <img [src]="match.homeTeam.gameTeam.badgeImg" width="40" />
+          </div>
+          <div>{{ match.homeTeam.gameTeam.name }}</div>
+        </div>
+      </div>
+      <div
+        class="matchResult"
+        fxLayout="column"
+        fxFlex="30"
+        fxLayoutAlign="center center"
+      >
+        <div fxLayout="row" fxLayoutGap="5" class="grayed-out">
+          <span fxHide.lt-md>{{ match.matchTime | date : "dd.MM.yyyy" }}</span
+          ><span>{{ match.matchTime | date : "HH:mm" }}</span>
+        </div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          [class]="!match.isFinished ? 'blink' : ''"
+        >
+          <h2 *ngIf="match.isFinished">{{ match.homeGoals }}</h2>
+          <input
+            *ngIf="!match.isFinished"
+            id="homeGoalsId"
+            class="result-in-progress"
+            type="number"
+            value="{{ match.homeGoals }}"
+            (input)="checkResult()"
+            onClick="this.select();"
+          />
+          <div><mat-icon>remove</mat-icon></div>
+          <h2 *ngIf="match.isFinished">{{ match.awayGoals }}</h2>
+          <input
+            *ngIf="!match.isFinished"
+            id="awayGoalsId"
+            class="result-in-progress"
+            type="number"
+            value="{{ match.awayGoals }}"
+            (input)="checkResult()"
+            onClick="this.select();"
+          />
+        </div>
+        <div class="grayed-out">
+          <span *ngIf="!match.isFinished" class="blink"
+            ><mat-icon>sports_soccer</mat-icon
+            ><span fxHide.lt-md>W trakcie</span></span
+          >
+          <span *ngIf="match.isFinished" matTooltip="Zakończony"
+            ><mat-icon>sports_and_outdoors</mat-icon><span fxHide.lt-md></span
+          ></span>
+        </div>
+      </div>
+      <div
+        class="awayTeam"
+        fxLayout="row"
+        fxLayout.lt-md="column"
+        fxFlex="35"
+        fxLayoutGap="20"
+        class="team-name"
+      >
+        <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50">
+          <div class="badge">
+            <img [src]="match.awayTeam.gameTeam.badgeImg" width="40" />
+          </div>
+          <div>{{ match.awayTeam.gameTeam.name }}</div>
+        </div>
+        <div fxLayout="column" fxFlex="50" fxLayoutAlign="center start">
+          <div *ngFor="let awayPlayer of match.awayTeam.matchPlayers">
+            <div fxLayout="row" fxLayoutGap="10">
+              <img
+                [src]="getPlayerImg(awayPlayer.playerImg)"
+                alt=""
+                width="20"
+              />
+              <span>{{ awayPlayer.alias }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="2"></div>
+</div>

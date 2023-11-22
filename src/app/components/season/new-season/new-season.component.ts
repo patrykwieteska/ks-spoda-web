@@ -98,13 +98,17 @@ export class NewSeasonComponent {
         seasonCount: null,
         startDate: this.seasonForm.get('startDate')?.value,
         endDate: null,
-        isFinished: null,
+        isFinished: false,
         initialRating: null,
         pointCountingMethod: this.seasonForm.get('pointCountingMethod')?.value,
         ratingType: ratingType,
+        hasNoActiveMatchDay: true,
       };
 
       this.seasonService.createSeason(season).subscribe({
+        next: (value) => {
+          season.id = value.seasonId;
+        },
         complete: () => {
           this.outputNewSeason.emit(season);
         },

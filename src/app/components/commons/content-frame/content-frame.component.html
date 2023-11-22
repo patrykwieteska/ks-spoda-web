@@ -4,13 +4,14 @@
       <div fxLayoutAlign="center start" fxFlex="90" class="title">
         {{ headerTitle | uppercase }}
       </div>
-      <div fxLayoutAlign="end" fxFlex="10" *ngIf="icon">
+      <div fxLayoutAlign="end" fxFlex="10" *ngIf="icon && !buttonDisabled">
         <button
           mat-button
           [matTooltip]="tooltipMessage"
           matTooltipPosition="above"
           matTooltipHideDelay="100"
           (click)="clickButton.emit()"
+          [disabled]="buttonDisabled"
         >
           <mat-icon>{{ icon }}</mat-icon>
         </button>

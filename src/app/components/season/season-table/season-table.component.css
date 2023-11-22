@@ -1,0 +1,145 @@
+table {
+  margin: 10px;
+  padding: 2px;
+  min-width: 300px;
+  width: auto;
+  text-align: center;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+    rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+thead {
+  color: white;
+  background-color: var(--primary-color);
+  border: solid 1px var(--primary-color);
+  height: 40px;
+  font-size: 14px;
+  box-shadow: var(--primary-color) 0px 1px 2px,
+    var(--primary-color) 0px 0px 0px 2px;
+}
+
+thead:hover {
+  color: white;
+  background-color: var(--primary-color);
+  border: solid 1px var(--primary-color);
+  padding: 20px;
+}
+
+.player-img {
+  width: 20px;
+}
+
+.position {
+  display: inline-block;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  /* border: solid white 1px; */
+  margin: 2px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.position-1 {
+  background-color: gold;
+}
+
+.position-2 {
+  background-color: darkseagreen;
+}
+.position-3 {
+  background-color: darkseagreen;
+}
+
+.position-last {
+  background-color: indianred;
+}
+
+.position-default {
+  background-color: lightgray;
+}
+
+.table-row {
+  margin: 10px;
+  padding: 20px;
+  display: table-row;
+  cursor: pointer;
+  padding: 2px;
+  border-bottom: dotted gray 1px;
+}
+
+.match-in-progress {
+  background-color: whitesmoke;
+}
+
+.table-row:hover {
+  /* border: solid var(--primary-color) 1px; */
+  border-radius: 20px;
+  background-color: gainsboro;
+}
+
+.form {
+  text-align: center;
+  font-size: 13px;
+  display: inline-block;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  color: white;
+}
+
+.form-win {
+  background-color: #3aa757;
+}
+
+.form-lose {
+  background-color: #ea4335;
+}
+
+.form-draw {
+  background-color: #9aa0a6;
+}
+
+th {
+  cursor: pointer;
+}
+
+.up {
+  color: green !important;
+  transform: scale(1.5);
+}
+
+.down {
+  color: darkred !important;
+  transform: scale(1.5);
+}
+
+.none {
+  color: gray !important;
+}
+
+.blink {
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  20% {
+    opacity: 1;
+    color: gray;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 1;
+  }
+}
+
+.info {
+  color: var(--primary-color);
+  margin-top: 50px;
+}

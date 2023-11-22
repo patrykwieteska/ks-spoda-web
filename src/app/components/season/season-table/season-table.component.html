@@ -1,0 +1,88 @@
+<div *ngIf="seasonTable.tableRows.length === 0" fxLayoutAlign="center center">
+  <span class="info"> Dodaj pierwszy mecz aby zobaczyć tabelę</span>
+</div>
+<div *ngIf="seasonTable.tableRows.length > 0">
+  <div fxLayout="column"></div>
+  <div fxLayoutAlign="center center">
+    <h5>{{ seasonTable.header }}</h5>
+  </div>
+
+  <div fxLayoutAlign="center center">
+    <table fxFlex="60" class="table-shadow" fxFlex.lt-md="100">
+      <thead class="table-header">
+        <tr>
+          <th>#</th>
+          <th colspan="4">ZAWODNIK</th>
+          <th>M</th>
+          <th matTooltip="getPointCountingTooltip()" matTooltipPosition="above">
+            {{ getPointCountingMethod() }}
+          </th>
+          <th matTooltip="Wygrane" matTooltipPosition="above">W</th>
+          <th matTooltip="Remisy" matTooltipPosition="above">R</th>
+          <th matTooltip="Przegrane" matTooltipPosition="above">P</th>
+          <th matTooltip="Br. zdobyte" matTooltipPosition="above">B+</th>
+          <th matTooltip="Br. stracone" matTooltipPosition="above">B-</th>
+          <th matTooltip="Bilans br." matTooltipPosition="above">+/-</th>
+          <th matTooltip="Forma zawodnika" matTooltipPosition="above">
+            Ostatnie 5
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let seasonRow of seasonTable.tableRows; index as i"
+          class="table-row"
+          ngClass="seasonRow.matchInProgress ? match-in-progress : table-row"
+        >
+          <td>
+            <div [class]="getPositionClass(seasonRow.currentPosition)">
+              {{ seasonRow.currentPosition }}
+            </div>
+          </td>
+          <td>
+            <img
+              class="player-img"
+              [src]="getPlayerImg(seasonRow.player.playerImg)"
+            />
+          </td>
+          <td width="10%" style="text-align: left">
+            {{ seasonRow.player.alias }}
+          </td>
+          <td width="5%">
+            <span *ngIf="seasonRow.matchInProgress" class="blink"
+              ><mat-icon>sports_soccer</mat-icon></span
+            >
+          </td>
+          <td>
+            <mat-icon
+              [class]="getClass(seasonRow)"
+              [matTooltip]="tooltipMessage(seasonRow)"
+              matTooltipPosition="right"
+              >{{ getIcon(seasonRow) }}</mat-icon
+            >
+          </td>
+          <td>{{ seasonRow.matches }}</td>
+          <td>
+            <b>{{ getCorrectPointsType(seasonRow) }}</b>
+          </td>
+          <td>{{ seasonRow.wins }}</td>
+          <td>{{ seasonRow.draws }}</td>
+          <td>{{ seasonRow.loses }}</td>
+          <td>{{ seasonRow.goalsScored }}</td>
+          <td>{{ seasonRow.goalsConceded }}</td>
+          <td>{{ seasonRow.goalsDiff }}</td>
+          <td>
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+              <div
+                *ngFor="let matchResult of seasonRow.playerForm"
+                [class]="getFormClass(matchResult)"
+              >
+                {{ matchResult }}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

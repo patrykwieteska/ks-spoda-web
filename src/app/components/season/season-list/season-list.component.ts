@@ -125,6 +125,7 @@ export class SeasonListComponent implements OnInit, OnChanges {
     });
 
     dialogRef.componentInstance.outputNewSeason.subscribe((value) => {
+      value.seasonCount = this.seasonList.length + 1;
       this.seasonList.unshift(value);
       dialogRef.close(() => {
         console.log('Dialog closed');

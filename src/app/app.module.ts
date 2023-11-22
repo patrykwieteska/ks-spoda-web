@@ -36,9 +36,20 @@ import { StatisticsComponent } from './components/league/statistics/statistics.c
 import { PlayerDetailsComponent } from './components/player/player-details/player-details.component';
 import { PlayerListComponent } from './components/player/player-list/player-list.component';
 import { PlayerItemComponent } from './components/player/player-item/player-item.component';
-import { MatchListComponent } from './components/match-list/match-list.component';
+import { MatchListComponent } from './components/match/match-list/match-list.component';
 import { SeasonItemComponent } from './components/season/season-item/season-item.component';
 import { NewSeasonComponent } from './components/season/new-season/new-season.component';
+import { InitSeasonComponent } from './components/season/init-season/init-season.component';
+import { SeasonTableComponent } from './components/season/season-table/season-table.component';
+import { MatchdayTableComponent } from './components/matchday/matchday-table/matchday-table.component';
+import { MatchdayStatsComponent } from './components/matchday/matchday-stats/matchday-stats.component';
+import { NewMatchComponent } from './components/match/new-match/new-match.component';
+import { GameTeamSearchComponent } from './components/match/game-team-search/game-team-search.component';
+import { MatchPlayersComponent } from './components/match/match-players/match-players.component';
+import { NewMatchdayComponent } from './components/matchday/new-matchday/new-matchday.component';
+import { DeleteMatchComponent } from './components/match/delete-match/delete-match.component';
+import { MatchdayPlayersComponent } from './components/matchday/matchday-players/matchday-players.component';
+import { MatchdayPlayerDetailsComponent } from './components/matchday/matchday-player-details/matchday-player-details.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +82,17 @@ import { NewSeasonComponent } from './components/season/new-season/new-season.co
     MatchListComponent,
     SeasonItemComponent,
     NewSeasonComponent,
+    InitSeasonComponent,
+    SeasonTableComponent,
+    MatchdayTableComponent,
+    MatchdayStatsComponent,
+    NewMatchComponent,
+    GameTeamSearchComponent,
+    MatchPlayersComponent,
+    NewMatchdayComponent,
+    DeleteMatchComponent,
+    MatchdayPlayersComponent,
+    MatchdayPlayerDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,8 @@ export class PlayerItemComponent {
   @Output() emittedPlayer = new EventEmitter<Player | null>();
 
   emitPlayer() {
+    console.log('emitted player ', this.player);
+
     this.emittedPlayer.emit(this.player);
   }
 }

@@ -1,0 +1,12 @@
+.info {
+  color: var(--primary-color);
+  margin-top: 50px;
+}
+
+.complete-btn {
+  border: double 1px;
+  /* background-color: #f3d7d0; */
+}
+.complete-btn:hover {
+  background-color: #ffeded;
+}

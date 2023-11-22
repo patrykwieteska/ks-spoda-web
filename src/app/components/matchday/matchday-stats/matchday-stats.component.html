@@ -1,0 +1,51 @@
+<div *ngIf="inputMatchDay" fxLayout="column">
+  <div
+    *ngIf="!inputMatchDay.isFinished"
+    fxLayoutAlign="end end"
+    fxLayoutGap="2"
+  >
+    <mat-checkbox
+      color="primary"
+      class="example-margin"
+      [(ngModel)]="checked"
+      matTooltip="Koniec kolejki"
+      matTooltipPosition="above"
+    ></mat-checkbox>
+    <button
+      *ngIf="!inputMatchDay.isFinished"
+      class="complete-btn"
+      (click)="completeMatchDay()"
+      mat-button
+      [disabled]="!checked"
+    >
+      <mat-icon>event_available</mat-icon>
+      Zakończ kolejkę
+    </button>
+  </div>
+  <div fxFlex="100" fxLayoutAlign="start center">
+    <div fxFlex="5"></div>
+    <div fxFlex="90">
+      <mat-tab-group>
+        <mat-tab label="TABELA"
+          ><app-matchday-table
+            #matchDayTableRef
+            [matchDay]="inputMatchDay"
+          ></app-matchday-table>
+        </mat-tab>
+        <mat-tab label="ROZEGRANE MECZE">
+          <app-matchday-players
+            #matchDayPlayersRef
+            [inputMaatchDay]="inputMatchDay"
+          ></app-matchday-players>
+        </mat-tab>
+        <!-- <mat-tab label="Forma"> Content 3 </mat-tab>
+        <mat-tab label="Statystyki"> Content 3 </mat-tab> -->
+      </mat-tab-group>
+    </div>
+    <div fxFlex="5"></div>
+  </div>
+</div>
+
+<div class="info" *ngIf="!inputMatchDay" fxLayoutAlign="center center">
+  Brak kolejek
+</div>

@@ -1,0 +1,69 @@
+<!-- <app-custom-progress-bar *ngIf="!isResponseComplete"></app-custom-progress-bar> -->
+
+<!-- <div fxLayout="column" style="width: 100%" *ngIf="isResponseComplete"></div> -->
+
+<div fxFlex fxLayout="column">
+  <div fxFlex="100">
+    <app-header-panel
+      *ngIf="headerPanel"
+      [headerPanelData]="headerPanel"
+      #headerPanelRef
+    ></app-header-panel>
+  </div>
+  <div fxFlex="100">
+    <div fxFlex="5"></div>
+    <div fxFlex="90">
+      <app-content-frame
+        headerTitle="tabela"
+        icon="keyboard_return"
+        tooltipMessage="Powrót to ligi"
+        (clickButton)="backToLeague()"
+      >
+        <app-season-table #seasonTableRef></app-season-table>
+      </app-content-frame>
+    </div>
+    <div fxFlex="5"></div>
+  </div>
+  <div fxFlex="100" fxLayout="row" fxLayoutGap="5">
+    <div fxFlex="5"></div>
+    <div fxFlex="45">
+      <app-content-frame
+        headerTitle="Mecze"
+        icon="add_circle"
+        tooltipMessage="Dodaj mecz"
+        (clickButton)="getNewMatchEvent()"
+        [buttonDisabled]="isNewMatchDisabled()"
+        #matchContentFrame
+      >
+        <app-match-list
+          (outMatchDay)="takeMatchDayFromList($event)"
+          [matchDayId]="currentMatchDayId"
+          [seasonId]="seasonId"
+          [newMatchOpenDialogCounter]="newMatchDialogCounter"
+          [leaguePlayers]="leaguePlayerList"
+          (matchChange)="refreshTable()"
+          #matchListRef
+        ></app-match-list>
+      </app-content-frame>
+    </div>
+    <div fxFlex="45">
+      <app-content-frame
+        headerTitle="Kolejka"
+        icon="add_circle"
+        tooltipMessage="Dodaj kolejkę"
+        (clickButton)="getNewMatchDayEvent()"
+        [buttonDisabled]="isNewMatchDayDisabled()"
+        #matchDayContentFrame
+      >
+        <app-matchday-stats
+          #matchDayStatsRef
+          [newMatchDayOpenDialogCounter]="newMatchDayDialogCounter"
+          [inputMatchDay]="chosenMatchDay"
+          [seasonId]="seasonId"
+          (createdMatchDayId)="takeNewMatchDayId()"
+        ></app-matchday-stats>
+      </app-content-frame>
+    </div>
+    <div fxFlex="5"></div>
+  </div>
+</div>

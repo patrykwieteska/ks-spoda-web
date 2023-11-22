@@ -3,8 +3,11 @@
     <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-    <main>
+    <app-header
+      class="header-sticky"
+      (sidenavToggle)="sidenav.toggle()"
+    ></app-header>
+    <main class="my-content">
       <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>

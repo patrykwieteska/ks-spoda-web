@@ -1,0 +1,80 @@
+<div class="match-modal" fxLayout="column" fxLayoutAlign="space-evenly none">
+  <h1 fxLayoutAlign="center center" mat-dialog-title fxFlex="10">
+    Dodaj mecz<mat-icon>add</mat-icon>
+  </h1>
+
+  <div mat-dialog-content fxFlex="80" style="height: 80%">
+    <form
+      [formGroup]="matchForm"
+      fxLayout="column"
+      fxLayoutGap="10"
+      fxLayoutAlign="start center"
+    >
+      <mat-tab-group>
+        <mat-tab label="Gospodarze">
+          <br />
+          <mat-error
+            *ngIf="homePlayersError"
+            fxLayoutAlign="center center"
+            style="font-size: 12px"
+            >Dodaj zawodników gospodarzy!</mat-error
+          >
+          <div fxLayout="column" fxLayoutAlign="start center">
+            <div fxLayout="column" fxLayoutAlign="start center">
+              <app-game-team-search
+                [availableGameTeamList]="availableGameTeams"
+                (gameTeamId)="takeHomeTeam($event)"
+                #homeGameTeamRef
+              ></app-game-team-search>
+            </div>
+            <div fxLayout="column">
+              <mat-label>Wybierz zawodników</mat-label>
+              <app-match-players
+                [leaguePlayers]="leaguePlayers"
+                #homePlayersRef
+              ></app-match-players>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Goście">
+          <br />
+          <mat-error
+            *ngIf="awayPlayersError"
+            fxLayoutAlign="center center"
+            style="font-size: 12px"
+            >Dodaj zawodników gości!</mat-error
+          >
+          <div fxLayout="column" fxLayoutAlign="start center">
+            <div fxLayout="column" fxLayoutAlign="start center">
+              <app-game-team-search
+                [availableGameTeamList]="availableGameTeams"
+                (gameTeamId)="takeAwayTeam($event)"
+                #awayGameTeamRef
+              ></app-game-team-search>
+            </div>
+            <div fxLayout="column">
+              <mat-label>Wybierz zawodników</mat-label>
+              <app-match-players
+                [leaguePlayers]="leaguePlayers"
+                #awayPlayersRef
+              ></app-match-players>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </form>
+  </div>
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end end" fxFlex="10">
+    <button
+      mat-button
+      [mat-dialog-close]
+      (click)="resetForm()"
+      class="cancel-button"
+    >
+      Anuluj
+    </button>
+    <button mat-button cdkFocusInitial class="add-button" (click)="addMatch()">
+      Dodaj
+    </button>
+  </div>
+</div>

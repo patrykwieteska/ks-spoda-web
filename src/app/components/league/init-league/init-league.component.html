@@ -12,17 +12,24 @@
       <div fxFlex="45" style="margin-right: 2px">
         <app-content-frame headerTitle="aktualności"
           ><app-league-news
+            #leagueNewsRef
             [leagueId]="leagueId"
             (chosenPlayer)="takeChosenPlayer($event)"
-            [leagueTable]="leagueTable"
           ></app-league-news>
         </app-content-frame>
       </div>
       <div fxFlex="45" style="margin-left: 2px">
-        <app-content-frame headerTitle="zawodnicy"
+        <app-content-frame
+          headerTitle="zawodnicy"
+          icon="person_add"
+          (clickButton)="getPlayersFrameClickEvent()"
+          tooltipMessage="Dodaj zawodnika"
           ><app-player-list
+            #playerListRef
             [chosenPlayer]="chosenPlayer"
             [playerList]="playerList"
+            [leagueId]="leagueId"
+            (addedPlayerOutput)="takeNewPlayerEvent()"
           ></app-player-list>
         </app-content-frame>
       </div>
@@ -33,7 +40,7 @@
       <div fxFlex="45" style="margin-right: 2px">
         <app-content-frame
           headerTitle="sezony"
-          icon="add_box"
+          icon="library_add"
           tooltipMessage="Nowy sezon"
           (clickButton)="getSeasonFrameClickEvent()"
           ><app-season-list

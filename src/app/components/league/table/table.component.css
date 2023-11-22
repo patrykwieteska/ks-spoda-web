@@ -1,9 +1,9 @@
 table {
-  margin: 10px;
   padding: 2px;
   min-width: 300px;
   width: auto;
   text-align: center;
+  table-layout: fixed;
 }
 
 thead {
@@ -12,6 +12,9 @@ thead {
   border: solid 1px var(--primary-color);
   height: 40px;
   font-size: 14px;
+  padding: 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 thead:hover {
@@ -92,4 +95,20 @@ thead:hover {
 
 .form-draw {
   background-color: #9aa0a6;
+}
+
+th {
+  cursor: pointer;
+}
+
+.up {
+  color: green !important;
+}
+
+.down {
+  color: darkred !important;
+}
+
+.none {
+  color: gray !important;
 }

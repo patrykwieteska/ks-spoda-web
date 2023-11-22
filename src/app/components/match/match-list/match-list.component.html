@@ -1,0 +1,37 @@
+<div
+  fxLayoutAlign="center center"
+  fxLayout="column"
+  *ngIf="matchDayList.length > 0"
+>
+  <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field style="min-width: 300px">
+      <mat-select [(value)]="selected">
+        <mat-option
+          style="text-align: center"
+          *ngFor="let matchDay of matchDayList"
+          [value]="matchDay.id"
+          (click)="getMatchDayMatches(matchDay)"
+          ><b></b>{{ matchDay.matchDayNo }} KOLEJKA ({{
+            matchDay.date | date : "dd.MM.yyyy"
+          }})</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="width: 100%">
+    <div *ngFor="let match of matches">
+      <app-match-item
+        [match]="match"
+        (outMatchUpdated)="takeMatchUpdatedEvent()"
+      ></app-match-item>
+    </div>
+    <div *ngIf="matches.length === 0" fxLayoutAlign="center center">
+      Brak meczów w tej kolejce
+    </div>
+  </div>
+</div>
+<div *ngIf="matchDayList.length === 0" fxLayoutAlign="center center">
+  <span class="info"
+    >Dodaj pierwszą kolejkę aby mieć możliwość dodawania meczów</span
+  >
+</div>

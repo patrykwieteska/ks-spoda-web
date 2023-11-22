@@ -1,0 +1,28 @@
+<div fxLayout="column">
+  <div
+    fxLayout="column"
+    fxLayoutAlign="start start"
+    fxLayoutGap="2"
+    style="width: 400px; margin: 5px"
+  >
+    <div class="matches-in-row" fxFlex="10">Z RZĘDU</div>
+    <div fxLayout="row wrap" fxFlex="90">
+      <div *ngFor="let player of players" style="margin-left: 10px">
+        <div class="match-in-row-panel">
+          {{ player.alias }}: {{ player.matchesInRow }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <mat-divider></mat-divider>
+  <div>
+    <mat-tab-group>
+      <mat-tab *ngFor="let player of players" [label]="player.alias">
+        <app-matchday-player-details
+          [matchDayPlayer]="player"
+        ></app-matchday-player-details>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

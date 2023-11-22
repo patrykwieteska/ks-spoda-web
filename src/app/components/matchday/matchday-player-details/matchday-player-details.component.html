@@ -1,0 +1,45 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutGap="50">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" class="title">
+      <div fxLayout="row" fxLayoutGap="5">
+        <h5>W drużynie</h5>
+        <span class="material-symbols-outlined"> handshake </span>
+      </div>
+      <div
+        *ngFor="let teammate of matchDayPlayer.teammates"
+        fxLayoutAlign="center center"
+      >
+        <div fxLayout="row" fxLayoutGap="20" [class]="getClass(teammate)">
+          <div>
+            <b>{{ teammate.alias }}:</b>
+          </div>
+
+          <div>
+            <b>{{ teammate.value }}</b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" class="title">
+      <div fxLayout="row" fxLayoutGap="5">
+        <h5>Przeciwko</h5>
+        <span class="material-symbols-outlined"> swords </span>
+      </div>
+      <div
+        *ngFor="let opponent of matchDayPlayer.opponents"
+        class="opponent"
+        fxLayoutAlign="center center"
+      >
+        <div fxLayout="row" fxLayoutGap="20" [class]="getClass(opponent)">
+          <div>
+            <b>{{ opponent.alias }}:</b>
+          </div>
+
+          <div>
+            <b>{{ opponent.value }}</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

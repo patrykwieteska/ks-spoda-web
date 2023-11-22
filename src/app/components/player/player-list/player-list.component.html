@@ -1,11 +1,12 @@
 <div fxLayout="row" fxLayoutGap="20">
-  <div fxFlex="30">
-    <app-player-item
-      fxLayout="column"
-      *ngFor="let player of playerList"
-      [player]="player"
-      (emittedPlayer)="takeEmittedPlayer($event)"
-    ></app-player-item>
+  <div fxFlex="30" style="overflow-y: scroll; height: 300px">
+    <div *ngFor="let player of playerList">
+      <app-player-item
+        fxLayout="column"
+        [player]="player"
+        (emittedPlayer)="takeEmittedPlayer($event)"
+      ></app-player-item>
+    </div>
   </div>
   <div fxFlex="70" fxLayoutAlign="center center">
     <app-player-details [chosenPlayer]="chosenPlayer"></app-player-details>

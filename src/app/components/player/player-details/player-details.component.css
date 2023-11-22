@@ -8,6 +8,8 @@
 .player-img {
   border-radius: 10px;
   border: 2px solid var(--primary-color);
+  width: 200px;
+  padding: 2px;
 }
 img {
   max-width: 100%;

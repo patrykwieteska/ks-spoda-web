@@ -1,3 +1,4 @@
+import { PlayerService } from 'src/app/services/player.service';
 import { Component, Input } from '@angular/core';
 import { Player } from 'src/app/model/player';
 
@@ -9,7 +10,13 @@ import { Player } from 'src/app/model/player';
 export class PlayerDetailsComponent {
   @Input() chosenPlayer!: Player | null;
 
+  constructor(private playerService: PlayerService) {}
+
   closePlayerDetails() {
     this.chosenPlayer = null;
+  }
+
+  getPlayerImg(playerImg: string | null) {
+    return this.playerService.getPlayerImg(playerImg);
   }
 }

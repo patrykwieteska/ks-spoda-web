@@ -1,0 +1,46 @@
+.player-panel {
+  background-color: var(--shadow-color);
+  color: black;
+  padding: 5px;
+  margin: 2px;
+  max-width: 150px;
+  min-width: 70px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.player-disabled {
+  background-color: lightgray;
+  color: gray;
+  pointer-events: none;
+}
+
+.added-player-list {
+  max-width: 300px;
+}
+
+.player-list {
+  max-width: 300px;
+}
+
+.player-panel:hover {
+  background-color: #edede0;
+}
+
+.added-player {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  max-width: 150px;
+  min-width: 70px;
+  padding: 5px;
+  margin: 2px;
+}
+.added-player:hover {
+  cursor: pointer;
+  background-color: #81909b;
+  color: black;
+}

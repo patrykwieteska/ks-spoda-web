@@ -4,10 +4,11 @@ export interface Season {
   seasonCount: number | null;
   startDate: Date;
   endDate: Date | null;
-  isFinished: boolean | null;
+  isFinished: boolean;
   initialRating: number | null;
   pointCountingMethod: string;
   ratingType: string | null;
+  hasNoActiveMatchDay: boolean;
 }
 
 export interface SeasonListResponse {

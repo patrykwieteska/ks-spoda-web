@@ -1,0 +1,20 @@
+<mat-form-field>
+  <mat-label>Wybierz drużynę </mat-label>
+  <input
+    matInput
+    aria-label="homeGameTeam"
+    required
+    [matAutocomplete]="auto"
+    [formControl]="gameTeamControl"
+  />
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      *ngFor="let gameTeam of filteredGameTeams | async; index as i"
+      [value]="gameTeam.name"
+      (click)="selectGameTeam(gameTeam)"
+    >
+      <img alt="" [src]="gameTeam.badgeImg" height="25" />
+      <span> {{ gameTeam.name }}</span>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

@@ -14,9 +14,13 @@ const baseURL = BASE_URL + serviceURL;
 export class PlayerService {
   constructor(private http: HttpClient) {}
 
-  getPlayersByLeague(leagueId: number): Observable<GetPlayersResponse> {
+  addPlayer(newPlayer: NewPlayer): Observable<PlayerCreated> {
+    return this.http.post<PlayerCreated>(baseURL + '/create', newPlayer).pipe();
+  }
+
+  getLeaguePlayersBySeason(seasonId: number): Observable<GetPlayersResponse> {
     return this.http
-      .get<GetPlayersResponse>(baseURL + '?leagueId=' + leagueId)
+      .get<GetPlayersResponse>(baseURL + '/league' + '?seasonId=' + seasonId)
       .pipe(catchError(this.handleError));
   }
 
@@ -35,10 +39,27 @@ export class PlayerService {
 
     return throwError(() => new Error('PlayerService error: ' + error.error));
   }
+
+  getPlayerImg(src: string | null): string {
+    return src ? src : '../../../../assets/default_player_logo.png';
+  }
 }
 
 export interface GetPlayersResponse {
   status: number;
   players: Player[];
   message: string | null;
+}
+
+export interface PlayerCreated {
+  id: number;
+  status: number;
+  message: string | null;
+}
+
+export interface NewPlayer {
+  name: string;
+  alias: string;
+  leagueId: number;
+  playerImg: string;
 }

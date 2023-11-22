@@ -1,0 +1,149 @@
+{
+  "status": 200,
+  "matchList": [
+    {
+      "status": 0,
+      "id": 2,
+      "matchTime": "2023-12-04T20:42:54",
+      "isFinished": false,
+      "homeTeam": {
+        "matchPlayers": [
+          {
+            "id": 7,
+            "name": "Rafał",
+            "alias": "Afył",
+            "playerImg": null,
+            "desc": null,
+            "joinDate": "2023-12-04"
+          },
+          {
+            "id": 8,
+            "name": "Patryk",
+            "alias": "Wietek",
+            "playerImg": null,
+            "desc": null,
+            "joinDate": "2023-12-04"
+          }
+        ],
+        "gameTeam": {
+          "creationDate": "2023-10-10T00:00:00",
+          "lastModificationDate": "2023-10-10T00:00:00",
+          "createdBy": "TEST_DATA",
+          "isDeleted": null,
+          "id": 4,
+          "name": "Aston Villa",
+          "shortName": "A. Villa",
+          "teamAlias": null,
+          "overallRating": 83,
+          "badgeImg": "https://cdn.sofifa.net/meta/team/15/30.png"
+        }
+      },
+      "awayTeam": {
+        "matchPlayers": [
+          {
+            "id": 5,
+            "name": "Mateusz",
+            "alias": "Jałyj",
+            "playerImg": null,
+            "desc": null,
+            "joinDate": "2023-12-04"
+          },
+          {
+            "id": 6,
+            "name": "Jakub",
+            "alias": "Niedziej",
+            "playerImg": null,
+            "desc": null,
+            "joinDate": "2023-12-04"
+          }
+        ],
+        "gameTeam": {
+          "creationDate": "2023-10-10T00:00:00",
+          "lastModificationDate": "2023-10-10T00:00:00",
+          "createdBy": "TEST_DATA",
+          "isDeleted": null,
+          "id": 2,
+          "name": "AC Milan",
+          "shortName": "Milan",
+          "teamAlias": null,
+          "overallRating": 58,
+          "badgeImg": "https://cdn.sofifa.net/meta/team/113/30.png"
+        }
+      },
+      "homeGoals": 0,
+      "awayGoals": 0
+    },
+    {
+      "status": 0,
+      "id": 1,
+      "matchTime": "2023-12-04T20:27:43",
+      "isFinished": true,
+      "homeTeam": {
+        "matchPlayers": [
+          {
+            "id": 7,
+            "name": "Rafał",
+            "alias": "Afył",
+            "playerImg": null,
+            "desc": null,
+            "joinDate": "2023-12-04"
+          },
+          {
+            "id": 6,
+            "name": "Jakub",
+            "alias": "Niedziej",
+            "playerImg": null,
+            "desc": null,
+            "joinDate": "2023-12-04"
+          }
+        ],
+        "gameTeam": {
+          "creationDate": "2023-10-10T00:00:00",
+          "lastModificationDate": "2023-10-10T00:00:00",
+          "createdBy": "TEST_DATA",
+          "isDeleted": null,
+          "id": 1,
+          "name": "Raków Częstochowa",
+          "shortName": "Raków",
+          "teamAlias": null,
+          "overallRating": 71,
+          "badgeImg": "https://cdn.sofifa.net/meta/team/3270/30.png"
+        }
+      },
+      "awayTeam": {
+        "matchPlayers": [
+          {
+            "id": 5,
+            "name": "Mateusz",
+            "alias": "Jałyj",
+            "playerImg": null,
+            "desc": null,
+            "joinDate": "2023-12-04"
+          },
+          {
+            "id": 8,
+            "name": "Patryk",
+            "alias": "Wietek",
+            "playerImg": null,
+            "desc": null,
+            "joinDate": "2023-12-04"
+          }
+        ],
+        "gameTeam": {
+          "creationDate": "2023-10-10T00:00:00",
+          "lastModificationDate": "2023-10-10T00:00:00",
+          "createdBy": "TEST_DATA",
+          "isDeleted": null,
+          "id": 3,
+          "name": "Bayern Monachium",
+          "shortName": "Bayern",
+          "teamAlias": null,
+          "overallRating": 90,
+          "badgeImg": "https://cdn.sofifa\n.net/meta/team/503/30.png"
+        }
+      },
+      "homeGoals": 3,
+      "awayGoals": 2
+    }
+  ]
+}

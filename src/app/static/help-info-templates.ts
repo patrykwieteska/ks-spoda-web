@@ -71,11 +71,21 @@ export class HelpInfoTemplates {
     template: `<p>Oznacza sposób liczenia rankingu</p>
     <b>INDYWIDUALNY</b>
       <p>
-       
+       Dla każdego zawodnika w drużynie ranking przeliczany jest indywidualnie. 
+       Oznacza to, że jeśli w jednej parze będą grać zawodnicy o dużej różnicy rankingu, 
+       to przy zwycięstwie więcej punktów trafi na konto słabszego gracza. 
+       Ponadto gracz o gorszym rankingu straci mniej punktów w przypadku porażki.
       </p>
       <b>DRUŻYNOWY</b>
       <p>
+      Dla każdego zawodnika w drużynie ranking przeliczany jest drużynowo.
+      Oznacza to, że podczas wspólnego meczu graczom z tej samej 
+      drużyny ranking będzie wzrastał lub malał o tyle samo punktów, 
+      niezależnie od różnicy w rankingach graczy z drużyny.
+            </p>
       
-      </p>`,
+    <br>
+    <p><b>  Typ rankingu nie ma znaczenia, jeśli struktura drużyn w lidze to '1 v 1' </b>
+     </p>`,
   };
 }

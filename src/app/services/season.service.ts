@@ -4,6 +4,8 @@ import { Observable, catchError } from 'rxjs';
 import { BASE_URL } from 'src/config';
 import { Season, SeasonListResponse } from '../model/season';
 import { HttpClient } from '@angular/common/http';
+import { Player } from '../model/player';
+import { League } from '../model/league';
 
 const serviceURL = '/seasons';
 const baseURL = BASE_URL + serviceURL;
@@ -20,8 +22,8 @@ export class SeasonService {
       .pipe();
   }
 
-  createSeason(season: Season): Observable<Season> {
-    return this.http.post<Season>(baseURL, season).pipe();
+  createSeason(season: Season): Observable<{ seasonId: number }> {
+    return this.http.post<{ seasonId: number }>(baseURL, season).pipe();
   }
 
   completeSeason(seasonId: number): Observable<{ seasonId: number }> {
@@ -29,4 +31,17 @@ export class SeasonService {
       .put<{ seasonId: number }>(baseURL + '/complete', { seasonId: seasonId })
       .pipe();
   }
+
+  initSeason(seasonId: number): Observable<InitSeasonResponse> {
+    return this.http
+      .get<InitSeasonResponse>(baseURL + '/init/' + seasonId)
+      .pipe();
+  }
+}
+
+export interface InitSeasonResponse {
+  seasonId: number;
+  leaguePlayers: Player[];
+  leagueData: League;
+  seasonData: Season;
 }

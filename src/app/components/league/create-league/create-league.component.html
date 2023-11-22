@@ -45,6 +45,7 @@
                   <mat-option
                     *ngFor="let type of leagueTypeList"
                     [value]="type.key"
+                    [disabled]="type.key === 'CUP'"
                     >{{ type.valuePL }}</mat-option
                   >
                 </mat-select>
