@@ -6,7 +6,6 @@ import { catchError } from 'rxjs/operators';
 import { BASE_URL } from 'src/config';
 import { InitLeagueResponse } from '../model/init-league-response';
 import { Player } from '../model/player';
-
 const serviceURL = '/leagues';
 const baseURL = BASE_URL + serviceURL;
 

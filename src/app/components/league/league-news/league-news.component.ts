@@ -19,7 +19,6 @@ export class LeagueNewsComponent {
 
   @Input() leagueId!: number;
   @Output() chosenPlayer = new EventEmitter<Player | null>();
-
   @ViewChild('leagueTableRef') leagueTableRef!: TableComponent;
 
   takeChosenPlayer(player: Player | null) {
