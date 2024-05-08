@@ -50,6 +50,7 @@ import { NewMatchdayComponent } from './components/matchday/new-matchday/new-mat
 import { DeleteMatchComponent } from './components/match/delete-match/delete-match.component';
 import { MatchdayPlayersComponent } from './components/matchday/matchday-players/matchday-players.component';
 import { MatchdayPlayerDetailsComponent } from './components/matchday/matchday-player-details/matchday-player-details.component';
+import { EuroCalendarComponent } from './components/euro/euro-calendar/euro-calendar.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { MatchdayPlayerDetailsComponent } from './components/matchday/matchday-p
     DeleteMatchComponent,
     MatchdayPlayersComponent,
     MatchdayPlayerDetailsComponent,
+    EuroCalendarComponent,
   ],
   imports: [
     BrowserModule,

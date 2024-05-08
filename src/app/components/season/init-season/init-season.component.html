@@ -1,7 +1,6 @@
 <!-- <app-custom-progress-bar *ngIf="!isResponseComplete"></app-custom-progress-bar> -->
 
 <!-- <div fxLayout="column" style="width: 100%" *ngIf="isResponseComplete"></div> -->
-
 <div fxFlex fxLayout="column">
   <div fxFlex="100">
     <app-header-panel
@@ -62,6 +61,18 @@
           [seasonId]="seasonId"
           (createdMatchDayId)="takeNewMatchDayId()"
         ></app-matchday-stats>
+      </app-content-frame>
+    </div>
+    <div fxFlex="5"></div>
+  </div>
+  <div fxFlex="100" [hidden]="!euroEnabled">
+    <div fxFlex="5"></div>
+    <div fxFlex="90">
+      <app-content-frame
+        headerTitle="terminarz euro 2024"
+        icon="calendar_month"
+      >
+        <app-euro-calendar #euroCalendarRef></app-euro-calendar>
       </app-content-frame>
     </div>
     <div fxFlex="5"></div>

@@ -2,22 +2,43 @@
   <h1 mat-dialog-title>Nowy sezon</h1>
   <div mat-dialog-content>
     <form [formGroup]="seasonForm" fxLayout="column">
-      <mat-form-field>
-        <mat-label>Data rozpoczęcia</mat-label>
-        <input
-          matInput
-          [matDatepicker]="startPicker"
-          formControlName="startDate"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="startPicker"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #startPicker></mat-datepicker>
-      </mat-form-field>
-
       <div fxFlex="100" fxLayout="row">
-        <div fxFlex="90">
+        <mat-form-field fxFlex="49">
+          <mat-label>Nazwa</mat-label>
+          <input
+            matInput
+            placeholder="Wpisz nazwę"
+            formControlName="seasonName"
+          />
+          <mat-error> {{ seasonNameError }} </mat-error>
+        </mat-form-field>
+        <div fxFlex="2"></div>
+        <mat-form-field fxFlex="49">
+          <mat-label>Data rozpoczęcia</mat-label>
+          <input
+            matInput
+            [matDatepicker]="startPicker"
+            formControlName="startDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxLayout="row">
+        <mat-form-field fxFlex="100">
+          <mat-label>Logo sezonu</mat-label>
+          <input
+            matInput
+            placeholder="Wpisz adres URL"
+            formControlName="image"
+          />
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxLayout="row">
+        <div fxFlex="50">
           <mat-form-field fxFlex="100">
             <mat-label>Sposób liczenia punktów</mat-label>
             <mat-select formControlName="pointCountingMethod">
@@ -32,33 +53,46 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="help" fxFlex="10">
+        <div class="help" fxFlex="5">
           <a (click)="openHelpDialog(pointCountingMethodHelpTemplate)">
             <mat-icon>help</mat-icon></a
           >
         </div>
-      </div>
-
-      <div
-        fxFlex="100"
-        fxLayout="row"
-        *ngIf="seasonForm.value.pointCountingMethod == 'RATING'"
-      >
-        <div fxFlex="90">
-          <mat-radio-group formControlName="ratingType">
-            <mat-radio-button
-              color="primary"
-              *ngFor="let ratingType of ratingTypeList"
-              [value]="ratingType.key"
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center start"
+          *ngIf="seasonForm.value.pointCountingMethod == 'RATING'"
+        >
+          <div>
+            <mat-radio-group formControlName="ratingType">
+              <mat-radio-button
+                color="primary"
+                *ngFor="let ratingType of ratingTypeList"
+                [value]="ratingType.key"
+              >
+                {{ ratingType.valuePL }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="help">
+            <a (click)="openHelpDialog(ratingTypeHelpTemplate)">
+              <mat-icon>help</mat-icon></a
             >
-              {{ ratingType.valuePL }}
-            </mat-radio-button>
-          </mat-radio-group>
+          </div>
         </div>
-        <div class="help" fxFlex="10">
-          <a (click)="openHelpDialog(ratingTypeHelpTemplate)">
-            <mat-icon>help</mat-icon></a
-          >
+      </div>
+      <div fxFlex="50">
+        <div fxFlex="50" fxLayout="row">
+          <div>
+            <section class="example-section">
+              <mat-checkbox color="primary" formControlName="isEuro"
+                >Euro 2024</mat-checkbox
+              >
+            </section>
+          </div>
+          <div class="help" fxFlex="10">
+            <a (click)="openHelpDialog(euroInfo)"> <mat-icon>help</mat-icon></a>
+          </div>
         </div>
       </div>
     </form>

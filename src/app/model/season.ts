@@ -9,6 +9,9 @@ export interface Season {
   pointCountingMethod: string;
   ratingType: string | null;
   hasNoActiveMatchDay: boolean;
+  isEuro: boolean;
+  image: string;
+  seasonName: string;
 }
 
 export interface SeasonListResponse {

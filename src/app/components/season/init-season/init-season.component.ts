@@ -25,6 +25,7 @@ export class InitSeasonComponent implements OnInit {
   leagueData!: League;
   seasonData!: Season;
   chosenMatchDay!: SimpleMatchDay;
+  euroEnabled: boolean = false;
 
   headerPanel: HeaderPanelData = {
     title: '',
@@ -63,11 +64,36 @@ export class InitSeasonComponent implements OnInit {
         this.leaguePlayerList = leaguePlayerList;
         this.leagueData = league;
         this.seasonData = season;
-        this.headerPanelRef.title =
-          league.name + ' - SEZON ' + season.seasonCount;
-        if (league.logoUrl) this.headerPanelRef.imgSrc = league.logoUrl;
+        this.euroEnabled = this.seasonData.isEuro;
+        this.prepareSeasonTitle(
+          league.name,
+          season.seasonCount,
+          season.seasonName
+        );
+        this.prepareSeasonLogo(league.logoUrl, season.image);
       },
     });
+  }
+  prepareSeasonLogo(leagueLogo: string, seasonLogo: string): void {
+    if (seasonLogo) {
+      this.headerPanelRef.imgSrc = seasonLogo;
+    } else if (leagueLogo) {
+      this.headerPanelRef.imgSrc = leagueLogo;
+    }
+  }
+
+  prepareSeasonTitle(
+    leagueName: string,
+    seasonCount: number | null,
+    seasonName: string
+  ): void {
+    var name = '';
+    if (seasonName) {
+      name = seasonName + '(' + seasonCount + ')';
+    } else {
+      name = leagueName + ' - SEZON ' + seasonCount;
+    }
+    this.headerPanelRef.title = name;
   }
 
   newMatchDayDialogCounter = 0;

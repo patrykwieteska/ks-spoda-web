@@ -27,6 +27,8 @@ export class NewSeasonComponent {
     HelpInfoTemplates.POINT_COUNTING_METHODS_HELP_TEMPLATE;
   ratingTypeHelpTemplate: DialogHelpInfo =
     HelpInfoTemplates.RATING_TYPE_HELP_TEMPLATE;
+  euroInfo: DialogHelpInfo = HelpInfoTemplates.EURO_INFO;
+
   seasonForm: FormGroup;
 
   constructor(
@@ -46,6 +48,9 @@ export class NewSeasonComponent {
       ],
       pointCountingMethod: ['', Validators.required],
       ratingType: [''],
+      isEuro: [false],
+      image: [''],
+      seasonName: [''],
     });
   }
 
@@ -103,6 +108,9 @@ export class NewSeasonComponent {
         pointCountingMethod: this.seasonForm.get('pointCountingMethod')?.value,
         ratingType: ratingType,
         hasNoActiveMatchDay: true,
+        isEuro: this.seasonForm.get('isEuro')?.value,
+        image: this.seasonForm.get('image')?.value,
+        seasonName: this.seasonForm.get('seasonName')?.value,
       };
 
       this.seasonService.createSeason(season).subscribe({
@@ -116,5 +124,16 @@ export class NewSeasonComponent {
     } else {
       this.seasonForm.markAllAsTouched();
     }
+  }
+
+  get seasonNameError(): string {
+    const form: FormControl = this.seasonForm.get('seasonName') as FormControl;
+    return form.hasError('minlength')
+      ? 'Min. 4 znaki'
+      : form.hasError('pattern')
+      ? 'Nieprawidłowe znaki'
+      : form.hasError('maxLength')
+      ? 'Maks. 25 znaków'
+      : '';
   }
 }

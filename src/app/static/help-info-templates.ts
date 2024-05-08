@@ -88,4 +88,23 @@ export class HelpInfoTemplates {
     <p><b>  Typ rankingu nie ma znaczenia, jeśli struktura drużyn w lidze to '1 v 1' </b>
      </p>`,
   };
+
+  public static EURO_INFO: DialogHelpInfo = {
+    title: 'EURO 2024',
+    template: `
+      <p>
+       Po zaznaczeniu opcji Euro 2024 zmieni się logika wyznaczania meczów.
+       </p>
+       <p>
+       W turnieju <b>Euro 2024</b> terminarz jest z góry ustalony, a dostępne drużyny 
+       </p>
+       <p>
+       ograniczają się do oficjalnie zakwalifikowanych do turnieju.
+       </p>
+       <p>
+       Co za tym idzie - nie obowiązuje limit jednej gry danym zespołem w jednej kolejce
+       </p>
+
+       `,
+  };
 }
