@@ -27,11 +27,12 @@ export interface GameTeam {
 export interface NewMatch {
   matchDayId: number;
   homePlayers: number[];
-  homeGoals: number[];
+  homeGoals: number;
   homeGameTeamId: number | null;
-  awayPlayers: number;
+  awayPlayers: number[];
   awayGoals: number;
-  awayGameTeamId: number;
+  awayGameTeamId: number | null;
+  euroMatchId: number | null;
 }
 
 export interface EditMatch {

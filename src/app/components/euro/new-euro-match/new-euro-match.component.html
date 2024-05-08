@@ -1,0 +1,88 @@
+<div class="match-modal" fxLayout="column">
+  <div mat-dialog-content fxFlex="80">
+    <form [formGroup]="matchForm" fxLayout="column">
+      <div *ngIf="euroMatch">
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <span style="font-size: small"
+            ><b>
+              {{ euroMatch.tournamentStage }}
+              {{ euroMatch.tournamentGroup }}</b
+            ></span
+          >
+          <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="3">
+            <div class="flag">
+              <img [src]="euroMatch.homeTeam.flag" height="50px" />
+            </div>
+            <div class="team">
+              {{ euroMatch.homeTeam.name }}
+            </div>
+            <div><mat-icon>remove</mat-icon></div>
+            <div class="team">{{ euroMatch.awayTeam.name }}</div>
+            <div class="flag">
+              <img [src]="euroMatch.awayTeam.flag" height="50px" />
+            </div>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="end center">
+            <div style="font-size: small">
+              <b> {{ euroMatch.playedCity }}</b>
+            </div>
+            <div style="font-size: small">
+              <b> {{ euroMatch.dateTime | date : "d MMM yyyy, H:mm" }}</b>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between stretch">
+        <div>
+          <br />
+          <mat-error
+            *ngIf="homePlayersError"
+            fxLayoutAlign="center center"
+            style="font-size: 12px"
+            >Dodaj zawodników gospodarzy!</mat-error
+          >
+          <div fxLayout="column" fxLayoutAlign="start center">
+            <div fxLayout="column" fxLayoutAlign="center center">
+              <mat-label>GOSPODARZE</mat-label>
+              <app-euro-match-players
+                [leaguePlayers]="leaguePlayers"
+                #homePlayersRef
+              ></app-euro-match-players>
+            </div>
+          </div>
+        </div>
+        <div>
+          <br />
+          <mat-error
+            *ngIf="awayPlayersError"
+            fxLayoutAlign="center center"
+            style="font-size: 12px"
+            >Dodaj zawodników gości!</mat-error
+          >
+          <div fxLayout="column" fxLayoutAlign="start center">
+            <div fxLayout="column" fxLayoutAlign="center center">
+              <mat-label>GOŚCIE</mat-label>
+              <app-euro-match-players
+                [leaguePlayers]="leaguePlayers"
+                #awayPlayersRef
+              ></app-euro-match-players>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end end" fxFlex="10">
+    <button
+      mat-button
+      [mat-dialog-close]
+      (click)="resetForm()"
+      class="cancel-button"
+    >
+      Anuluj
+    </button>
+    <button mat-button cdkFocusInitial class="add-button" (click)="addMatch()">
+      Dodaj
+    </button>
+  </div>
+</div>

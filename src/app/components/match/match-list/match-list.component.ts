@@ -15,6 +15,7 @@ import { Player } from 'src/app/model/player';
 import { MatchDayService } from 'src/app/services/match-day.service';
 import { SimpleMatchDay } from 'src/app/model/match-day';
 import { ErrorComponent } from 'src/app/components/error/error.component';
+import { NewEuroMatchComponent } from '../../euro/new-euro-match/new-euro-match.component';
 
 @Component({
   selector: 'app-match-list',
@@ -31,6 +32,7 @@ export class MatchListComponent implements OnInit, OnChanges {
   @Output() outMatchDay = new EventEmitter<SimpleMatchDay>();
   @Input() leaguePlayers!: Player[];
   @Output() matchChange = new EventEmitter<void>();
+  @Input() isEuro: boolean = false;
 
   matches: Match[] = [];
   matchDay: SimpleMatchDay | null = null;
@@ -74,6 +76,32 @@ export class MatchListComponent implements OnInit, OnChanges {
       });
       return;
     }
+    if (this.isEuro) {
+      this.addEuroMatch();
+      return;
+    }
+    this.addClassicMatch();
+  }
+  addEuroMatch() {
+    const dialogRef = this.dialog.open(NewEuroMatchComponent, {
+      data: {
+        matchDayId: this.matchDayId,
+        gameTeamFlag: true,
+        seasonId: this.seasonId,
+      },
+      disableClose: true,
+    });
+
+    dialogRef.componentInstance.outPutNewMatch.subscribe((value) => {
+      this.getMatchDayMatches(this.matchDay);
+      this.matchChange.emit();
+      dialogRef.close(() => {
+        console.log('Dialog closed');
+      });
+    });
+  }
+
+  addClassicMatch() {
     const dialogRef = this.dialog.open(NewMatchComponent, {
       data: {
         matchDayId: this.matchDayId,

@@ -1,4 +1,3 @@
-import { GameTeamSearchComponent } from './../game-team-search/game-team-search.component';
 import {
   Component,
   EventEmitter,
@@ -19,32 +18,29 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable, map, startWith } from 'rxjs';
 import { GameTeam, NewMatch } from 'src/app/model/match';
 import { Player } from 'src/app/model/player';
-import { CommonsService } from 'src/app/services/commons.service';
 import { MatchService } from 'src/app/services/match.service';
-import { MatchPlayersComponent } from '../match-players/match-players.component';
 import { PlayerService } from 'src/app/services/player.service';
+import { EuroService } from 'src/app/services/euro-service.service';
+import { EuroMatch } from 'src/app/model/euro';
+import { EuroMatchPlayersComponent } from '../euro-match-players/euro-match-players.component';
 
 @Component({
-  selector: 'app-new-match',
-  templateUrl: './new-match.component.html',
-  styleUrls: ['./new-match.component.css'],
+  selector: 'app-new-euro-match',
+  templateUrl: './new-euro-match.component.html',
+  styleUrls: ['./new-euro-match.component.css'],
 })
-export class NewMatchComponent implements OnInit {
+export class NewEuroMatchComponent implements OnInit {
   matchForm: FormGroup;
-  awayGameTeamControl = new FormControl(0, [Validators.min(1)]);
-  homeGameTeamControl = new FormControl(0, [Validators.min(1)]);
 
-  availableGameTeams: GameTeam[] = [];
   @Output() outPutNewMatch = new EventEmitter<number>();
   leaguePlayers: Player[] = [];
 
-  @ViewChild('homePlayersRef') homePlayersRef!: MatchPlayersComponent;
-  @ViewChild('awayPlayersRef') awayPlayersRef!: MatchPlayersComponent;
-  @ViewChild('homeGameTeamRef') homeGameTeamRef!: GameTeamSearchComponent;
-  @ViewChild('awayGameTeamRef') awayGameTeamRef!: GameTeamSearchComponent;
+  @ViewChild('homePlayersRef') homePlayersRef!: EuroMatchPlayersComponent;
+  @ViewChild('awayPlayersRef') awayPlayersRef!: EuroMatchPlayersComponent;
 
   homePlayersError: boolean = false;
   awayPlayersError: boolean = false;
+  euroMatch!: EuroMatch;
 
   constructor(
     private playerService: PlayerService,
@@ -56,7 +52,8 @@ export class NewMatchComponent implements OnInit {
       gameTeamFlag: boolean;
       seasonId: number;
     },
-    private matchService: MatchService
+    private matchService: MatchService,
+    private euroService: EuroService
   ) {
     this.matchForm = this.formBuilder.group({
       matchDayId: [0, [Validators.required, Validators.min(1)]],
@@ -64,23 +61,22 @@ export class NewMatchComponent implements OnInit {
       awayPlayers: [[], [Validators.minLength(1), Validators.max(2)]],
       homeGoals: [0, Validators.required],
       awayGoals: [0, Validators.required],
-      homeGameTeam: this.homeGameTeamControl,
-      awayGameTeam: this.awayGameTeamControl,
+      euroMatchId: [0],
     });
   }
 
   ngOnInit(): void {
-    this.getAvailableGameTeams(this.data.matchDayId);
     this.playerService.getLeaguePlayersBySeason(this.data.seasonId).subscribe({
       next: (response) => {
         this.leaguePlayers = response.players;
       },
     });
-  }
 
-  getAvailableGameTeams(matchDayId: number) {
-    this.matchService.getAvailableGameTeams(matchDayId).subscribe({
-      next: (value) => (this.availableGameTeams = value.gameTeams),
+    this.euroService.getNextEuroMatch().subscribe({
+      next: (response) => {
+        this.euroMatch = response;
+        this.matchForm.setControl;
+      },
     });
   }
 
@@ -111,11 +107,11 @@ export class NewMatchComponent implements OnInit {
         matchDayId: this.data.matchDayId,
         homePlayers: this.matchForm.get('homePlayers')?.value,
         homeGoals: this.matchForm.get('homeGoals')?.value,
-        homeGameTeamId: this.matchForm.get('homeGameTeam')?.value,
+        homeGameTeamId: null,
         awayPlayers: this.matchForm.get('awayPlayers')?.value,
         awayGoals: this.matchForm.get('awayGoals')?.value,
-        awayGameTeamId: this.matchForm.get('awayGameTeam')?.value,
-        euroMatchId: null,
+        awayGameTeamId: null,
+        euroMatchId: this.euroMatch.matchNumber,
       };
       console.log('newMatch', match);
       this.matchService.createMatch(match).subscribe({
@@ -128,8 +124,6 @@ export class NewMatchComponent implements OnInit {
       });
     } else {
       this.matchForm.markAllAsTouched();
-      this.awayGameTeamRef.validForms();
-      this.homeGameTeamRef.validForms();
       this.checkHomePlayersList();
       this.checkAwayPlayersList();
     }

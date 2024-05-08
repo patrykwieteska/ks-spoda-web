@@ -9,11 +9,11 @@ import { Player } from 'src/app/model/player';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
-  selector: 'app-match-players',
-  templateUrl: './match-players.component.html',
-  styleUrls: ['./match-players.component.css'],
+  selector: 'app-euro-match-players',
+  templateUrl: './euro-match-players.component.html',
+  styleUrls: ['./euro-match-players.component.css'],
 })
-export class MatchPlayersComponent implements OnInit, OnChanges {
+export class EuroMatchPlayersComponent implements OnInit, OnChanges {
   @Input() leaguePlayers!: Player[];
   addedPlayers: Player[] = [];
   filteredPlayers: Player[] = [];
