@@ -46,7 +46,7 @@
       </table>
     </div>
 
-    <div style="overflow-y: scroll; max-height: 300px">
+    <div class="league-table-content">
       <table fxFlex="90" fxFlex.lt-md="80" fxFlex.xs="90">
         <tbody>
           <tr
@@ -60,12 +60,13 @@
               </div>
             </td>
             <td>
-              <img
-                class="player-img"
-                [src]="getPlayerImg(leagueRow.player.playerImg)"
-              />
+              <div class="player-img">
+                <img [src]="getPlayerImg(leagueRow.player.playerImg)" />
+              </div>
             </td>
-            <td style="text-align: left">{{ leagueRow.player.alias }}</td>
+            <td style="text-align: left">
+              {{ leagueRow.player.alias | uppercase }}
+            </td>
             <td>
               <mat-icon [class]="getClass(leagueRow)">{{
                 getIcon(leagueRow)

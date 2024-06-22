@@ -1,0 +1,143 @@
+<div
+  *ngIf="matchesStats"
+  fxLayout="column"
+  fxLayoutAlign="start center"
+  class="tile"
+>
+  <div fxLayout="row" fxLayoutGap="5" fxLayoutAlign="center center">
+    <h5>{{ title }}</h5>
+    <span class="material-symbols-outlined"> bar_chart </span>
+  </div>
+  <div fxLayoutAlign="start " fxLayout="column">
+    <div
+      fxLayoutGap="5"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      *ngIf="matchesStats"
+    >
+      <div>
+        <b>Mecze:</b>
+      </div>
+
+      <div>
+        {{ matchesStats.games }}
+      </div>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="5"
+      *ngIf="matchesStats"
+    >
+      <div>
+        <b>Najwyższe zwycięstwo:</b>
+      </div>
+
+      <div>
+        <div fxLayout="row">
+          <span *ngIf="matchesStats.greatestVictory">
+            {{ matchesStats.greatestVictory.teamGoals }}
+
+            :
+            {{ matchesStats.greatestVictory.opponentGoals }}
+          </span>
+          <span *ngIf="!matchesStats.greatestVictory"
+            ><mat-icon>remove</mat-icon></span
+          >
+        </div>
+      </div>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="5"
+      *ngIf="matchesStats"
+    >
+      <div>
+        <b>Największa porażka:</b>
+      </div>
+
+      <div>
+        <div fxLayout="row">
+          <span *ngIf="matchesStats.biggestFailure"
+            >{{ matchesStats.biggestFailure.teamGoals }} :<span>
+              {{ matchesStats.biggestFailure.opponentGoals }}
+            </span>
+          </span>
+          <span *ngIf="!matchesStats.biggestFailure">
+            <mat-icon>remove</mat-icon>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      fxLayoutGap="5"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      *ngIf="matchesStats"
+    >
+      <div>
+        <b>Ostatni mecz:</b>
+      </div>
+
+      <div>
+        <div fxLayout="row">
+          <span *ngIf="matchesStats.lastMatch"
+            >{{ matchesStats.lastMatch.teamGoals }} :
+            {{ matchesStats.lastMatch.opponentGoals }}
+          </span>
+          <span *ngIf="!matchesStats.lastMatch"
+            ><mat-icon>remove</mat-icon></span
+          >
+        </div>
+      </div>
+    </div>
+    <div
+      fxLayoutGap="5"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      *ngIf="matchesStats"
+    >
+      <div>
+        <b>Najwięcej przeciwko:</b>
+      </div>
+
+      <div
+        fxLayout="row"
+        [matTooltip]="prepareTooltip(matchesStats.commonOpponents)"
+        matTooltipPosition="above"
+      >
+        <span *ngIf="matchesStats.commonOpponents"
+          >{{ matchesStats.commonOpponents.gamesCount }}
+        </span>
+        <span *ngIf="!matchesStats.commonOpponents"
+          ><mat-icon>remove</mat-icon></span
+        >
+      </div>
+    </div>
+    <div
+      fxLayoutGap="5"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      *ngIf="matchesStats"
+    >
+      <div>
+        <b>Najwięcej w drużynie:</b>
+      </div>
+
+      <div
+        fxLayout="row"
+        [matTooltip]="prepareTooltip(matchesStats.commonTeammates)"
+        matTooltipPosition="above"
+      >
+        <span *ngIf="matchesStats.commonTeammates"
+          >{{ matchesStats.commonTeammates.gamesCount }}
+        </span>
+
+        <span *ngIf="!matchesStats.commonTeammates"
+          ><mat-icon>remove</mat-icon></span
+        >
+      </div>
+    </div>
+  </div>
+</div>

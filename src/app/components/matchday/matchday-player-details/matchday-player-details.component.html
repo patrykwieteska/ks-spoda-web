@@ -1,7 +1,7 @@
 <div fxLayout="column">
-  <div fxLayout="row" fxLayoutGap="50">
-    <div fxLayout="column" fxLayoutAlign="space-between stretch" class="title">
-      <div fxLayout="row" fxLayoutGap="5">
+  <div fxLayout="row" fxLayoutGap="10">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" class="tile">
+      <div fxLayout="row" fxLayoutGap="5" fxLayoutAlign="center center">
         <h5>W drużynie</h5>
         <span class="material-symbols-outlined"> handshake </span>
       </div>
@@ -9,7 +9,12 @@
         *ngFor="let teammate of matchDayPlayer.teammates"
         fxLayoutAlign="center center"
       >
-        <div fxLayout="row" fxLayoutGap="20" [class]="getClass(teammate)">
+        <div
+          fxLayout="row"
+          fxLayoutGap="20"
+          [class]="getClass(teammate)"
+          fxLayoutAlign="center center"
+        >
           <div>
             <b>{{ teammate.alias }}:</b>
           </div>
@@ -20,8 +25,8 @@
         </div>
       </div>
     </div>
-    <div fxLayout="column" fxLayoutAlign="space-between stretch" class="title">
-      <div fxLayout="row" fxLayoutGap="5">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" class="tile">
+      <div fxLayout="row" fxLayoutGap="5" fxLayoutAlign="center center">
         <h5>Przeciwko</h5>
         <span class="material-symbols-outlined"> swords </span>
       </div>
@@ -30,7 +35,7 @@
         class="opponent"
         fxLayoutAlign="center center"
       >
-        <div fxLayout="row" fxLayoutGap="20" [class]="getClass(opponent)">
+        <div fxLayout="row" fxLayoutGap="5" [class]="getClass(opponent)">
           <div>
             <b>{{ opponent.alias }}:</b>
           </div>
@@ -41,5 +46,13 @@
         </div>
       </div>
     </div>
+    <!-- <app-stats-panel
+      [matchesStats]="matchDayPlayer.matchDayStats"
+      title="W kolejce"
+    ></app-stats-panel> -->
+    <app-stats-panel
+      [matchesStats]="matchDayPlayer.seasonStats"
+      title="W sezonie"
+    ></app-stats-panel>
   </div>
 </div>

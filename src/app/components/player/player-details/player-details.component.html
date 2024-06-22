@@ -1,36 +1,36 @@
-<div *ngIf="chosenPlayer" fxLayout="column" class="details-content">
+<div
+  *ngIf="chosenPlayer && !editModeEnabled"
+  fxLayout="column"
+  fxFlex="100"
+  class="details-content"
+>
   <div fxLayout="row" class="header-content">
-    <div
-      fxFlex="90"
-      fxLayoutAlign="center center"
-      class="details-title"
-      [matTooltip]="chosenPlayer.alias"
-      matTooltipPosition="above"
-    >
+    <div fxFlex="90" fxLayoutAlign="center center" class="details-title">
       <h4 *ngIf="chosenPlayer.name.length <= 11">
-        {{ chosenPlayer.alias }}
+        {{ chosenPlayer.alias | uppercase }}
       </h4>
       <h4 *ngIf="chosenPlayer.name.length > 11">
         {{ chosenPlayer.alias | slice : 0 : 8 }}...
       </h4>
     </div>
-    <div
-      class="close-btn"
-      (click)="closePlayerDetails()"
-      matTooltip="Zamknij"
-      matTooltipPosition="above"
-      fxFlex="10"
-    >
-      <mat-icon>close</mat-icon>
+    <div class="close-btn" (click)="enableEditMode()" fxFlex="10">
+      <mat-icon class="edit" matTooltip="Edytuj" matTooltipPosition="above"
+        >edit</mat-icon
+      >
+    </div>
+    <div class="close-btn" (click)="closePlayerDetails()" fxFlex="10">
+      <mat-icon class="close" matTooltip="Zamknij" matTooltipPosition="above"
+        >close</mat-icon
+      >
     </div>
   </div>
   <div fxFlex="100" fxLayoutGap="5px">
-    <div fxFlex="2"></div>
-    <div fxFlex="48" fxLayoutAlign="start center" class="player-img">
+    <div></div>
+    <div fxFlex="70" fxLayoutAlign="start center" class="player-img">
       <img [src]="getPlayerImg(chosenPlayer.playerImg)" />
     </div>
-    <div fxFlex="48" fxLayout="column" fxLayoutGap="10px">
-      <div [matTooltip]="chosenPlayer.name" matTooltipPosition="above">
+    <div fxFlex="30" fxLayout="column" fxLayoutGap="10px">
+      <div>
         <div class="player-property">Imię:</div>
         <div
           class="player-property-value"
@@ -64,3 +64,11 @@
     </div>
   </div>
 </div>
+<app-player-details-edit
+  *ngIf="editModeEnabled"
+  fxLayout="column"
+  class="details-content"
+  [chosenPlayer]="chosenPlayer"
+  (editModeDisabled)="closeEditMode()"
+>
+</app-player-details-edit>

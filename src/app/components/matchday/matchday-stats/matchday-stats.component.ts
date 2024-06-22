@@ -6,6 +6,7 @@ import {
   EventEmitter,
   Output,
   ViewChild,
+  AfterViewInit,
 } from '@angular/core';
 import { SimpleMatchDay } from 'src/app/model/match-day';
 import { NewMatchdayComponent } from '../new-matchday/new-matchday.component';
@@ -24,6 +25,7 @@ export class MatchdayStatsComponent implements OnChanges {
   @Input() inputMatchDay!: SimpleMatchDay;
   @Input() seasonId!: number;
   @Output() createdMatchDayId = new EventEmitter<number>();
+  @Output() completeMatchDayId = new EventEmitter<number>();
   checked = false;
 
   @ViewChild('matchDayTableRef') matchDayTableRef!: MatchdayTableComponent;
@@ -37,13 +39,15 @@ export class MatchdayStatsComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     var newMatchDayOpenDialogCounter = changes['newMatchDayOpenDialogCounter'];
-    console.log('newMatchDayOpenDialogCounter', newMatchDayOpenDialogCounter);
     if (
       newMatchDayOpenDialogCounter != undefined &&
       newMatchDayOpenDialogCounter.currentValue >
         newMatchDayOpenDialogCounter.previousValue
     ) {
       this.openNewMatchDayDialog();
+    }
+    if (changes['ininputMatchDay']) {
+      this.inputMatchDay = changes['ininputMatchDay'].currentValue;
     }
   }
 
@@ -72,7 +76,7 @@ export class MatchdayStatsComponent implements OnChanges {
         completedMatchDayId = value.matchDayId;
       },
       complete: () => {
-        this.createdMatchDayId.emit(completedMatchDayId);
+        this.completeMatchDayId.emit(completedMatchDayId);
       },
     });
   }

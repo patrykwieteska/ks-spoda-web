@@ -53,6 +53,17 @@ import { MatchdayPlayerDetailsComponent } from './components/matchday/matchday-p
 import { EuroCalendarComponent } from './components/euro/euro-calendar/euro-calendar.component';
 import { NewEuroMatchComponent } from './components/euro/new-euro-match/new-euro-match.component';
 import { EuroMatchPlayersComponent } from './components/euro/euro-match-players/euro-match-players.component';
+import { GroupsComponent } from './components/euro/groups/groups.component';
+import { EuroGroupComponent } from './components/euro/euro-group/euro-group.component';
+import { EuroMatchItemComponent } from './components/euro/euro-match-item/euro-match-item.component';
+import { EuroGroupTableComponent } from './components/euro/euro-group-table/euro-group-table.component';
+import { ThirdPlacesTableComponent } from './components/euro/third-places-table/third-places-table.component';
+import { EuroPlayoffMatchListComponent } from './components/euro/euro-playoff-match-list/euro-playoff-match-list.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+import { PlayerDetailsEditComponent } from './components/player/player-details-edit/player-details-edit.component';
+import { StatsPanelComponent } from './components/stats-panel/stats-panel.component';
+import { MatchCommentsComponent } from './components/match/match-comments-dialog/match-comments-dialog.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +110,15 @@ import { EuroMatchPlayersComponent } from './components/euro/euro-match-players/
     EuroCalendarComponent,
     NewEuroMatchComponent,
     EuroMatchPlayersComponent,
+    GroupsComponent,
+    EuroGroupComponent,
+    EuroMatchItemComponent,
+    EuroGroupTableComponent,
+    ThirdPlacesTableComponent,
+    EuroPlayoffMatchListComponent,
+    PlayerDetailsEditComponent,
+    StatsPanelComponent,
+    MatchCommentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,6 +132,7 @@ import { EuroMatchPlayersComponent } from './components/euro/euro-match-players/
     HttpClientModule,
   ],
   providers: [
+    DatePipe,
     { provide: LOCALE_ID, useValue: 'pl-PL' },
     { provide: ErrorHandler, useClass: ErrorHandlerService },
   ],

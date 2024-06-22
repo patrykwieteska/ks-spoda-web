@@ -2,7 +2,13 @@ import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { BASE_URL } from 'src/config';
-import { EditMatch, GameTeam, Match, NewMatch } from '../model/match';
+import {
+  EditMatch,
+  GameTeam,
+  Match,
+  MatchComment,
+  NewMatch,
+} from '../model/match';
 
 const serviceURL = '/matches';
 const baseURL = BASE_URL + serviceURL;
@@ -11,6 +17,11 @@ const baseURL = BASE_URL + serviceURL;
   providedIn: 'root',
 })
 export class MatchService {
+  uploadComments(matchId: number): Observable<MatchCommentsResponse> {
+    return this.http
+      .get<MatchCommentsResponse>(baseURL + '/comments/' + matchId)
+      .pipe();
+  }
   removeMatch(matchId: number): Observable<NewMatchResponse> {
     return this.http
       .delete<NewMatchResponse>(baseURL + '/remove-match?matchId=' + matchId)
@@ -87,5 +98,11 @@ export interface NewMatchResponse {
 export interface AvailableGameTeamsResponse {
   status: number;
   gameTeams: GameTeam[];
+  message: string | null;
+}
+
+export interface MatchCommentsResponse {
+  status: number;
+  comments: MatchComment[];
   message: string | null;
 }

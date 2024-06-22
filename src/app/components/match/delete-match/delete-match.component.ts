@@ -11,6 +11,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DeleteMatchComponent {
   @Output() deleteMatchOutput = new EventEmitter<void>();
   confirmText: string = 'Czy na pewno chcesz usunąć mecz?';
+  deleteButtonEnabled = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA)

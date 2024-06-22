@@ -36,6 +36,7 @@
   height: 35px;
   font-size: 35px;
   text-align: center;
+  cursor: pointer;
 }
 
 input::-webkit-outer-spin-button,
@@ -92,10 +93,69 @@ input::-webkit-inner-spin-button {
 }
 
 .remove-match-icon {
+  border-radius: 20px;
   color: darkred;
+  transform: scale(0.7);
 }
 
 .remove-match-icon:hover {
-  color: var(--primary-color);
+  color: gray;
+  cursor: pointer;
+}
+
+.penalties-label {
+  font-size: 17px;
+  color: gray;
+}
+
+.penalties-input {
+  margin-bottom: 4px;
+  width: 20px;
+  height: 25px;
+  font-size: 20px;
+  text-align: center;
+  color: gray;
+  border-radius: 30%;
+  border: 1px gray solid;
+  cursor: pointer;
+}
+
+.player-img {
+  border-radius: 5px;
+  border: solid 1px var(--primary-color);
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+  /* margin: 2px; */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  -webkit-clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  transition: 0.5s;
+}
+.player-img img {
+  position: absolute;
+  width: 100%;
+  left: -1000%;
+  right: -1000%;
+  top: -1000%;
+  bottom: -1000%;
+  margin: auto;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.player-img:hover {
+  position: relative;
+  z-index: 1;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transform: scale(1.5);
+}
+
+.comment-button:hover {
+  color: gray;
   cursor: pointer;
 }

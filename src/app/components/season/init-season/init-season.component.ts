@@ -11,6 +11,7 @@ import { ContentFrameComponent } from '../../commons/content-frame/content-frame
 import { MatchListComponent } from '../../match/match-list/match-list.component';
 import { HeaderPanelComponent } from '../../commons/header-panel/header-panel.component';
 import { MatchdayStatsComponent } from '../../matchday/matchday-stats/matchday-stats.component';
+import { GroupsComponent } from '../../euro/groups/groups.component';
 
 @Component({
   selector: 'app-init-season',
@@ -26,6 +27,10 @@ export class InitSeasonComponent implements OnInit {
   seasonData!: Season;
   chosenMatchDay!: SimpleMatchDay;
   euroEnabled: boolean = false;
+  seasonReady: boolean = false;
+  playedTeams: number[] = [];
+  newMatchDayButtonDisabled: boolean = true;
+  newMatchButtonDisabled: boolean = true;
 
   headerPanel: HeaderPanelData = {
     title: '',
@@ -39,12 +44,14 @@ export class InitSeasonComponent implements OnInit {
   @ViewChild('matchListRef') matchListRef!: MatchListComponent;
   @ViewChild('headerPanelRef') headerPanelRef!: HeaderPanelComponent;
   @ViewChild('matchDayStatsRef') matchDayStatsRef!: MatchdayStatsComponent;
+  @ViewChild('euroGroupsRef') euroGroupsRef!: GroupsComponent;
 
   constructor(
     private location: Location,
     private seasonService: SeasonService
   ) {
     this.seasonId = this.route.snapshot.params['seasonId'];
+    console.log('SEASON ID READY');
   }
   ngOnInit(): void {
     this.initSeason();
@@ -58,7 +65,6 @@ export class InitSeasonComponent implements OnInit {
         leaguePlayerList = response.leaguePlayers;
         season = response.seasonData;
         league = response.leagueData;
-        console.log(leaguePlayerList);
       },
       complete: () => {
         this.leaguePlayerList = leaguePlayerList;
@@ -71,6 +77,14 @@ export class InitSeasonComponent implements OnInit {
           season.seasonName
         );
         this.prepareSeasonLogo(league.logoUrl, season.image);
+        console.log('SEASON ID =', this.seasonId);
+        this.isNewMatchDisabled();
+        this.seasonReady = true;
+
+        if (!this.chosenMatchDay) {
+          this.newMatchDayButtonDisabled = false;
+          this.newMatchButtonDisabled = true;
+        }
       },
     });
   }
@@ -89,7 +103,7 @@ export class InitSeasonComponent implements OnInit {
   ): void {
     var name = '';
     if (seasonName) {
-      name = seasonName + '(' + seasonCount + ')';
+      name = seasonName;
     } else {
       name = leagueName + ' - SEZON ' + seasonCount;
     }
@@ -112,24 +126,31 @@ export class InitSeasonComponent implements OnInit {
 
   takeMatchDayFromList(matchDay: SimpleMatchDay | null) {
     if (matchDay == null) {
-      this.matchDayContentFrame.buttonDisabled = true;
+      this.newMatchDayButtonDisabled = true;
       this.matchContentFrame.buttonDisabled = true;
       return;
     }
+    console.log('MATCHDAY LOG', matchDay);
 
     this.currentMatchDayId = matchDay.id;
     this.chosenMatchDay = matchDay;
 
-    if (this.seasonData.isFinished || !this.seasonData.hasNoActiveMatchDay) {
-      this.matchDayContentFrame.buttonDisabled = true;
+    if (this.seasonData.isFinished) {
+      this.newMatchDayButtonDisabled = true;
+    } else if (
+      (!matchDay.isFinished && this.seasonData.hasNoActiveMatchDay) ||
+      (matchDay.isFinished && !this.seasonData.hasNoActiveMatchDay) ||
+      !matchDay.isFinished
+    ) {
+      this.newMatchDayButtonDisabled = true;
     } else {
-      this.matchDayContentFrame.buttonDisabled = false;
+      this.newMatchDayButtonDisabled = false;
     }
 
     if (matchDay.isFinished) {
-      this.matchContentFrame.buttonDisabled = true;
+      this.newMatchButtonDisabled = true;
     } else {
-      this.matchContentFrame.buttonDisabled = false;
+      this.newMatchButtonDisabled = false;
     }
   }
 
@@ -137,30 +158,36 @@ export class InitSeasonComponent implements OnInit {
     this.seasonTableRef.initSeasonTable();
     this.matchDayStatsRef.matchDayTableRef.initMatchDayTable();
     this.matchDayStatsRef.matchDayPlayersRef.initMatchDayPlayers();
+
+    if (this.seasonData.isEuro) {
+      this.euroGroupsRef.refreshData();
+    }
   }
 
-  isNewMatchDayDisabled(): boolean {
+  isNewMatchDisabled(): void {
     if (this.seasonData) {
-      return this.seasonData.isFinished;
+      this.newMatchButtonDisabled =
+        this.seasonData.isFinished || this.seasonData.hasNoActiveMatchDay;
     }
-
-    return false;
-  }
-
-  isNewMatchDisabled(): boolean {
-    if (this.seasonData) {
-      return this.seasonData.isFinished || this.seasonData.hasNoActiveMatchDay;
-    }
-    return false;
+    this.newMatchButtonDisabled = false;
   }
 
   takeNewMatchDayId(): void {
     this.matchDayContentFrame.buttonDisabled = true;
+    this.newMatchButtonDisabled = false;
     this.matchListRef.getMatchDayList(this.seasonId);
   }
 
   takeFinishedMatchDayId(): void {
     this.matchDayContentFrame.buttonDisabled = false;
     this.matchListRef.getMatchDayList(this.seasonId); ///dopisać do tego @Output w klasie match-day-stats
+    this.newMatchButtonDisabled = true;
   }
+
+  takePlayedEuroTeams(value: number[]) {
+    console.log('changes');
+    this.playedTeams = value;
+  }
+
+  takeFinishMatchDayOutput() {}
 }

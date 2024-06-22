@@ -1,6 +1,11 @@
 <div fxLayout="column">
   <div>
-    <div fxLayout="row" class="header">
+    <div
+      fxLayout="row"
+      class="header"
+      [ngStyle]="{ 'background-color': backgroundColor }"
+      [style.color]="fontColor"
+    >
       <div fxLayoutAlign="center start" fxFlex="90" class="title">
         {{ headerTitle | uppercase }}
       </div>

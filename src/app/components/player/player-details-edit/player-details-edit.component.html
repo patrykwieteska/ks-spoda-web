@@ -1,0 +1,71 @@
+<div *ngIf="chosenPlayer" fxLayout="column" class="details-content">
+  <div fxLayout="row" class="header-content">
+    <div
+      class="close-btn"
+      (click)="closeEditMode()"
+      fxFlex="100"
+      fxLayoutAlign="end center"
+    >
+      <mat-icon class="cancel" matTooltip="Wróć" matTooltipPosition="above"
+        >undo</mat-icon
+      >
+    </div>
+  </div>
+  <div fxFlex="100" fxLayoutAlign="center start">
+    <form [formGroup]="editPlayerForm" fxFlex fxLayout="column">
+      <mat-form-field fxFlex="100">
+        <mat-label>Imię</mat-label>
+        <input
+          matInput
+          placeholder="Wpisz imię"
+          formControlName="name"
+          required
+          [(ngModel)]="chosenPlayer.name"
+        />
+        <mat-error>{{ nameError }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100">
+        <mat-label>Wyświetlana nazwa</mat-label>
+        <input
+          matInput
+          placeholder="Wpisz nazwę gracza"
+          formControlName="alias"
+          required
+          [(ngModel)]="chosenPlayer.alias"
+        />
+        <mat-error>{{ aliasError }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100">
+        <mat-label>Logo</mat-label>
+        <input
+          matInput
+          placeholder="Adres URL"
+          formControlName="playerImg"
+          [(ngModel)]="chosenPlayer.playerImg"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex="100">
+        <mat-label>Opis</mat-label>
+        <input
+          matInput
+          placeholder="Dodaj opis gracza"
+          formControlName="description"
+          [(ngModel)]="chosenPlayer.desc"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div
+    fxLayoutAlign="center center"
+    class="close-btn end-element"
+    (click)="editPlayer()"
+    fxFlex="10"
+  >
+    <mat-icon class="save" matTooltip="Zapisz" matTooltipPosition="above"
+      >check</mat-icon
+    >
+  </div>
+</div>

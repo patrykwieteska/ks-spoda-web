@@ -116,6 +116,8 @@ export class NewMatchComponent implements OnInit {
         awayGoals: this.matchForm.get('awayGoals')?.value,
         awayGameTeamId: this.matchForm.get('awayGameTeam')?.value,
         euroMatchId: null,
+        penalties: null,
+        isPlayOffMatch: false,
       };
       console.log('newMatch', match);
       this.matchService.createMatch(match).subscribe({

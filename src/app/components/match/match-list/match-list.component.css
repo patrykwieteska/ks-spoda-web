@@ -2,3 +2,11 @@
   color: var(--primary-color);
   margin-top: 50px;
 }
+
+.match-list-content {
+  height: 50%;
+  min-height: 500px;
+  max-height: 500px;
+  overflow: auto;
+  scrollbar-width: none;
+}

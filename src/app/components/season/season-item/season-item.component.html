@@ -2,7 +2,8 @@
 <mat-card class="season-card">
   <mat-card-header fxLayoutAlign="center center">
     <mat-card-title class="title" fxLayoutGap="2"
-      ><span>SEZON {{ season.seasonCount }}</span>
+      ><span>SEZON {{ season.seasonCount }} </span
+      ><span *ngIf="season.seasonName"> - {{ season.seasonName }}</span>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
@@ -37,6 +38,11 @@
           <span
             ><b>{{ season.initialRating }}</b>
           </span>
+        </div>
+        <div *ngIf="season.isEuro">
+          <span
+            ><i><b>EURO 2024</b></i></span
+          >
         </div>
       </div>
     </div>

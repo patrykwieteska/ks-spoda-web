@@ -26,16 +26,16 @@
     <div fxFlex="5"></div>
     <div fxFlex="90">
       <mat-tab-group>
-        <mat-tab label="TABELA"
+        <mat-tab label="STATYSTYKI KOLEJKI"
           ><app-matchday-table
             #matchDayTableRef
             [matchDay]="inputMatchDay"
           ></app-matchday-table>
         </mat-tab>
-        <mat-tab label="ROZEGRANE MECZE">
+        <mat-tab label="STATYSTYKI GRACZY">
           <app-matchday-players
             #matchDayPlayersRef
-            [inputMaatchDay]="inputMatchDay"
+            [inputMatchDay]="inputMatchDay"
           ></app-matchday-players>
         </mat-tab>
         <!-- <mat-tab label="Forma"> Content 3 </mat-tab>

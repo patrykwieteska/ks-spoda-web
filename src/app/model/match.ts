@@ -1,3 +1,4 @@
+import { PenaltyKicks } from './euro';
 import { Player } from './player';
 
 export interface Match {
@@ -8,6 +9,8 @@ export interface Match {
   homeGoals: number;
   awayGoals: number;
   isFinished: boolean | null;
+  penalties: PenaltyKicks | null;
+  playOffMatch: boolean;
 }
 
 export interface MatchTeam {
@@ -33,6 +36,8 @@ export interface NewMatch {
   awayGoals: number;
   awayGameTeamId: number | null;
   euroMatchId: number | null;
+  penalties: PenaltyKicks | null;
+  isPlayOffMatch: boolean;
 }
 
 export interface EditMatch {
@@ -40,4 +45,11 @@ export interface EditMatch {
   homeGoals: number;
   awayGoals: number;
   isComplete: boolean;
+  penalties: PenaltyKicks | null;
+}
+
+export interface MatchComment {
+  author: Player;
+  value: string;
+  date: Date;
 }

@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Match } from '../model/match';
+import { GameTeam, Match } from '../model/match';
 import { BASE_URL } from 'src/config';
 import { NewMatchDay, SimpleMatchDay } from '../model/match-day';
 
@@ -71,6 +71,32 @@ export interface MatchDayPlayer {
   opponents: MatchDayPlayerRow[];
   matchesInRow: number;
   teammates: MatchDayPlayerRow[];
+  matchDayStats: MatchesStats | null;
+  seasonStats: MatchesStats | null;
+}
+
+export interface MatchesStats {
+  games: number;
+  greatestVictory: MatchStatsResult | null;
+  biggestFailure: MatchStatsResult | null;
+  lastMatch: MatchStatsResult | null;
+  commonOpponents: MatchPlayers | null;
+  commonTeammates: MatchPlayers | null;
+}
+
+export interface MatchStatsResult {
+  teamGoals: number;
+  opponentGoals: number;
+  opponents: string[];
+  teammate: string | null;
+  team: GameTeam;
+  opponentTeam: GameTeam;
+  matchDate: Date;
+}
+
+export interface MatchPlayers {
+  players: string[];
+  gamesCount: number;
 }
 
 export interface MatchDayPlayerRow {

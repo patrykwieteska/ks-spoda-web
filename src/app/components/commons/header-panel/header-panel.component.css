@@ -1,15 +1,21 @@
 img {
-  width: 120px;
+  width: 150px;
 }
 
 .header {
-  padding: 20px;
+  padding: 40px;
   text-align: center;
-  background: var(--secondary-color);
+  background: #dce4ea;
   color: black;
   font-size: 40px;
   width: 100%;
-  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   letter-spacing: 2px;
+}
+
+.title {
+  font-family: "Jersey 20", sans-serif;
+
+  font-style: normal;
+  font-size: 70px;
 }

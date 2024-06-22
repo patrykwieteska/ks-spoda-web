@@ -17,6 +17,7 @@ export class EuroMatchPlayersComponent implements OnInit, OnChanges {
   @Input() leaguePlayers!: Player[];
   addedPlayers: Player[] = [];
   filteredPlayers: Player[] = [];
+  @Input() teamType!: string;
 
   constructor(private playerService: PlayerService) {}
 

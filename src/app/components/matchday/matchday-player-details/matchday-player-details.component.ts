@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import {
   MatchDayPlayer,
   MatchDayPlayerRow,
+  MatchPlayers,
+  MatchesStats,
 } from 'src/app/services/match-day.service';
 
 @Component({

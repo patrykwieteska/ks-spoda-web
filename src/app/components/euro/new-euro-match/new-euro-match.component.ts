@@ -1,3 +1,4 @@
+import { CurrentStage } from './../../../model/euro';
 import {
   Component,
   EventEmitter,
@@ -41,6 +42,11 @@ export class NewEuroMatchComponent implements OnInit {
   homePlayersError: boolean = false;
   awayPlayersError: boolean = false;
   euroMatch!: EuroMatch;
+  homeColor: string = 'yellow';
+  awayColor: string = 'red';
+  addButtonDisabled = false;
+
+  @Output() playedEuroTeams = new EventEmitter<number[]>();
 
   constructor(
     private playerService: PlayerService,
@@ -72,7 +78,7 @@ export class NewEuroMatchComponent implements OnInit {
       },
     });
 
-    this.euroService.getNextEuroMatch().subscribe({
+    this.euroService.getNextEuroMatch(this.data.seasonId).subscribe({
       next: (response) => {
         this.euroMatch = response;
         this.matchForm.setControl;
@@ -81,6 +87,7 @@ export class NewEuroMatchComponent implements OnInit {
   }
 
   addMatch(): void {
+    this.addButtonDisabled = true;
     this.homePlayersError = false;
     this.awayPlayersError = false;
 
@@ -112,6 +119,8 @@ export class NewEuroMatchComponent implements OnInit {
         awayGoals: this.matchForm.get('awayGoals')?.value,
         awayGameTeamId: null,
         euroMatchId: this.euroMatch.matchNumber,
+        penalties: null,
+        isPlayOffMatch: this.euroMatch.tournamentGroup === 'PLAYOFF',
       };
       console.log('newMatch', match);
       this.matchService.createMatch(match).subscribe({
@@ -127,6 +136,11 @@ export class NewEuroMatchComponent implements OnInit {
       this.checkHomePlayersList();
       this.checkAwayPlayersList();
     }
+
+    this.playedEuroTeams.emit([
+      this.euroMatch.homeTeam.teamId,
+      this.euroMatch.awayTeam.teamId,
+    ]);
   }
   checkAwayPlayersList() {
     if (this.homePlayerList.length < 1 || this.homePlayerList.length > 2) {
@@ -171,5 +185,9 @@ export class NewEuroMatchComponent implements OnInit {
     this.matchForm.reset;
     this.homePlayersRef.resetForm('home');
     this.awayPlayersRef.resetForm('away');
+  }
+
+  isGroup(stage: CurrentStage): boolean {
+    return stage.stage == 'GROUP';
   }
 }

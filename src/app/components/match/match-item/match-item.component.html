@@ -1,14 +1,5 @@
 <div fxLayout="row">
-  <div fxFlex="2" fxLayoutAlign="center start">
-    <div
-      class="remove-match"
-      matTooltip="Usuń mecz"
-      matTooltipPosition="above"
-      (click)="removeMatch(match.id)"
-    >
-      <mat-icon class="remove-match-icon">delete</mat-icon>
-    </div>
-  </div>
+  <div fxFlex="2" fxLayoutAlign="center start"></div>
   <div
     fxFlex="96"
     fxLayout="column"
@@ -21,7 +12,7 @@
           Aktualizuj
         </button>
       </div>
-      <div *ngIf="!isResultChanged">
+      <div *ngIf="!isResultChanged && checkPenaltiesResult()">
         <mat-checkbox
           color="primary"
           class="example-margin"
@@ -45,9 +36,17 @@
       *ngIf="match"
       fxFlex="100"
       fxLayout="row"
-      fxLayoutAlign="center center"
+      fxLayoutAlign="center start"
       style="width: 100%"
     >
+      <div
+        class="remove-match"
+        matTooltip="Usuń mecz"
+        matTooltipPosition="above"
+        (click)="removeMatch(match.id)"
+      >
+        <mat-icon class="remove-match-icon">cancel</mat-icon>
+      </div>
       <div
         class="homeTeam"
         fxLayout="row"
@@ -63,13 +62,15 @@
           fxFlexOrder.lt-md="1"
         >
           <div *ngFor="let homePlayer of match.homeTeam.matchPlayers">
-            <div fxLayout="row" fxLayoutGap="10">
-              <span>{{ homePlayer.alias }}</span>
-              <img
-                [src]="getPlayerImg(homePlayer.playerImg)"
-                alt=""
-                width="20"
-              />
+            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="center center">
+              <span>{{ homePlayer.alias | uppercase }}</span>
+              <div class="player-img">
+                <img
+                  [src]="getPlayerImg(homePlayer.playerImg)"
+                  alt=""
+                  width="20"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -102,7 +103,9 @@
           fxLayoutAlign="center center"
           [class]="!match.isFinished ? 'blink' : ''"
         >
-          <h2 *ngIf="match.isFinished">{{ match.homeGoals }}</h2>
+          <div *ngIf="match.isFinished" fxLayoutAlign="center center">
+            <h2>{{ match.homeGoals }}</h2>
+          </div>
           <input
             *ngIf="!match.isFinished"
             id="homeGoalsId"
@@ -120,6 +123,48 @@
             class="result-in-progress"
             type="number"
             value="{{ match.awayGoals }}"
+            (input)="checkResult()"
+            onClick="this.select();"
+          />
+        </div>
+        <div
+          *ngIf="
+            match.isFinished && match.playOffMatch === true && match.penalties
+          "
+          matTooltip="Rzuty karne"
+          matTooltipPosition="left"
+          class="penalties-label"
+        >
+          ({{ match.penalties.homeGoals }} - {{ match.penalties.awayGoals }})
+        </div>
+        <div
+          *ngIf="
+            !match.isFinished &&
+            match.homeGoals === match.awayGoals &&
+            match.playOffMatch
+          "
+          matTooltip="Rzuty karne"
+          matTooltipPosition="left"
+          class="penalties-label"
+          fxLayoutAlign="center center"
+          fxLayoutGap="5px"
+        >
+          <input
+            *ngIf="!match.isFinished"
+            id="homePenaltyGoals"
+            class="penalties-input"
+            type="number"
+            [value]="match.penalties ? match.penalties.homeGoals : 0"
+            (input)="checkResult()"
+            onClick="this.select();"
+          />
+          <div style="padding-bottom: 4px">-</div>
+          <input
+            *ngIf="!match.isFinished"
+            id="awayPenaltyGoals"
+            class="penalties-input"
+            type="number"
+            [value]="match.penalties ? match.penalties.awayGoals : 0"
             (input)="checkResult()"
             onClick="this.select();"
           />
@@ -150,18 +195,31 @@
         </div>
         <div fxLayout="column" fxFlex="50" fxLayoutAlign="center start">
           <div *ngFor="let awayPlayer of match.awayTeam.matchPlayers">
-            <div fxLayout="row" fxLayoutGap="10">
-              <img
-                [src]="getPlayerImg(awayPlayer.playerImg)"
-                alt=""
-                width="20"
-              />
-              <span>{{ awayPlayer.alias }}</span>
+            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="center center">
+              <div class="player-img">
+                <img
+                  [src]="getPlayerImg(awayPlayer.playerImg)"
+                  alt=""
+                  width="20"
+                />
+              </div>
+
+              <span>{{ awayPlayer.alias | uppercase }}</span>
             </div>
           </div>
         </div>
       </div>
+      <div hidden>
+        <mat-icon
+          matTooltip="Komentarze meczowe"
+          matTooltipPosition="above"
+          class="comment-button"
+          (click)="openMatchComments($event, match)"
+          >comment</mat-icon
+        >
+      </div>
     </div>
   </div>
+
   <div fxFlex="2"></div>
 </div>

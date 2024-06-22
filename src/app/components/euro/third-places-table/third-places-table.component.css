@@ -1,0 +1,61 @@
+.position {
+  background-color: #e8f2e8;
+  width: 10px;
+}
+
+.position-number {
+  text-align: center;
+  padding: 5px;
+  font-weight: 600;
+}
+
+.team-name {
+  width: 100px;
+}
+
+.team-flag {
+  width: 30px;
+  padding-left: 10px;
+}
+
+.stats {
+  width: 30px;
+  text-align: center;
+}
+
+thead {
+  background-color: #213690;
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+tr {
+  padding: 10px;
+}
+.blink {
+  animation: blink 2s infinite;
+}
+mat-icon {
+  transform: scale(0.7);
+}
+
+@keyframes blink {
+  20% {
+    opacity: 1;
+    color: gray;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 1;
+  }
+}
+
+.points {
+  font-size: 18px;
+  border: solid 1px white;
+}

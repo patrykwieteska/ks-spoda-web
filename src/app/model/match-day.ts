@@ -7,6 +7,6 @@ export interface SimpleMatchDay {
 
 export interface NewMatchDay {
   seasonId: number;
-  matchDayDate: Date;
+  matchDayDate: string | null;
   location: string;
 }

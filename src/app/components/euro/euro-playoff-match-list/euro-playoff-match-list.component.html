@@ -1,0 +1,16 @@
+<div fxLayout="column" fxLayoutAlign="space-between" style="height: 800px">
+  <div fxLayoutAlign="center center">
+    <b>{{ matches[0].tournamentStage.description }}</b>
+  </div>
+  <div fxLayout="column">
+    <div
+      *ngFor="let match of matches"
+      fxLayout="column"
+      fxLayoutAlign="space-between"
+      fxLayoutGap="100"
+    >
+      <app-euro-match-item [match]="match"></app-euro-match-item>
+    </div>
+  </div>
+  <div #elementToScroll></div>
+</div>

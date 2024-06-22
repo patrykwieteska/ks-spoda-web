@@ -1,0 +1,16 @@
+<br />
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div>
+    <app-euro-group-table
+      [playedTeams]="playedTeams"
+      [euroTeams]="teams"
+    ></app-euro-group-table>
+  </div>
+  <br />
+  <div fxLayout="row wrap" fxLayoutGap="20">
+    <div *ngFor="let match of matches">
+      <app-euro-match-item [match]="match"></app-euro-match-item>
+    </div>
+  </div>
+  <div #elementToScroll></div>
+</div>

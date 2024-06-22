@@ -1,18 +1,28 @@
 .details-content {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  border-radius: 20px;
-  max-width: 300px;
+  border-radius: 10px;
+  width: 350px;
 }
 
 .player-img {
-  border-radius: 10px;
-  border: 2px solid var(--primary-color);
+  border-radius: 20px;
+  border: 2px inset var(--primary-color);
   width: 200px;
-  padding: 2px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
 }
-img {
-  max-width: 100%;
+.player-img img {
+  position: absolute;
+  width: 100%;
+  left: -1000%;
+  right: -1000%;
+  top: -1000%;
+  bottom: -1000%;
+  margin: auto;
+  min-height: 100%;
+  min-width: 100%;
 }
 
 .desc-content {
@@ -22,8 +32,10 @@ img {
   border-radius: 10px;
   height: 80px;
   overflow: auto;
+  scrollbar-width: none;
   resize: none;
   font-size: 14px;
+  cursor: context-menu;
 }
 
 .desc-property {
@@ -42,4 +54,40 @@ img {
 
 .header-content {
   width: 100%;
+}
+
+mat-icon {
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+mat-icon.edit {
+  color: var(--primary-color);
+}
+
+mat-icon.edit:hover {
+  color: whitesmoke;
+  background-color: var(--primary-color);
+  border: 0px;
+}
+
+mat-icon.close {
+  color: black;
+}
+
+mat-icon.close:hover {
+  color: whitesmoke;
+  background-color: black;
+
+  border: 0px;
+}
+
+h4 {
+  margin-top: 10px;
+  text-decoration: solid;
+  font-size: x-large;
+  font-weight: 650;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }

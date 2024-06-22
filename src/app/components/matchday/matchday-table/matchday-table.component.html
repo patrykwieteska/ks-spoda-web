@@ -7,34 +7,68 @@
     <h5>{{ matchDayTable.header }}</h5>
   </div>
 
-  <div fxLayoutAlign="start center">
-    <table fxFlex="40" class="table-shadow">
-      <thead class="table-header">
-        <tr>
-          <th>#</th>
-          <th>ZAWODNIK</th>
-          <th>M</th>
-          <th>PKT</th>
-          <th matTooltip="Bilans br." matTooltipPosition="above">+/-</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="let seasonRow of matchDayTable.tableRows; index as i"
-          class="table-row"
-          ngClass="seasonRow.matchInProgress ? match-in-progress : table-row"
-        >
-          <td>
-            <div class="position">
-              {{ seasonRow.currentPosition }}
-            </div>
-          </td>
-          <td style="text-align: left">{{ seasonRow.player.alias }}</td>
-          <td>{{ seasonRow.matches }}</td>
-          <td>{{ seasonRow.pointsTotal }}</td>
-          <td>{{ seasonRow.goalsDiff }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div fxLayoutAlign="start start" fxLayout="column" fxLayoutGap="0">
+    <div>
+      <table fxFlex="40" class="table-shadow">
+        <thead class="table-header">
+          <tr style="padding-top: 5px">
+            <th fxFlex="60">ZAWODNIK</th>
+            <th
+              fxFlex="10"
+              matTooltip="Rozegrane mecze"
+              matTooltipPosition="above"
+            >
+              RM
+            </th>
+            <th
+              fxFlex="14"
+              matTooltip="Bilans bramek"
+              matTooltipPosition="above"
+            >
+              +/-
+            </th>
+            <th fxFlex="13" matTooltip="Ranking" matTooltipPosition="above">
+              P
+            </th>
+            <th fxFlex="10" matTooltip="Punkty" matTooltipPosition="above">
+              R
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="table-content">
+      <table fxFlex="40" class="table-shadow">
+        <tbody>
+          <tr
+            *ngFor="let seasonRow of matchDayTable.tableRows; index as i"
+            class="table-row"
+            ngClass="seasonRow.matchInProgress ? match-in-progress : table-row"
+          >
+            <td>
+              <div class="position">
+                {{ seasonRow.currentPosition }}
+              </div>
+            </td>
+            <td style="text-align: left; font-stretch: expanded">
+              {{ seasonRow.player.alias }}
+            </td>
+            <td style="text-align: center; width: 30px">
+              {{ seasonRow.matches }}
+            </td>
+
+            <td style="text-align: center; width: 30px">
+              {{ seasonRow.goalsDiff }}
+            </td>
+            <td style="text-align: center; width: 30px">
+              {{ seasonRow.pointsTotal }}
+            </td>
+            <td style="text-align: center; width: 30px">
+              <b style="font-size: larger"> {{ seasonRow.rating }} </b>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

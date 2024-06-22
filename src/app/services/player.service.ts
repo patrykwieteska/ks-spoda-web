@@ -18,6 +18,15 @@ export class PlayerService {
     return this.http.post<PlayerCreated>(baseURL + '/create', newPlayer).pipe();
   }
 
+  editPlayer(
+    editedPlayer: EditedPlayer,
+    playerId: number
+  ): Observable<PlayerCreated> {
+    return this.http
+      .post<PlayerCreated>(baseURL + '/edit/' + playerId, editedPlayer)
+      .pipe();
+  }
+
   getLeaguePlayersBySeason(seasonId: number): Observable<GetPlayersResponse> {
     return this.http
       .get<GetPlayersResponse>(baseURL + '/league' + '?seasonId=' + seasonId)
@@ -62,4 +71,11 @@ export interface NewPlayer {
   alias: string;
   leagueId: number;
   playerImg: string;
+}
+
+export interface EditedPlayer {
+  name: string;
+  alias: string;
+  playerImg: string | null;
+  description: string | null;
 }

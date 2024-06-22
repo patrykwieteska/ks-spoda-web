@@ -6,7 +6,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Player } from 'src/app/model/player';
-import { Table } from 'src/app/model/table';
 import { TableComponent } from '../table/table.component';
 
 @Component({

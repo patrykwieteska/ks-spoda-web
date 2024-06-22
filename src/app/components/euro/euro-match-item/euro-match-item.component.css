@@ -1,0 +1,65 @@
+.match-no {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  border-radius: 50%;
+  padding: 2px;
+  width: 30px;
+  text-align: center;
+  color: gray;
+}
+
+.penalties {
+  color: gray;
+  font-size: 15px;
+}
+
+.win-result {
+  font-weight: bolder;
+}
+
+.margin-QUARTER_FINALS {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.margin-SEMI_FINALS {
+  margin-top: 30px;
+}
+
+.margin-FINAL {
+  margin: 0px;
+}
+
+.match-time {
+  color: gray;
+  padding-left: 24px;
+}
+
+.blink {
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  20% {
+    opacity: 1;
+    color: gray;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 1;
+  }
+}
+
+.match-item {
+  width: 240px;
+}
+
+.match-content {
+  border: 1px solid #213690;
+  border-radius: 10px;
+  padding: 6px;
+  margin: 5px;
+}

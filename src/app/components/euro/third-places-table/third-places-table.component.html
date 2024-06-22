@@ -1,0 +1,51 @@
+<table>
+  <thead>
+    <tr>
+      <th scope="col" colspan="4" style="padding: 5px"></th>
+      <th scope="col" matTooltip="Grupa" matTooltipPosition="above">G</th>
+      <th scope="col" matTooltip="Rozegrane mecze" matTooltipPosition="above">
+        RM
+      </th>
+      <th scope="col" matTooltip="Zwycięstwa" matTooltipPosition="above">Z</th>
+      <th scope="col" matTooltip="Remisy" matTooltipPosition="above">R</th>
+      <th scope="col" matTooltip="Przegrane" matTooltipPosition="above">P</th>
+      <th scope="col" matTooltip="Br. zdobyte" matTooltipPosition="above">
+        B+
+      </th>
+      <th scope="col" matTooltip="Br. stracone" matTooltipPosition="above">
+        B-
+      </th>
+      <th scope="col" matTooltip="Bilans" matTooltipPosition="above">+/-</th>
+      <th scope="col" matTooltip="Punkty" matTooltipPosition="above">P</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let team of teams; let i = index"
+      [class]="prepareClass(i + 1)"
+      style="border-bottom: solid 1px white"
+    >
+      <td class="position-number">{{ i + 1 }}</td>
+      <td class="team-flag"><img [src]="team.team.flag" height="20px" /></td>
+      <td class="team-name">{{ team.team.name }} ({{ team.team.ranking }})</td>
+      <td>
+        <span *ngIf="team.matchInProgress" class="blink"
+          ><mat-icon>sports_soccer</mat-icon></span
+        >
+      </td>
+      <td class="stats points">
+        <span>{{ team.groupCode }}</span>
+      </td>
+      <td class="stats">{{ team.wins + team.loses + team.draws }}</td>
+      <td class="stats">{{ team.wins }}</td>
+      <td class="stats">{{ team.draws }}</td>
+      <td class="stats">{{ team.loses }}</td>
+      <td class="stats">{{ team.goalsScored }}</td>
+      <td class="stats">{{ team.goalsConceded }}</td>
+      <td class="stats">{{ team.goalsScored - team.goalsConceded }}</td>
+      <td class="stats points">
+        <b>{{ team.points }}</b>
+      </td>
+    </tr>
+  </tbody>
+</table>

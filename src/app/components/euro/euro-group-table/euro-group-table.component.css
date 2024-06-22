@@ -1,0 +1,71 @@
+.position {
+  width: 10px;
+  padding: 5px;
+  font-weight: 600;
+}
+
+.team-name {
+  width: 100px;
+}
+
+.team-flag {
+  width: 30px;
+  padding-left: 10px;
+}
+
+.stats {
+  width: 30px;
+  text-align: center;
+}
+
+thead {
+  background-color: #213690;
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+tr {
+  padding: 10px;
+}
+
+.position-1,
+.position-2 {
+  background-color: #e8f2e8;
+}
+
+.position-3 {
+  background-color: #f2edde;
+}
+.blink {
+  animation: blink 2s infinite;
+}
+mat-icon {
+  transform: scale(0.7);
+}
+
+@keyframes blink {
+  20% {
+    opacity: 1;
+    color: gray;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 1;
+  }
+}
+.points {
+  font-size: 18px;
+}
+.background {
+  height: 100%;
+  width: 100%;
+  background-image: url("../../../../assets/euro_background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}

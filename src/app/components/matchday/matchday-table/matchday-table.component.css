@@ -17,6 +17,7 @@ thead {
   font-size: 14px;
   box-shadow: var(--secondary-color) 0px 1px 2px,
     var(--secondary-color) 0px 0px 0px 2px;
+  padding: 50px;
 }
 
 thead:hover {
@@ -24,6 +25,7 @@ thead:hover {
   background-color: var(--secondary-color);
   border: solid 1px var(--secondary-color);
   padding: 20px;
+  padding: 50px;
 }
 
 .player-img {
@@ -68,7 +70,7 @@ thead:hover {
   display: table-row;
 
   padding: 2px;
-  border-bottom: dotted gray 1px;
+  border-bottom: solid white 2px;
 }
 
 .match-in-progress {
@@ -102,4 +104,10 @@ thead:hover {
 .info {
   color: var(--primary-color);
   margin-top: 50px;
+}
+.table-content {
+  overflow-y: scroll;
+  max-height: 400px;
+  scrollbar-width: none;
+  margin-top: -7px;
 }

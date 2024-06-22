@@ -1,1 +1,31 @@
-<p>euro-calendar works!</p>
+<br />
+<div
+  *ngIf="isCalendar"
+  fxLayout="row"
+  fxLayoutAlign="center start"
+  fxLayoutGap="60"
+>
+  <div class="playoff-stage">
+    <app-euro-playoff-match-list
+      [matches]="roundOf16"
+    ></app-euro-playoff-match-list>
+  </div>
+
+  <div class="playoff-stage">
+    <app-euro-playoff-match-list
+      [matches]="quarterfinal"
+    ></app-euro-playoff-match-list>
+  </div>
+
+  <div class="playoff-stage">
+    <app-euro-playoff-match-list
+      [matches]="semifinal"
+    ></app-euro-playoff-match-list>
+  </div>
+
+  <div class="playoff-stage">
+    <app-euro-playoff-match-list
+      [matches]="final"
+    ></app-euro-playoff-match-list>
+  </div>
+</div>

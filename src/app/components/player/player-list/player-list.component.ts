@@ -1,8 +1,15 @@
 import { NewPlayer, PlayerService } from './../../../services/player.service';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Player } from 'src/app/model/player';
 import { NewPlayerComponent } from '../new-player/new-player.component';
+import { PlayerDetailsComponent } from '../player-details/player-details.component';
 
 @Component({
   selector: 'app-player-list',
@@ -14,9 +21,13 @@ export class PlayerListComponent {
   @Input() playerList: Player[] | null = [];
   @Input() leagueId: number = -1;
   @Output() addedPlayerOutput = new EventEmitter<void>();
+  editModeEnabled: boolean = false;
+
+  @ViewChild('playerDetailsRef') playerDetailsRef!: PlayerDetailsComponent;
 
   takeEmittedPlayer(player: Player | null) {
     this.chosenPlayer = player;
+    this.playerDetailsRef.editModeEnabled = false;
   }
 
   constructor(public dialog: MatDialog, private playerService: PlayerService) {}
@@ -56,5 +67,10 @@ export class PlayerListComponent {
         },
       });
     });
+  }
+
+  closeEditMode() {
+    'ZAMYKAM EDYCJE';
+    this.editModeEnabled = false;
   }
 }

@@ -1,0 +1,59 @@
+<div [class]="getMarginClass(match.tournamentStage.stage)">
+  <span fxLayoutAlign="center center" class="match-time">{{
+    match.dateTime | date : "d MMM yyyy, H:mm"
+  }}</span>
+  <div fxLayout="row" class="match-item" fxLayoutAlign="center center">
+    <div class="match-no">{{ match.matchNumber }}</div>
+    <div fxLayout="column" class="match-content" fxFlex="100">
+      <div fxLayout="row">
+        <div fxFlex="80">
+          <div fxLayout="row" fxLayoutGap="5">
+            <div><img [src]="match.homeTeam.flag" height="20px" /></div>
+            <div [class]="getHomeResultClass()" fxLayoutAlign="row">
+              <span> {{ match.homeTeam.name }} </span>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="5">
+            <div><img [src]="match.awayTeam.flag" height="20px" /></div>
+            <div [class]="getAwayResultClass()">
+              {{ match.awayTeam.name }}
+            </div>
+          </div>
+        </div>
+        <div><mat-divider vertical style="height: 100%"></mat-divider></div>
+        <div fxFlex="20">
+          <div fxLayout="row" fxLayoutGap="5" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <span [class]="getHomeResultClass()"> {{ match.homeGoals }}</span>
+
+              <div *ngIf="match.penaltyKicks" fxLayout="row">
+                <span>(</span>
+                <span [class]="getHomeResultClass()">{{
+                  match.penaltyKicks.homeGoals
+                }}</span>
+                <span>)</span>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="5" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <span [class]="getAwayResultClass()">{{ match.awayGoals }}</span>
+              <div *ngIf="match.penaltyKicks" fxLayout="row">
+                <span>(</span>
+                <span [class]="getAwayResultClass()">{{
+                  match.penaltyKicks.awayGoals
+                }}</span>
+                <span>)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 30px">
+      <span *ngIf="match.matchInProgress" class="blink"
+        ><mat-icon>sports_soccer</mat-icon></span
+      >
+    </div>
+  </div>
+</div>

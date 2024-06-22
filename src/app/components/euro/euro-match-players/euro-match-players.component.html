@@ -1,15 +1,22 @@
-<div fxLayout="column">
-  <div class="added-player-list" fxLayout="column">
-    <div fxLayout="column" fxLayoutAlign="center center">
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div
+    class="added-player-list"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <div fxLayout="column">
       <div
         fxLayout="row"
         class="added-player"
-        fxLayoutAlign="center center"
         *ngFor="let addedPlayer of addedPlayers"
-        [matTooltip]="addedPlayer.alias"
+        [matTooltip]="'Usuń: ' + addedPlayer.alias"
         matTooltipPosition="above"
         (click)="removePlayer(addedPlayer)"
+        fxLayoutAlign="space-between center"
       >
+        <div class="player-img">
+          <img [src]="getPlayerImg(addedPlayer.playerImg)" />
+        </div>
         <div *ngIf="addedPlayer.alias.length > 9">
           {{ addedPlayer.alias | slice : 0 : 7 }}...
         </div>
@@ -20,22 +27,30 @@
       </div>
     </div>
   </div>
-
+  <br />
   <div
     class="player-list"
-    style="max-height: 400px"
     *ngIf="addedPlayers.length < 2"
+    fxLayout="column wrap"
   >
     <div fxLayout="column" *ngFor="let player of filteredPlayers">
       <div
-        fxFlex="row"
-        fxFlex="100"
         class="player-panel"
         (click)="addPlayer(player)"
         [class]="addedPlayers.length >= 2 ? 'player-disabled' : ''"
+        [ngClass]="teamType == 'home' ? 'home' : 'away'"
       >
-        <img [src]="getPlayerImg(player.playerImg)" height="25" />
-        <span>{{ player.alias }}</span>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5">
+          <div class="player-img">
+            <img [src]="getPlayerImg(player.playerImg)" />
+          </div>
+          <span *ngIf="player.alias.length <= 8" class="player-alias">{{
+            player.alias | uppercase
+          }}</span>
+          <span *ngIf="player.alias.length > 8" class="player-alias">{{
+            player.alias | uppercase
+          }}</span>
+        </div>
       </div>
     </div>
   </div>

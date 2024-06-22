@@ -33,6 +33,7 @@ export class MatchListComponent implements OnInit, OnChanges {
   @Input() leaguePlayers!: Player[];
   @Output() matchChange = new EventEmitter<void>();
   @Input() isEuro: boolean = false;
+  @Output() playedEuroTeams = new EventEmitter<number[]>();
 
   matches: Match[] = [];
   matchDay: SimpleMatchDay | null = null;
@@ -50,7 +51,6 @@ export class MatchListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     var newMatchOpenDialogCounter = changes['newMatchOpenDialogCounter'];
-    console.log('newMatchOpenDialogCounter', newMatchOpenDialogCounter);
     if (
       newMatchOpenDialogCounter != undefined &&
       newMatchOpenDialogCounter.currentValue >
@@ -64,7 +64,7 @@ export class MatchListComponent implements OnInit, OnChanges {
     if (!this.matchDay || this.matchDay?.isFinished) {
       this.dialog.open(ErrorComponent, {
         data: {
-          message: 'Aby dodać mecz musisz najpierw dodać kolejkę',
+          message: 'Aby dodać mecz musisz dodać nową kolejkę',
           title: 'Brak aktywnej kolejki',
           buttonText: 'Ok',
           icon: 'info',
@@ -95,6 +95,13 @@ export class MatchListComponent implements OnInit, OnChanges {
     dialogRef.componentInstance.outPutNewMatch.subscribe((value) => {
       this.getMatchDayMatches(this.matchDay);
       this.matchChange.emit();
+      dialogRef.close(() => {
+        console.log('Dialog closed');
+      });
+    });
+
+    dialogRef.componentInstance.playedEuroTeams.subscribe((value) => {
+      this.playedEuroTeams.emit(value);
       dialogRef.close(() => {
         console.log('Dialog closed');
       });
@@ -151,7 +158,6 @@ export class MatchListComponent implements OnInit, OnChanges {
         this.shorProgressBar = false;
         this.selected = matchDay.id;
         this.outMatchDay.emit(matchDay);
-        console.log('matchDay output: ', matchDay);
       },
     });
   }

@@ -13,8 +13,11 @@
         <tr>
           <th>#</th>
           <th colspan="4">ZAWODNIK</th>
-          <th>M</th>
-          <th matTooltip="getPointCountingTooltip()" matTooltipPosition="above">
+          <th matTooltip="Rozegrane mecze" matTooltipPosition="above">RM</th>
+          <th
+            [matTooltip]="getPointCountingTooltip()"
+            matTooltipPosition="above"
+          >
             {{ getPointCountingMethod() }}
           </th>
           <th matTooltip="Wygrane" matTooltipPosition="above">W</th>
@@ -24,7 +27,7 @@
           <th matTooltip="Br. stracone" matTooltipPosition="above">B-</th>
           <th matTooltip="Bilans br." matTooltipPosition="above">+/-</th>
           <th matTooltip="Forma zawodnika" matTooltipPosition="above">
-            Ostatnie 5
+            OSTATNIE 5
           </th>
         </tr>
       </thead>
@@ -40,13 +43,12 @@
             </div>
           </td>
           <td>
-            <img
-              class="player-img"
-              [src]="getPlayerImg(seasonRow.player.playerImg)"
-            />
+            <div class="player-img">
+              <img [src]="getPlayerImg(seasonRow.player.playerImg)" />
+            </div>
           </td>
-          <td width="10%" style="text-align: left">
-            {{ seasonRow.player.alias }}
+          <td width="10%" style="text-align: left; font-stretch: 200%">
+            <b> {{ seasonRow.player.alias | uppercase }} </b>
           </td>
           <td width="5%">
             <span *ngIf="seasonRow.matchInProgress" class="blink"
@@ -63,7 +65,9 @@
           </td>
           <td>{{ seasonRow.matches }}</td>
           <td>
-            <b>{{ getCorrectPointsType(seasonRow) }}</b>
+            <b style="font-size: larger">{{
+              getCorrectPointsType(seasonRow)
+            }}</b>
           </td>
           <td>{{ seasonRow.wins }}</td>
           <td>{{ seasonRow.draws }}</td>

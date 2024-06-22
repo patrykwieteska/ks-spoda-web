@@ -1,7 +1,7 @@
 <!-- <app-custom-progress-bar *ngIf="!isResponseComplete"></app-custom-progress-bar> -->
 
 <!-- <div fxLayout="column" style="width: 100%" *ngIf="isResponseComplete"></div> -->
-<div fxFlex fxLayout="column">
+<div fxFlex fxLayout="column" class="season-content">
   <div fxFlex="100">
     <app-header-panel
       *ngIf="headerPanel"
@@ -13,6 +13,7 @@
     <div fxFlex="5"></div>
     <div fxFlex="90">
       <app-content-frame
+        backgroundColor="lightgray"
         headerTitle="tabela"
         icon="keyboard_return"
         tooltipMessage="Powrót to ligi"
@@ -27,11 +28,12 @@
     <div fxFlex="5"></div>
     <div fxFlex="45">
       <app-content-frame
+        backgroundColor="lightgray"
         headerTitle="Mecze"
         icon="add_circle"
         tooltipMessage="Dodaj mecz"
         (clickButton)="getNewMatchEvent()"
-        [buttonDisabled]="isNewMatchDisabled()"
+        [buttonDisabled]="newMatchButtonDisabled"
         #matchContentFrame
       >
         <app-match-list
@@ -42,38 +44,48 @@
           [newMatchOpenDialogCounter]="newMatchDialogCounter"
           [leaguePlayers]="leaguePlayerList"
           (matchChange)="refreshTable()"
+          (playedEuroTeams)="takePlayedEuroTeams($event)"
           #matchListRef
         ></app-match-list>
       </app-content-frame>
     </div>
     <div fxFlex="45">
       <app-content-frame
+        backgroundColor="lightgray"
         headerTitle="Kolejka"
         icon="add_circle"
         tooltipMessage="Dodaj kolejkę"
         (clickButton)="getNewMatchDayEvent()"
-        [buttonDisabled]="isNewMatchDayDisabled()"
+        [buttonDisabled]="newMatchDayButtonDisabled"
         #matchDayContentFrame
       >
         <app-matchday-stats
-          #matchDayStatsRef
           [newMatchDayOpenDialogCounter]="newMatchDayDialogCounter"
           [inputMatchDay]="chosenMatchDay"
           [seasonId]="seasonId"
           (createdMatchDayId)="takeNewMatchDayId()"
+          (completeMatchDayId)="takeFinishedMatchDayId()"
+          #matchDayStatsRef
         ></app-matchday-stats>
       </app-content-frame>
     </div>
     <div fxFlex="5"></div>
   </div>
-  <div fxFlex="100" [hidden]="!euroEnabled">
+  <div fxFlex="100" *ngIf="euroEnabled">
     <div fxFlex="5"></div>
     <div fxFlex="90">
       <app-content-frame
+        backgroundColor="#172665"
+        fontColor="white"
         headerTitle="terminarz euro 2024"
         icon="calendar_month"
+        [buttonDisabled]="true"
       >
-        <app-euro-calendar #euroCalendarRef></app-euro-calendar>
+        <app-groups
+          [seasonId]="seasonId"
+          #euroGroupsRef
+          [playedTeams]="playedTeams"
+        ></app-groups>
       </app-content-frame>
     </div>
     <div fxFlex="5"></div>
