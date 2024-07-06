@@ -1,52 +1,83 @@
-<div fxLayout="row">
-  <div fxFlex="2" fxLayoutAlign="center start"></div>
+<div fxLayout="row" class="match-item-content">
+  <div fxFlex="2" fxLayoutAlign="center center"></div>
   <div
     fxFlex="96"
     fxLayout="column"
     [ngClass]="!match.isFinished ? 'in-progress' : 'finished'"
   >
-    <div *ngIf="!match.isFinished" fxLayoutAlign="center end" fxLayoutGap="2">
-      <div *ngIf="isResultChanged">
-        <button class="update-btn" (click)="updateMatchResult()" mat-button>
-          <mat-icon>scoreboard</mat-icon>
-          Aktualizuj
-        </button>
+    <div
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="2"
+      class="match-header"
+    >
+      <div fxLayout="row" fxLayoutGap="5">
+        <span fxHide.lt-md>{{ match.matchTime | date : "dd.MM.yyyy" }}</span
+        ><span class="time-only">{{ match.matchTime | date : "HH:mm" }}</span>
       </div>
-      <div *ngIf="!isResultChanged && checkPenaltiesResult()">
-        <mat-checkbox
-          color="primary"
-          class="example-margin"
-          [(ngModel)]="checked"
-          matTooltip="Ostatni gwizdek"
+      <div *ngIf="match.isFinished">
+        <div
+          class="remove-match"
+          matTooltip="Usuń mecz"
           matTooltipPosition="above"
-        ></mat-checkbox>
-        <button
-          class="complete-btn"
-          (click)="endMatch()"
-          mat-button
-          [disabled]="!checked"
+          (click)="removeMatch(match.id)"
         >
-          <mat-icon>sports_and_outdoors</mat-icon>
-          Zakończ mecz
-        </button>
+          <mat-icon class="remove-match-icon">cancel</mat-icon>
+        </div>
+      </div>
+      <div *ngIf="!match.isFinished">
+        <div
+          *ngIf="isResultChanged"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayoutGap="5"
+        >
+          <app-loader-circle *ngIf="isServiceCalling"></app-loader-circle>
+          <button
+            *ngIf="!isServiceCalling"
+            class="update-btn"
+            (click)="updateMatchResult()"
+          >
+            <mat-icon>scoreboard</mat-icon>
+            Aktualizuj
+          </button>
+        </div>
+        <div
+          *ngIf="!isResultChanged && checkPenaltiesResult()"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayoutGap="10"
+        >
+          <app-loader-circle
+            *ngIf="isServiceCalling"
+            class="loader"
+          ></app-loader-circle>
+          <input
+            *ngIf="!isServiceCalling"
+            type="checkbox"
+            color="primary"
+            class="example-margin"
+            [(ngModel)]="checked"
+            matTooltip="Ostatni gwizdek"
+            matTooltipPosition="above"
+          />
+          <button
+            *ngIf="!isServiceCalling"
+            class="complete-btn"
+            (click)="endMatch()"
+            [disabled]="!checked"
+          >
+            <mat-icon>sports_and_outdoors</mat-icon>
+            Zakończ mecz
+          </button>
+        </div>
       </div>
     </div>
     <div
       class="match-frame"
       *ngIf="match"
-      fxFlex="100"
       fxLayout="row"
-      fxLayoutAlign="center start"
-      style="width: 100%"
+      fxLayoutAlign="center center"
     >
-      <div
-        class="remove-match"
-        matTooltip="Usuń mecz"
-        matTooltipPosition="above"
-        (click)="removeMatch(match.id)"
-      >
-        <mat-icon class="remove-match-icon">cancel</mat-icon>
-      </div>
       <div
         class="homeTeam"
         fxLayout="row"
@@ -62,15 +93,22 @@
           fxFlexOrder.lt-md="1"
         >
           <div *ngFor="let homePlayer of match.homeTeam.matchPlayers">
-            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="center center">
-              <span>{{ homePlayer.alias | uppercase }}</span>
-              <div class="player-img">
+            <div
+              class="player-data"
+              fxLayout="row"
+              fxLayoutGap="10"
+              fxLayoutAlign="center center"
+            >
+              <div class="player-img" style="order: 2">
                 <img
                   [src]="getPlayerImg(homePlayer.playerImg)"
                   alt=""
                   width="20"
                 />
               </div>
+              <span class="player-alias" style="order: 1">{{
+                homePlayer.alias | uppercase
+              }}</span>
             </div>
           </div>
         </div>
@@ -82,29 +120,25 @@
           fxFlexOrder="1"
           class="team-name"
         >
-          <div class="badge">
+          <div class="team-img">
             <img [src]="match.homeTeam.gameTeam.badgeImg" width="40" />
           </div>
           <div>{{ match.homeTeam.gameTeam.name }}</div>
         </div>
       </div>
       <div
-        class="matchResult"
         fxLayout="column"
         fxFlex="30"
         fxLayoutAlign="center center"
+        fxLayoutGap="3"
       >
-        <div fxLayout="row" fxLayoutGap="5" class="grayed-out">
-          <span fxHide.lt-md>{{ match.matchTime | date : "dd.MM.yyyy" }}</span
-          ><span>{{ match.matchTime | date : "HH:mm" }}</span>
-        </div>
         <div
           fxLayout="row"
           fxLayoutAlign="center center"
           [class]="!match.isFinished ? 'blink' : ''"
         >
           <div *ngIf="match.isFinished" fxLayoutAlign="center center">
-            <h2>{{ match.homeGoals }}</h2>
+            <span class="match-result">{{ match.homeGoals }}</span>
           </div>
           <input
             *ngIf="!match.isFinished"
@@ -116,7 +150,9 @@
             onClick="this.select();"
           />
           <div><mat-icon>remove</mat-icon></div>
-          <h2 *ngIf="match.isFinished">{{ match.awayGoals }}</h2>
+          <span *ngIf="match.isFinished" class="match-result">{{
+            match.awayGoals
+          }}</span>
           <input
             *ngIf="!match.isFinished"
             id="awayGoalsId"
@@ -169,10 +205,9 @@
             onClick="this.select();"
           />
         </div>
-        <div class="grayed-out">
-          <span *ngIf="!match.isFinished" class="blink"
-            ><mat-icon>sports_soccer</mat-icon
-            ><span fxHide.lt-md>W trakcie</span></span
+        <div fxLayoutAlign="center center">
+          <span *ngIf="!match.isFinished" class="blink" matTooltip="W trakcie"
+            ><mat-icon>sports_soccer</mat-icon></span
           >
           <span *ngIf="match.isFinished" matTooltip="Zakończony"
             ><mat-icon>sports_and_outdoors</mat-icon><span fxHide.lt-md></span
@@ -188,14 +223,19 @@
         class="team-name"
       >
         <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50">
-          <div class="badge">
+          <div class="team-img">
             <img [src]="match.awayTeam.gameTeam.badgeImg" width="40" />
           </div>
           <div>{{ match.awayTeam.gameTeam.name }}</div>
         </div>
         <div fxLayout="column" fxFlex="50" fxLayoutAlign="center start">
           <div *ngFor="let awayPlayer of match.awayTeam.matchPlayers">
-            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="center center">
+            <div
+              class="player-data"
+              fxLayout="row"
+              fxLayoutGap="10"
+              fxLayoutAlign="center center"
+            >
               <div class="player-img">
                 <img
                   [src]="getPlayerImg(awayPlayer.playerImg)"
@@ -204,7 +244,9 @@
                 />
               </div>
 
-              <span>{{ awayPlayer.alias | uppercase }}</span>
+              <span class="player-alias">{{
+                awayPlayer.alias | uppercase
+              }}</span>
             </div>
           </div>
         </div>

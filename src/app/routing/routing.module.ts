@@ -7,6 +7,7 @@ import { CreateLeagueComponent } from '../components/league/create-league/create
 import { InitLeagueComponent } from '../components/league/init-league/init-league.component';
 import { PageNotFoundComponent } from '../components/commons/page-not-found/page-not-found.component';
 import { InitSeasonComponent } from '../components/season/init-season/init-season.component';
+import { TestComponent } from '../components/test/test.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'leagues/create', component: CreateLeagueComponent },
   { path: 'season/init/:seasonId', component: InitSeasonComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'test', component: TestComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

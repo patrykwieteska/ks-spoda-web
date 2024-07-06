@@ -1,42 +1,43 @@
-import { MatchService } from 'src/app/services/match.service';
-import { EditMatch, Match } from './../../../model/match';
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
-import { PlayerService } from 'src/app/services/player.service';
-import { Player } from 'src/app/model/player';
-import { DeleteMatchComponent } from '../delete-match/delete-match.component';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EditMatch, Match } from 'src/app/model/match';
+import { ApiResponse, MatchService } from 'src/app/services/match.service';
+import data from './response/matches.json';
+import { DatePipe, NgForOf } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PenaltyKicks } from 'src/app/model/euro';
-import { MatchCommentsComponent } from '../match-comments-dialog/match-comments-dialog.component';
+import { PlayerService } from 'src/app/services/player.service';
+import { DeleteMatchComponent } from '../match/delete-match/delete-match.component';
+import { MatchCommentsComponent } from '../match/match-comments-dialog/match-comments-dialog.component';
 
 @Component({
-  selector: 'app-match-item',
-  templateUrl: './match-item.component.html',
-  styleUrls: ['./match-item.component.css'],
+  selector: 'app-test',
+  templateUrl: './test.component.html',
+  styleUrls: ['./test.component.css'],
 })
-export class MatchItemComponent implements OnInit {
+export class TestComponent implements OnInit {
+  matchList: any[] = [];
+  ngOnInit(): void {
+    this.matchList = data.matchList;
+  }
+
   @Input() match!: Match;
   @Output() outMatchUpdated = new EventEmitter<void>();
   isResultChanged: boolean = false;
   penalties: boolean = false;
   checked = false;
-  isServiceCalling = false;
 
   constructor(
     private matchService: MatchService,
     private playerService: PlayerService,
     public dialog: MatDialog
   ) {}
-  ngOnInit(): void {
-    this.isServiceCalling = false;
-  }
 
   updateMatchResult() {
     this.updateMatch(false);
   }
-
-  async updateMatch(isComplete: boolean) {
-    this.isServiceCalling = true;
-    await delay(200);
+  updateMatch(isComplete: boolean) {
     var editMatch: EditMatch = {
       awayGoals: Number(this.inputAwayGoals),
       homeGoals: Number(this.inputHomeGoals),
@@ -70,9 +71,6 @@ export class MatchItemComponent implements OnInit {
   }
 
   checkResult() {
-    this.isServiceCalling = false;
-    this.checked = false;
-
     if (
       (this.match.awayGoals.toString() !== this.inputAwayGoals ||
         this.match.homeGoals.toString() !== this.inputHomeGoals) &&
@@ -166,7 +164,7 @@ export class MatchItemComponent implements OnInit {
   openDeleteMatchDialog(matchId: number): void {
     const dialogRef = this.dialog.open(DeleteMatchComponent, {
       data: {
-        matchId: this.match.id,
+        matchData: this.match,
       },
 
       position: { top: '100px' },
@@ -182,8 +180,4 @@ export class MatchItemComponent implements OnInit {
   checkPenaltiesResult(): boolean {
     return true; // logika wyznaczania mozliwości zakończenia meczu biorąca pod uwagę to czy karne są możliwe do rozegrania oraz czy jest remis i brak wyniku w kaarnych
   }
-}
-
-function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }

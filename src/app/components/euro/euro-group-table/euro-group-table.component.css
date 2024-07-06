@@ -69,3 +69,8 @@ mat-icon {
   background-attachment: fixed;
   background-position: center;
 }
+
+table {
+  background-color: white;
+  padding: 10px;
+}

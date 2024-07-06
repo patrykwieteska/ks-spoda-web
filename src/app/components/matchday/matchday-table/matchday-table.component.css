@@ -5,8 +5,8 @@ table {
   width: auto;
   text-align: center;
   padding: 20px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
-    rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 thead {
@@ -15,9 +15,6 @@ thead {
   border: solid 1px var(--secondary-color);
   height: 40px;
   font-size: 14px;
-  box-shadow: var(--secondary-color) 0px 1px 2px,
-    var(--secondary-color) 0px 0px 0px 2px;
-  padding: 50px;
 }
 
 thead:hover {
@@ -104,10 +101,4 @@ thead:hover {
 .info {
   color: var(--primary-color);
   margin-top: 50px;
-}
-.table-content {
-  overflow-y: scroll;
-  max-height: 400px;
-  scrollbar-width: none;
-  margin-top: -7px;
 }

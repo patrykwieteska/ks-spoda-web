@@ -1,0 +1,125 @@
+{
+    "status": 200,
+    "matchList": [
+        {
+            "status": 0,
+            "id": 8,
+            "matchTime": "2024-06-22T16:17:06",
+            "isFinished": false,
+            "homeTeam": {
+                "matchPlayers": [
+                    {
+                        "id": 2,
+                        "name": "Mateusz",
+                        "alias": "Jałyj",
+                        "playerImg": "https://i.ibb.co/zVmcLtH/IMG-4284.jpg",
+                        "desc": null,
+                        "joinDate": "2024-06-10"
+                    },
+                    {
+                        "id": 5,
+                        "name": "jAKUB",
+                        "alias": "Zgun",
+                        "playerImg": "",
+                        "desc": null,
+                        "joinDate": "2024-06-10"
+                    }
+                ],
+                "gameTeam": {
+                    "id": 340,
+                    "name": "Węgry",
+                    "badgeImg": "https://cdn.sofifa.net/meta/team/18732/120.png"
+                }
+            },
+            "awayTeam": {
+                "matchPlayers": [
+                    {
+                        "id": 3,
+                        "name": "Patryk",
+                        "alias": "Wietek",
+                        "playerImg": "https://i.ibb.co/BZNht89/logo-typ.png",
+                        "desc": null,
+                        "joinDate": "2024-06-10"
+                    },
+                    {
+                        "id": 1,
+                        "name": "Marek",
+                        "alias": "Maras",
+                        "playerImg": "",
+                        "desc": null,
+                        "joinDate": "2024-06-10"
+                    }
+                ],
+                "gameTeam": {
+                    "id": 750,
+                    "name": "Szwajcaria",
+                    "badgeImg": "https://cdn.sofifa.net/meta/team/18708/120.png"
+                }
+            },
+            "homeGoals": 0,
+            "awayGoals": 0,
+            "penalties": null,
+            "playOffMatch": false
+        },
+        {
+            "status": 0,
+            "id": 7,
+            "matchTime": "2024-06-22T15:23:12",
+            "isFinished": true,
+            "homeTeam": {
+                "matchPlayers": [
+                    {
+                        "id": 2,
+                        "name": "Mateusz",
+                        "alias": "Jałyj",
+                        "playerImg": "https://i.ibb.co/zVmcLtH/IMG-4284.jpg",
+                        "desc": null,
+                        "joinDate": "2024-06-10"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Jakub",
+                        "alias": "Niedziej",
+                        "playerImg": "https://i.ibb.co/GCSCpmJ/received-332065662748892.jpg",
+                        "desc": null,
+                        "joinDate": "2024-06-10"
+                    }
+                ],
+                "gameTeam": {
+                    "id": 256,
+                    "name": "Niemcy",
+                    "badgeImg": "https://cdn.sofifa.net/meta/team/18660/120.png"
+                }
+            },
+            "awayTeam": {
+                "matchPlayers": [
+                    {
+                        "id": 5,
+                        "name": "jAKUB",
+                        "alias": "Zgun",
+                        "playerImg": "",
+                        "desc": null,
+                        "joinDate": "2024-06-10"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Patryk",
+                        "alias": "Wietek",
+                        "playerImg": "https://i.ibb.co/BZNht89/logo-typ.png",
+                        "desc": null,
+                        "joinDate": "2024-06-10"
+                    }
+                ],
+                "gameTeam": {
+                    "id": 264,
+                    "name": "Szkocja",
+                    "badgeImg": "https://cdn.sofifa.net/meta/team/18706/120.png"
+                }
+            },
+            "homeGoals": 1,
+            "awayGoals": 0,
+            "penalties": null,
+            "playOffMatch": false
+        }
+    ]
+}

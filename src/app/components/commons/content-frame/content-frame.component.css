@@ -2,7 +2,7 @@
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  text-align: center;
+  /* text-align: center; */
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
@@ -17,6 +17,7 @@
   letter-spacing: 5px;
   font-size: 22px;
   font-weight: bold;
+  color: white;
 }
 
 .content {
@@ -25,6 +26,35 @@
 }
 
 mat-icon {
-  transform: scale(2);
-  color: var(--primary-color);
+  transform: scale(1.2);
+  color: white;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  color: white !important;
+  border: 1px solid var(--primary-color);
+  font-family: SignikaNegative, "Helvetica Neue", sans-serif;
+}
+
+button:hover {
+  background-color: dimgray !important;
+  border: 1px solid var(--primary-color);
+  padding: 10px;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+button:hover mat-icon {
+  transform: scale(1.1);
+  transition: 0.5s;
 }

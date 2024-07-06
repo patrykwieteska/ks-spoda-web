@@ -99,7 +99,7 @@ export class SeasonTableComponent implements OnInit {
     var pointCountingMethod = '';
     switch (this.seasonTable.pointCountingMethod) {
       case 'RATING':
-        pointCountingMethod = 'Rating';
+        pointCountingMethod = 'Rating sezonowski';
         break;
       case 'POINTS_TOTAL':
         pointCountingMethod = 'Punkty';

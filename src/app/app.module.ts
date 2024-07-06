@@ -60,10 +60,13 @@ import { EuroGroupTableComponent } from './components/euro/euro-group-table/euro
 import { ThirdPlacesTableComponent } from './components/euro/third-places-table/third-places-table.component';
 import { EuroPlayoffMatchListComponent } from './components/euro/euro-playoff-match-list/euro-playoff-match-list.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgForOf } from '@angular/common';
 import { PlayerDetailsEditComponent } from './components/player/player-details-edit/player-details-edit.component';
 import { StatsPanelComponent } from './components/stats-panel/stats-panel.component';
 import { MatchCommentsComponent } from './components/match/match-comments-dialog/match-comments-dialog.component';
+import { TestComponent } from './components/test/test.component';
+import { FooterComponent } from './components/commons/footer/footer.component';
+import { LoaderCircleComponent } from './components/commons/loader-circle/loader-circle.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +122,9 @@ import { MatchCommentsComponent } from './components/match/match-comments-dialog
     PlayerDetailsEditComponent,
     StatsPanelComponent,
     MatchCommentsComponent,
+    TestComponent,
+    FooterComponent,
+    LoaderCircleComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,6 +136,8 @@ import { MatchCommentsComponent } from './components/match/match-comments-dialog
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgForOf,
+    DatePipe,
   ],
   providers: [
     DatePipe,

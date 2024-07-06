@@ -11,6 +11,7 @@ export class ContentFrameComponent {
   @Input() icon!: string;
   @Input() tooltipMessage: string = '';
   @Input() buttonDisabled: boolean = false;
-  @Input() backgroundColor!: string;
+  @Input() backgroundColor: string = 'var(--primary-color)';
   @Input() fontColor!: string;
+  @Input() buttonText!: string;
 }

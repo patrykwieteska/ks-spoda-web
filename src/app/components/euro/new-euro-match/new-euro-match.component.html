@@ -1,5 +1,10 @@
 <div class="match-modal" fxLayout="column">
-  <div *ngIf="euroMatch" class="panel-euro-match" fxLayoutAlign="center center">
+  <div class="message">{{ message }}</div>
+  <div
+    *ngIf="euroMatch && !message"
+    class="panel-euro-match"
+    fxLayoutAlign="center center"
+  >
     <div fxLayout="column" fxLayoutAlign="center center">
       <div style="font-size: large">
         <b
@@ -32,7 +37,7 @@
       </div>
     </div>
   </div>
-  <div mat-dialog-content fxFlex="100">
+  <div mat-dialog-content fxFlex="100" *ngIf="!message">
     <form [formGroup]="matchForm" fxLayout="column">
       <div>
         <div
@@ -89,9 +94,11 @@
       (click)="resetForm()"
       class="cancel-button"
     >
-      Anuluj
+      <span *ngIf="!message">Anuluj</span>
+      <span *ngIf="message">Ok</span>
     </button>
     <button
+      *ngIf="!serviceCalling && !message"
       mat-button
       cdkFocusInitial
       class="add-button"

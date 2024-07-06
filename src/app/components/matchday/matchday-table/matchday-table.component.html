@@ -1,44 +1,31 @@
 <div *ngIf="matchDayTable.tableRows.length === 0" fxLayoutAlign="center center">
   <span class="info"> Dodaj pierwszy mecz aby zobaczyć tabelę</span>
 </div>
-<div *ngIf="matchDayTable.tableRows.length > 0" fxflex="50">
+<div *ngIf="matchDayTable.tableRows.length > 0" fxflex="100">
   <div fxLayout="column"></div>
   <div fxLayoutAlign="center center">
     <h5>{{ matchDayTable.header }}</h5>
   </div>
 
-  <div fxLayoutAlign="start start" fxLayout="column" fxLayoutGap="0">
+  <div fxLayoutAlign="start start" fxLayout="column" fxLayoutGap="5">
     <div>
-      <table fxFlex="40" class="table-shadow">
-        <thead class="table-header">
-          <tr style="padding-top: 5px">
-            <th fxFlex="60">ZAWODNIK</th>
-            <th
-              fxFlex="10"
-              matTooltip="Rozegrane mecze"
-              matTooltipPosition="above"
-            >
-              RM
+      <table fxFlex="100">
+        <thead>
+          <tr>
+            <th colspan="2">ZAWODNIK</th>
+            <th matTooltip="Rozegrane mecze" matTooltipPosition="above">RM</th>
+            <th matTooltip="Br. zdobyte" matTooltipPosition="above">B+</th>
+            <th matTooltip="Br. stracone" matTooltipPosition="above">B-</th>
+            <th matTooltip="Bilans br." matTooltipPosition="above">+/-</th>
+            <th matTooltip="Punkty w kolejce" matTooltipPosition="above">
+              PKT
             </th>
-            <th
-              fxFlex="14"
-              matTooltip="Bilans bramek"
-              matTooltipPosition="above"
-            >
-              +/-
-            </th>
-            <th fxFlex="13" matTooltip="Ranking" matTooltipPosition="above">
-              P
-            </th>
-            <th fxFlex="10" matTooltip="Punkty" matTooltipPosition="above">
-              R
+
+            <th matTooltip="Ranking kolejkowski" matTooltipPosition="above">
+              RT.K
             </th>
           </tr>
         </thead>
-      </table>
-    </div>
-    <div class="table-content">
-      <table fxFlex="40" class="table-shadow">
         <tbody>
           <tr
             *ngFor="let seasonRow of matchDayTable.tableRows; index as i"
@@ -53,17 +40,22 @@
             <td style="text-align: left; font-stretch: expanded">
               {{ seasonRow.player.alias }}
             </td>
-            <td style="text-align: center; width: 30px">
+            <td style="text-align: center">
               {{ seasonRow.matches }}
             </td>
-
-            <td style="text-align: center; width: 30px">
+            <td style="text-align: center">
+              {{ seasonRow.goalsScored }}
+            </td>
+            <td style="text-align: center">
+              {{ seasonRow.goalsConceded }}
+            </td>
+            <td style="text-align: center">
               {{ seasonRow.goalsDiff }}
             </td>
-            <td style="text-align: center; width: 30px">
+            <td style="text-align: center">
               {{ seasonRow.pointsTotal }}
             </td>
-            <td style="text-align: center; width: 30px">
+            <td style="text-align: center">
               <b style="font-size: larger"> {{ seasonRow.rating }} </b>
             </td>
           </tr>

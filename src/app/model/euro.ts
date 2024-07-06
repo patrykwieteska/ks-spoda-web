@@ -16,6 +16,7 @@ export interface EuroMatch {
   updated: Date;
   finished: boolean;
   matchInProgress: boolean;
+  message: String | null;
 }
 
 export interface EuroTeam {

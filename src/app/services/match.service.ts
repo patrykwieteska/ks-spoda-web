@@ -89,6 +89,11 @@ export interface ApiResponse {
   matchList: Match[];
   message: string | null;
 }
+
+export interface ApiMatchResponse {
+  status: number;
+  matchList: Match[];
+}
 export interface NewMatchResponse {
   status: number;
   matchId: number;

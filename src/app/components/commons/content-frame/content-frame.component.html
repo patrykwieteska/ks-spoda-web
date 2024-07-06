@@ -2,24 +2,37 @@
   <div>
     <div
       fxLayout="row"
+      fxFlex="100"
+      fxLayoutAlign="space-between center"
       class="header"
       [ngStyle]="{ 'background-color': backgroundColor }"
       [style.color]="fontColor"
     >
-      <div fxLayoutAlign="center start" fxFlex="90" class="title">
+      <div fxLayoutAlign="center start" fxFlex="80" class="title">
         {{ headerTitle | uppercase }}
       </div>
-      <div fxLayoutAlign="end" fxFlex="10" *ngIf="icon && !buttonDisabled">
-        <button
-          mat-button
-          [matTooltip]="tooltipMessage"
-          matTooltipPosition="above"
-          matTooltipHideDelay="100"
-          (click)="clickButton.emit()"
-          [disabled]="buttonDisabled"
-        >
-          <mat-icon>{{ icon }}</mat-icon>
-        </button>
+      <div
+        fxLayoutAlign="end center"
+        fxFlex="20"
+        *ngIf="icon && !buttonDisabled"
+      >
+        <div fxLayoutAlign="end center">
+          <button
+            [style.background-color]="backgroundColor"
+            [matTooltip]="tooltipMessage"
+            matTooltipPosition="above"
+            matTooltipHideDelay="100"
+            (click)="clickButton.emit()"
+            [disabled]="buttonDisabled"
+            [style.color]="fontColor"
+            fxLayoutAlign="center center"
+          >
+            <span [style.color]="fontColor" *ngIf="buttonText">
+              {{ buttonText }}</span
+            >
+            <mat-icon style="margin-left: 10px">{{ icon }}</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>

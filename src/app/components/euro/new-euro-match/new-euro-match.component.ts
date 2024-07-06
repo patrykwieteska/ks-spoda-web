@@ -45,6 +45,9 @@ export class NewEuroMatchComponent implements OnInit {
   homeColor: string = 'yellow';
   awayColor: string = 'red';
   addButtonDisabled = false;
+  message: String | null = null;
+
+  serviceCalling: boolean = false;
 
   @Output() playedEuroTeams = new EventEmitter<number[]>();
 
@@ -72,21 +75,23 @@ export class NewEuroMatchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.euroService.getNextEuroMatch(this.data.seasonId).subscribe({
+      next: (response) => {
+        this.euroMatch = response;
+        this.matchForm.setControl;
+        this.message = response.message;
+      },
+    });
+
     this.playerService.getLeaguePlayersBySeason(this.data.seasonId).subscribe({
       next: (response) => {
         this.leaguePlayers = response.players;
       },
     });
-
-    this.euroService.getNextEuroMatch(this.data.seasonId).subscribe({
-      next: (response) => {
-        this.euroMatch = response;
-        this.matchForm.setControl;
-      },
-    });
   }
 
   addMatch(): void {
+    this.serviceCalling == true;
     this.addButtonDisabled = true;
     this.homePlayersError = false;
     this.awayPlayersError = false;
@@ -182,6 +187,9 @@ export class NewEuroMatchComponent implements OnInit {
   }
 
   resetForm() {
+    if (this.message) {
+      return;
+    }
     this.matchForm.reset;
     this.homePlayersRef.resetForm('home');
     this.awayPlayersRef.resetForm('away');

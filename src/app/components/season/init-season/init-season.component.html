@@ -13,7 +13,7 @@
     <div fxFlex="5"></div>
     <div fxFlex="90">
       <app-content-frame
-        backgroundColor="lightgray"
+        backgroundColor="var(--primary-color)"
         headerTitle="tabela"
         icon="keyboard_return"
         tooltipMessage="Powrót to ligi"
@@ -28,13 +28,14 @@
     <div fxFlex="5"></div>
     <div fxFlex="45">
       <app-content-frame
-        backgroundColor="lightgray"
+        backgroundColor="var(--primary-color)"
         headerTitle="Mecze"
         icon="add_circle"
         tooltipMessage="Dodaj mecz"
         (clickButton)="getNewMatchEvent()"
         [buttonDisabled]="newMatchButtonDisabled"
         #matchContentFrame
+        buttonText="Dodaj mecz"
       >
         <app-match-list
           (outMatchDay)="takeMatchDayFromList($event)"
@@ -51,7 +52,7 @@
     </div>
     <div fxFlex="45">
       <app-content-frame
-        backgroundColor="lightgray"
+        backgroundColor="var(--primary-color)"
         headerTitle="Kolejka"
         icon="add_circle"
         tooltipMessage="Dodaj kolejkę"

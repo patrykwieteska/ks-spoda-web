@@ -19,7 +19,7 @@
     </mat-form-field>
   </div>
   <div style="width: 100%" class="match-list-content">
-    <div *ngFor="let match of matches">
+    <div *ngFor="let match of matches" style="margin: 16px">
       <app-match-item
         [match]="match"
         (outMatchUpdated)="takeMatchUpdatedEvent()"

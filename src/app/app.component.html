@@ -1,17 +1,15 @@
-<mat-sidenav-container>
-  <mat-sidenav #sidenav role="navigation">
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav class="sw-sidenav">
     <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
   </mat-sidenav>
-
   <app-header
     class="header-sticky"
     (sidenavToggle)="sidenav.toggle()"
   ></app-header>
+
   <div class="content" #main>
-    <main class="my-content">
-      <router-outlet></router-outlet>
-    </main>
+    <router-outlet></router-outlet>
   </div>
 
-  <div class="footer" #footer>Fifowa Śpoda®</div>
+  <app-footer></app-footer>
 </mat-sidenav-container>
