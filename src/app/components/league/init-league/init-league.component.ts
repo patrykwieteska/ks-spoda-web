@@ -15,7 +15,7 @@ import { Player } from 'src/app/model/player';
 import { Table } from 'src/app/model/table';
 import { LeagueService } from 'src/app/services/league.service';
 import { PlayerListComponent } from '../../player/player-list/player-list.component';
-import { TableComponent } from '../table/table.component';
+import { TableComponent } from '../league-table/league-table.component';
 import { LeagueNewsComponent } from '../league-news/league-news.component';
 
 @Component({

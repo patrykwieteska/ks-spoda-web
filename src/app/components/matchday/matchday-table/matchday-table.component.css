@@ -4,25 +4,16 @@ table {
   min-width: 300px;
   width: auto;
   text-align: center;
-  padding: 20px;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 thead {
-  color: white;
-  background-color: var(--secondary-color);
-  border: solid 1px var(--secondary-color);
+  color: var(--primary-color);
+  background-color: var(--shadow-color);
+  border-bottom: solid 2px var(--primary-color);
   height: 40px;
   font-size: 14px;
-}
-
-thead:hover {
-  color: white;
-  background-color: var(--secondary-color);
-  border: solid 1px var(--secondary-color);
-  padding: 20px;
-  padding: 50px;
 }
 
 .player-img {
@@ -67,7 +58,7 @@ thead:hover {
   display: table-row;
 
   padding: 2px;
-  border-bottom: solid white 2px;
+  /* border-bottom: solid white 2px; */
 }
 
 .match-in-progress {

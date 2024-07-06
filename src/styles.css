@@ -22,7 +22,7 @@ body {
 }
 
 @font-face {
-  font-family: "SignikaNegative";
+  font-family: SignikaNegative, "Helvetica Neue", sans-serif !important;
   src: url("assets/fonts/Signika_Negative/SignikaNegative-Regular.ttf")
     format("truetype");
   font-weight: normal;

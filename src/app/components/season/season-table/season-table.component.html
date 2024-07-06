@@ -38,8 +38,11 @@
           ngClass="seasonRow.matchInProgress ? match-in-progress : table-row"
         >
           <td>
-            <div [class]="getPositionClass(seasonRow.currentPosition)">
-              {{ seasonRow.currentPosition }}
+            <div
+              [class]="getPositionClass(seasonRow.currentPosition)"
+              fxLayoutAlign="center center"
+            >
+              <span>{{ seasonRow.currentPosition }}</span>
             </div>
           </td>
           <td>
@@ -76,12 +79,20 @@
           <td>{{ seasonRow.goalsConceded }}</td>
           <td>{{ seasonRow.goalsDiff }}</td>
           <td>
-            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+            <div fxLayout="row" fxLayoutAlign="center center">
               <div
-                *ngFor="let matchResult of seasonRow.playerForm"
-                [class]="getFormClass(matchResult)"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                fxFlex="50"
+                fxLayoutGap=""
               >
-                {{ matchResult }}
+                <div
+                  *ngFor="let matchResult of seasonRow.playerForm"
+                  [class]="getFormClass(matchResult)"
+                  fxLayoutAlign="center center"
+                >
+                  <span>{{ matchResult }}</span>
+                </div>
               </div>
             </div>
           </td>

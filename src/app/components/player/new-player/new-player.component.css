@@ -10,3 +10,8 @@
 .cancel-button {
   border: 1px solid white;
 }
+
+mat-icon {
+  margin-bottom: 3px;
+  transform: scale(1);
+}

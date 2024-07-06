@@ -5,8 +5,8 @@ import { TableService } from 'src/app/services/table.service';
 
 @Component({
   selector: 'league-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css'],
+  templateUrl: './league-table.component.html',
+  styleUrls: ['./league-table.component.css'],
 })
 export class TableComponent implements OnInit {
   @Input() leagueId!: number;

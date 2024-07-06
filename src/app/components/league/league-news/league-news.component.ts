@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Player } from 'src/app/model/player';
-import { TableComponent } from '../table/table.component';
+import { TableComponent } from '../league-table/league-table.component';
 
 @Component({
   selector: 'app-league-news',

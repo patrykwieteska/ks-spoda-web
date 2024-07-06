@@ -29,7 +29,7 @@ import { CustomProgressBarComponent } from './components/commons/custom-progress
 import { ContentFrameComponent } from './components/commons/content-frame/content-frame.component';
 import { HeaderPanelComponent } from './components/commons/header-panel/header-panel.component';
 import { LeagueNewsComponent } from './components/league/league-news/league-news.component';
-import { TableComponent } from './components/league/table/table.component';
+import { TableComponent } from './components/league/league-table/league-table.component';
 import { MatchItemComponent } from './components/match/match-item/match-item.component';
 import { SeasonListComponent } from './components/season/season-list/season-list.component';
 import { StatisticsComponent } from './components/league/statistics/statistics.component';

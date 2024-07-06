@@ -3,35 +3,38 @@
     <div
       fxLayout="row"
       fxFlex="100"
-      fxLayoutAlign="space-between center"
+      fxLayoutAlign="center center"
       class="header"
       [ngStyle]="{ 'background-color': backgroundColor }"
       [style.color]="fontColor"
     >
-      <div fxLayoutAlign="center start" fxFlex="80" class="title">
+      <div fxFlex="20"></div>
+      <div fxFlex="60" class="title" fxLayoutAlign="center center">
         {{ headerTitle | uppercase }}
       </div>
-      <div
-        fxLayoutAlign="end center"
-        fxFlex="20"
-        *ngIf="icon && !buttonDisabled"
-      >
-        <div fxLayoutAlign="end center">
-          <button
-            [style.background-color]="backgroundColor"
-            [matTooltip]="tooltipMessage"
-            matTooltipPosition="above"
-            matTooltipHideDelay="100"
-            (click)="clickButton.emit()"
-            [disabled]="buttonDisabled"
-            [style.color]="fontColor"
-            fxLayoutAlign="center center"
-          >
-            <span [style.color]="fontColor" *ngIf="buttonText">
-              {{ buttonText }}</span
+      <div fxFlex="20">
+        <div fxLayoutAlign="end center" *ngIf="icon && !buttonDisabled">
+          <div fxLayoutAlign="center center">
+            <button
+              [style.background-color]="backgroundColor"
+              [matTooltip]="tooltipMessage"
+              matTooltipPosition="above"
+              matTooltipHideDelay="100"
+              (click)="clickButton.emit()"
+              [disabled]="buttonDisabled"
+              [style.color]="fontColor"
+              class="button-action"
+              fxLayoutAlign="center center"
+              fxLayoutGap="10"
             >
-            <mat-icon style="margin-left: 10px">{{ icon }}</mat-icon>
-          </button>
+              <span [style.color]="fontColor" *ngIf="buttonText">
+                {{ buttonText }}</span
+              >
+              <span>
+                <mat-icon>{{ icon }}</mat-icon></span
+              >
+            </button>
+          </div>
         </div>
       </div>
     </div>
