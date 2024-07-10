@@ -31,7 +31,7 @@ export class MatchListComponent implements OnInit, OnChanges {
   @Input() newMatchOpenDialogCounter: number = 0;
   @Output() outMatchDay = new EventEmitter<SimpleMatchDay>();
   @Input() leaguePlayers!: Player[];
-  @Output() matchChange = new EventEmitter<void>();
+  @Output() matchChange = new EventEmitter<boolean>();
   @Input() isEuro: boolean = false;
   @Output() playedEuroTeams = new EventEmitter<number[]>();
 
@@ -94,7 +94,7 @@ export class MatchListComponent implements OnInit, OnChanges {
 
     dialogRef.componentInstance.outPutNewMatch.subscribe((value) => {
       this.getMatchDayMatches(this.matchDay);
-      this.matchChange.emit();
+      this.matchChange.emit(false);
       dialogRef.close(() => {
         console.log('Dialog closed');
       });
@@ -120,7 +120,7 @@ export class MatchListComponent implements OnInit, OnChanges {
 
     dialogRef.componentInstance.outPutNewMatch.subscribe((value) => {
       this.getMatchDayMatches(this.matchDay);
-      this.matchChange.emit();
+      this.matchChange.emit(false);
       dialogRef.close(() => {
         console.log('Dialog closed');
       });
@@ -162,8 +162,8 @@ export class MatchListComponent implements OnInit, OnChanges {
     });
   }
 
-  takeMatchUpdatedEvent() {
+  takeMatchUpdatedEvent(isMatchComplete: boolean) {
     this.getMatchDayMatches(this.matchDay);
-    this.matchChange.emit();
+    this.matchChange.emit(isMatchComplete);
   }
 }

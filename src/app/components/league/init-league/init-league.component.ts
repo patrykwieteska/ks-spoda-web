@@ -87,7 +87,6 @@ export class InitLeagueComponent implements OnChanges {
   }
 
   takeNewPlayerEvent() {
-    console.log('DODANO GRACZA VVV');
     this.initLeague();
     this.leagueNewsRef.leagueTableRef.getLeagueTable();
   }

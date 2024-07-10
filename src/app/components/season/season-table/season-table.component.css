@@ -51,11 +51,11 @@ thead {
 
 .position {
   display: inline-block;
-  border-radius: 40px 999em 999em 40px;
   width: 28px;
   height: 28px;
   text-align: center;
   font-weight: 600;
+  border-radius: 40px 999em 999em 40px;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
@@ -160,4 +160,20 @@ th {
 .info {
   color: var(--primary-color);
   margin-top: 50px;
+}
+
+.less-than-10-matches {
+  color: orange;
+}
+
+.question-mark {
+  transform: scale(0.7);
+  /* margin-left: -6px; */
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  border-radius: 50%;
+  background-color: green;
+  cursor: pointer;
 }

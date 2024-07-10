@@ -29,11 +29,10 @@
         <tbody>
           <tr
             *ngFor="let seasonRow of matchDayTable.tableRows; index as i"
-            class="table-row"
             ngClass="seasonRow.matchInProgress ? match-in-progress : table-row"
           >
             <td>
-              <div class="position">
+              <div [class]="getPositionClass(seasonRow.currentPosition)">
                 {{ seasonRow.currentPosition }}
               </div>
             </td>
@@ -56,7 +55,7 @@
               {{ seasonRow.pointsTotal }}
             </td>
             <td style="text-align: center">
-              <b style="font-size: larger"> {{ seasonRow.rating }} </b>
+              <b style="font-size: medium"> {{ seasonRow.rating }} </b>
             </td>
           </tr>
         </tbody>

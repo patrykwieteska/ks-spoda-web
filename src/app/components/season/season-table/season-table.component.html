@@ -12,7 +12,7 @@
       <thead class="table-header">
         <tr>
           <th></th>
-          <th colspan="4">ZAWODNIK</th>
+          <th colspan="3">ZAWODNIK</th>
           <th matTooltip="Rozegrane mecze" matTooltipPosition="above">RM</th>
           <th
             [matTooltip]="getPointCountingTooltip()"
@@ -26,23 +26,38 @@
           <th matTooltip="Br. zdobyte" matTooltipPosition="above">B+</th>
           <th matTooltip="Br. stracone" matTooltipPosition="above">B-</th>
           <th matTooltip="Bilans br." matTooltipPosition="above">+/-</th>
-          <th matTooltip="Forma zawodnika" matTooltipPosition="above">
-            OSTATNIE 5
+          <th>
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <span fxFlex="20"></span>
+              <span
+                fxFlex="60"
+                matTooltip="Forma zawodnika"
+                matTooltipPosition="above"
+                >OSTATNIE 5</span
+              >
+              <span fxFlex="20">
+                <input
+                  type="checkbox"
+                  color="primary"
+                  [(ngModel)]="hidePlayers"
+                  matTooltip="Limit 10 meczów"
+                  matTooltipPosition="right"
+              /></span>
+            </div>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr
-          *ngFor="let seasonRow of seasonTable.tableRows; index as i"
-          class="table-row"
-          ngClass="seasonRow.matchInProgress ? match-in-progress : table-row"
+          *ngFor="let seasonRow of filteredElements; index as i"
+          [ngClass]="calculateRowClass(seasonRow.matchInProgress)"
         >
           <td>
             <div
-              [class]="getPositionClass(seasonRow.currentPosition)"
+              [class]="getPositionClass(i + 1)"
               fxLayoutAlign="center center"
             >
-              <span>{{ seasonRow.currentPosition }}</span>
+              <span>{{ i + 1 }}</span>
             </div>
           </td>
           <td>
@@ -50,27 +65,46 @@
               <img [src]="getPlayerImg(seasonRow.player.playerImg)" />
             </div>
           </td>
-          <td width="10%" style="text-align: left; font-stretch: 200%">
-            <b> {{ seasonRow.player.alias | uppercase }} </b>
+          <td
+            width="10%"
+            style="text-align: left; font-stretch: 200%"
+            [ngClass]="checkPlayerMatchesCount(seasonRow.matches)"
+            [matTooltip]="
+              seasonRow.matches < 10 ? 'Gracz rozegrał mniej niż 10 meczów' : ''
+            "
+            matTooltipPosition="right"
+          >
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0">
+              <span>
+                <b> {{ seasonRow.player.alias | uppercase }} </b></span
+              >
+              <span *ngIf="seasonRow.matches < 10"
+                ><mat-icon class="question-mark">priority_high</mat-icon></span
+              >
+            </div>
           </td>
           <td width="5%">
             <span *ngIf="seasonRow.matchInProgress" class="blink"
               ><mat-icon>sports_soccer</mat-icon></span
             >
           </td>
-          <td>
-            <mat-icon
-              [class]="getClass(seasonRow)"
-              [matTooltip]="tooltipMessage(seasonRow)"
-              matTooltipPosition="right"
-              >{{ getIcon(seasonRow) }}</mat-icon
-            >
-          </td>
           <td>{{ seasonRow.matches }}</td>
           <td>
-            <b style="font-size: larger">{{
-              getCorrectPointsType(seasonRow)
-            }}</b>
+            <div fxLayoutAlign="center center">
+              <span>
+                <b style="font-size: larger">{{
+                  getCorrectPointsType(seasonRow)
+                }}</b></span
+              >
+              <span>
+                <mat-icon
+                  [class]="getClass(seasonRow)"
+                  [matTooltip]="tooltipMessage(seasonRow)"
+                  matTooltipPosition="right"
+                  >{{ getIcon(seasonRow) }}</mat-icon
+                ></span
+              >
+            </div>
           </td>
           <td>{{ seasonRow.wins }}</td>
           <td>{{ seasonRow.draws }}</td>

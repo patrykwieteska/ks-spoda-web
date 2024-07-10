@@ -15,7 +15,7 @@ import { MatchCommentsComponent } from '../match-comments-dialog/match-comments-
 })
 export class MatchItemComponent implements OnInit {
   @Input() match!: Match;
-  @Output() outMatchUpdated = new EventEmitter<void>();
+  @Output() outMatchUpdated = new EventEmitter<boolean>();
   isResultChanged: boolean = false;
   penalties: boolean = false;
   checked = false;
@@ -36,7 +36,6 @@ export class MatchItemComponent implements OnInit {
 
   async updateMatch(isComplete: boolean) {
     this.isServiceCalling = true;
-    await delay(200);
     var editMatch: EditMatch = {
       awayGoals: Number(this.inputAwayGoals),
       homeGoals: Number(this.inputHomeGoals),
@@ -44,21 +43,25 @@ export class MatchItemComponent implements OnInit {
       isComplete: isComplete,
       matchId: this.match.id,
     };
-
+    console.log('isMatchComplete from item', isComplete);
     this.matchService.updateMatch(editMatch).subscribe({
       complete: () => {
-        this.outMatchUpdated.emit();
+        this.outMatchUpdated.emit(isComplete);
       },
     });
   }
   preparePenalties(): PenaltyKicks | null {
     let penaltyHomeGoals = Number(this.inputPenaltyHomeGoals);
     let penaltyAwayGoals = Number(this.inputPenaltyAwayGoals);
+    console.log('penalty home', penaltyHomeGoals);
+    console.log('penalty away', penaltyAwayGoals);
+    console.log('penalty home input', Number(this.inputHomeGoals));
+    console.log('penalty away input', Number(this.inputAwayGoals));
+    console.log(this.match.playOffMatch);
 
     if (
-      this.match.playOffMatch === false ||
-      (penaltyAwayGoals === 0 && penaltyAwayGoals === 0) ||
-      Number(this.inputAwayGoals) !== Number(this.inputHomeGoals)
+      Number(this.inputAwayGoals) !== Number(this.inputHomeGoals) ||
+      this.match.playOffMatch === false
     ) {
       return null;
     }
@@ -175,7 +178,7 @@ export class MatchItemComponent implements OnInit {
 
     dialogRef.componentInstance.deleteMatchOutput.subscribe(() => {
       dialogRef.close();
-      this.outMatchUpdated.emit();
+      this.outMatchUpdated.emit(true);
     });
   }
 

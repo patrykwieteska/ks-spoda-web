@@ -1,0 +1,35 @@
+<div class="player-modal" fxLayoutAlign="center center" fxLayout="column">
+  <div mat-dialog-title fxLayoutAlign="center center" fxLayoutGap="5">
+    <span> <mat-icon>person_add</mat-icon></span> <span>Nowy zawodnik</span>
+  </div>
+  <div mat-dialog-content>
+    <div fxLayout="column" fxLayout.lt-md="column">
+      <div fxFlex="48">
+        <button
+          (click)="openExistingPlayersModal()"
+          fxFlex="100"
+          mat-button
+          class="player-button"
+        >
+          Wyszukaj<mat-icon>person_search</mat-icon>
+        </button>
+      </div>
+
+      <div fxFlex="6" fxLayoutAlign="center" class="centered-element">lub</div>
+      <div fxFlex="48" fxLayoutAlign="center center">
+        <button
+          (click)="openNewPlayerModal()"
+          fxFlex="100"
+          mat-button
+          class="player-button"
+        >
+          Dodaj nowego<mat-icon>person_add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions fxLayoutAlign="center center">
+    <button mat-button [mat-dialog-close] class="cancel-button">Wróć</button>
+    <button mat-button cdkFocusInitial class="add-button">Dodaj</button>
+  </div>
+</div>

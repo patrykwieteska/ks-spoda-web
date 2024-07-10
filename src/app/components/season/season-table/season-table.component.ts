@@ -1,6 +1,7 @@
 import { TableService } from './../../../services/table.service';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { hide } from '@popperjs/core';
 import { Player } from 'src/app/model/player';
 import { Table, TableRow } from 'src/app/model/table';
 
@@ -18,6 +19,8 @@ export class SeasonTableComponent implements OnInit {
     tableRows: [],
     pointCountingMethod: '',
   };
+
+  hidePlayers: boolean = false;
 
   constructor(private tableService: TableService) {
     this.showProgressBar = true;
@@ -78,19 +81,17 @@ export class SeasonTableComponent implements OnInit {
     return baseClass + ' ' + result;
   }
   getClass(leagueRow: TableRow): string {
-    var positionDiff: number =
-      leagueRow.currentPosition - leagueRow.previousPosition;
+    var positionDiff: number = leagueRow.rating - leagueRow.previousRating;
 
-    return positionDiff < 0 ? 'up' : positionDiff > 0 ? 'down' : 'none';
+    return positionDiff > 0 ? 'up' : positionDiff < 0 ? 'down' : 'none';
   }
 
   getIcon(leagueRow: TableRow): string {
-    var positionDiff: number =
-      leagueRow.currentPosition - leagueRow.previousPosition;
+    var positionDiff: number = leagueRow.rating - leagueRow.previousRating;
 
-    return positionDiff < 0
+    return positionDiff > 0
       ? 'arrow_drop_up'
-      : positionDiff > 0
+      : positionDiff < 0
       ? 'arrow_drop_down'
       : 'remove';
   }
@@ -146,12 +147,40 @@ export class SeasonTableComponent implements OnInit {
   }
 
   tooltipMessage(seasonRow: TableRow): string {
-    var positionDiff = seasonRow.previousPosition - seasonRow.currentPosition;
+    var positionDiff = seasonRow.rating - seasonRow.previousRating;
 
     return positionDiff == 0
       ? ''
       : positionDiff > 0
       ? '+' + positionDiff
       : '' + positionDiff;
+  }
+  calculateRowClass(matchInProgress: boolean | null) {
+    let baseClass = ' table-row';
+    let result = 'table-row';
+    if (matchInProgress && matchInProgress == true) {
+      return result + ' match-in-progress';
+    }
+
+    return result + ' table-row';
+  }
+
+  checkPlayerMatchesCount(matchesCount: number): string {
+    return matchesCount < 10 ? 'less-than-10-matches' : '';
+  }
+
+  get filteredElements(): TableRow[] {
+    let rows: TableRow[] = this.seasonTable.tableRows;
+
+    if (this.hidePlayers) {
+      return rows.filter((x) => x.matches >= 10);
+    }
+    return rows;
+  }
+
+  prepareMatTooltip(): string {
+    return this.hidePlayers
+      ? 'Pokaż graczy, którzy rozegrali mniej niż 10 meczów'
+      : 'Ukryj graczy, którzy rozegrali mniej niż 10 meczów';
   }
 }

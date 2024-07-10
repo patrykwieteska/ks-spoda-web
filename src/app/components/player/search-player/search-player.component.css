@@ -1,0 +1,64 @@
+.added-player {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  max-width: 150px;
+  min-width: 70px;
+  padding: 5px;
+  margin: 2px;
+}
+.added-player:hover {
+  cursor: pointer;
+  background-color: var(--shadow-color);
+  color: black;
+}
+
+.player-modal {
+  background-color: var(--accent-color);
+  width: 300px;
+}
+
+.add-button {
+  background-color: var(--primary-color) !important;
+  color: white;
+  border: 1px solid white;
+}
+
+.cancel-button {
+  border: 1px solid white;
+}
+
+.add-button:disabled {
+  background-color: lightgray !important;
+}
+
+#add-player {
+  background-color: green !important;
+}
+
+.player-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.add-player-element {
+  margin: 2px;
+  padding: 2px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.add-player-element:hover {
+  background-color: var(--shadow-color);
+  border-radius: 10px;
+}
+
+.add-player-element::after {
+  text-decoration: none;
+}
+
+.player-property-value {
+  font-size: 13px;
+}

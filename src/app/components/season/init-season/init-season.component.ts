@@ -154,10 +154,16 @@ export class InitSeasonComponent implements OnInit {
     }
   }
 
-  refreshTable() {
+  refreshTable(isMatchComplete: boolean) {
     this.seasonTableRef.initSeasonTable();
     this.matchDayStatsRef.matchDayTableRef.initMatchDayTable();
     this.matchDayStatsRef.matchDayPlayersRef.initMatchDayPlayers();
+    console.log('isMatchComplete', isMatchComplete);
+    if (isMatchComplete) {
+      this.matchContentFrame.buttonDisabled = false;
+    } else {
+      this.matchContentFrame.buttonDisabled = true;
+    }
 
     if (this.seasonData.isEuro) {
       this.euroGroupsRef.refreshData();

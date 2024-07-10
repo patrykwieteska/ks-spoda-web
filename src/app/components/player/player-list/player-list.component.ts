@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Player } from 'src/app/model/player';
 import { NewPlayerComponent } from '../new-player/new-player.component';
 import { PlayerDetailsComponent } from '../player-details/player-details.component';
+import { NewLeaguePlayerComponent } from '../new-league-player/new-league-player.component';
 
 @Component({
   selector: 'app-player-list',
@@ -41,7 +42,7 @@ export class PlayerListComponent {
       return player.alias.toUpperCase();
     });
 
-    const dialogRef = this.dialog.open(NewPlayerComponent, {
+    const dialogRef = this.dialog.open(NewLeaguePlayerComponent, {
       data: {
         playerAliases: playerAliases,
       },
@@ -55,6 +56,7 @@ export class PlayerListComponent {
         alias: value.get('alias')?.value,
         playerImg: value.get('playerImg')?.value,
         leagueId: this.leagueId,
+        playerId: value.get('playerId')?.value,
       };
 
       this.playerService.addPlayer(newPlayer).subscribe({
@@ -72,5 +74,13 @@ export class PlayerListComponent {
   closeEditMode() {
     'ZAMYKAM EDYCJE';
     this.editModeEnabled = false;
+  }
+
+  calculateOverflow() {
+    let playerListLength: number = this.playerList?.length
+      ? this.playerList.length
+      : 0;
+
+    return playerListLength < 7 ? 'none' : '';
   }
 }

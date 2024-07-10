@@ -22,7 +22,7 @@
     <div *ngFor="let match of matches" style="margin: 16px">
       <app-match-item
         [match]="match"
-        (outMatchUpdated)="takeMatchUpdatedEvent()"
+        (outMatchUpdated)="takeMatchUpdatedEvent($event)"
       ></app-match-item>
     </div>
     <div *ngIf="matches.length === 0" fxLayoutAlign="center center">

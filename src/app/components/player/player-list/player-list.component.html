@@ -3,6 +3,7 @@
     fxFlex="30"
     style="overflow-y: scroll; height: 370px"
     class="player-list-content"
+    [style.scrollbar-width]="calculateOverflow()"
   >
     <div *ngFor="let player of playerList">
       <app-player-item

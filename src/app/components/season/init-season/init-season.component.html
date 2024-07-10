@@ -44,7 +44,7 @@
           [isEuro]="euroEnabled"
           [newMatchOpenDialogCounter]="newMatchDialogCounter"
           [leaguePlayers]="leaguePlayerList"
-          (matchChange)="refreshTable()"
+          (matchChange)="refreshTable($event)"
           (playedEuroTeams)="takePlayedEuroTeams($event)"
           #matchListRef
         ></app-match-list>

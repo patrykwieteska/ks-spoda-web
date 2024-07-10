@@ -5,17 +5,20 @@ img {
 .header {
   padding: 40px;
   text-align: center;
-  background: #dce4ea;
+  background: whitesmoke; /*#dce4ea;8*/
   color: black;
   font-size: 40px;
   width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
   letter-spacing: 2px;
+  border-bottom: 2px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
 }
 
 .title {
   font-family: "Jersey 20", sans-serif;
-
   font-style: normal;
   font-size: 70px;
 }

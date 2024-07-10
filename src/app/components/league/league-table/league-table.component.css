@@ -12,7 +12,6 @@ thead {
   border: solid 1px var(--primary-color);
   height: 40px;
   font-size: 14px;
-  padding: 20px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
@@ -59,14 +58,12 @@ thead:hover {
 
 .position {
   display: inline-block;
-  border-radius: 50%;
   width: 25px;
   height: 25px;
   text-align: center;
-  /* border: solid white 1px; */
-  margin: 2px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border-radius: 40px 999em 999em 40px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .position-1 {
@@ -89,11 +86,8 @@ thead:hover {
 }
 
 .table-row {
-  margin: 10px;
-  padding: 20px;
   display: table-row;
   cursor: pointer;
-  padding: 2px;
   border-bottom: gray 1px dotted;
 }
 
@@ -146,5 +140,4 @@ th {
 .league-table-content {
   overflow-y: scroll;
   max-height: 300px;
-  scrollbar-width: none;
 }

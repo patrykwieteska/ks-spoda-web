@@ -67,6 +67,8 @@ import { MatchCommentsComponent } from './components/match/match-comments-dialog
 import { TestComponent } from './components/test/test.component';
 import { FooterComponent } from './components/commons/footer/footer.component';
 import { LoaderCircleComponent } from './components/commons/loader-circle/loader-circle.component';
+import { NewLeaguePlayerComponent } from './components/player/new-league-player/new-league-player.component';
+import { SearchPlayerComponent } from './components/player/search-player/search-player.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +127,8 @@ import { LoaderCircleComponent } from './components/commons/loader-circle/loader
     TestComponent,
     FooterComponent,
     LoaderCircleComponent,
+    NewLeaguePlayerComponent,
+    SearchPlayerComponent,
   ],
   imports: [
     BrowserModule,

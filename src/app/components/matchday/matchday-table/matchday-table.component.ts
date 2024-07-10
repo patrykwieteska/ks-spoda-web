@@ -46,4 +46,22 @@ export class MatchdayTableComponent implements OnInit, OnChanges {
       complete: () => {},
     });
   }
+
+  getPositionClass(position: number): string {
+    if (position == null) throw new Error('Player position is null');
+    var tableSize = this.matchDayTable
+      ? this.matchDayTable.tableRows.length
+      : 0;
+
+    var baseName = 'position';
+    var result: string;
+    if (position < 4) {
+      result = baseName + '-' + position;
+    } else if (tableSize <= position) {
+      result = baseName + '-last';
+    } else {
+      result = baseName + '-default';
+    }
+    return baseName + ' ' + result;
+  }
 }

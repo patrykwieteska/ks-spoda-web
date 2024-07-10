@@ -67,6 +67,7 @@ export interface PlayerCreated {
 }
 
 export interface NewPlayer {
+  playerId: number | null;
   name: string;
   alias: string;
   leagueId: number;
